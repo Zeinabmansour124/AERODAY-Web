@@ -1,0 +1,157 @@
+.custom-navbar {
+  background-color: #0B1F3A !important;
+}
+
+/* Change TOUS les textes de la navbar */
+.custom-navbar .navbar-brand,
+.custom-navbar .nav-link,
+.custom-navbar .navbar-text {
+  color: #FFD23F !important;
+}
+
+/* Effet au survol */
+.custom-navbar .nav-link:hover {
+  color: #FFE082 !important; /* Version plus claire pour le hover */
+}
+
+/* Lien actif */
+.custom-navbar .nav-link.active {
+  color: #FFD23F !important;
+  font-weight: bold;
+}
+
+.brand-white {
+  color: #FFFFFF !important;
+  font-size: 1.8rem !important;
+  font-weight: bold;
+}
+
+/* Conteneur du carrousel */
+.mySwiper {
+  width: 100%;
+  height: 500px;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+/* Chaque slide */
+.slide-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Couvre tout l'espace sans déformer */
+}
+
+/* Overlay texte sur l'image */
+.slide-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Fond sombre semi-transparent */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.slide-text {
+  color: white;
+  padding: 20px;
+  max-width: 600px;
+}
+
+.slide-text h2 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.slide-text p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Bouton personnalisé */
+.btn-slide {
+  display: inline-block;
+  padding: 12px 30px;
+  background: #FFD23F;
+  color: #0B1F3A;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-slide:hover {
+  background: #FFE082;
+  transform: scale(1.05);
+  color: #0B1F3A;
+}
+
+/* Personnalisation des points de pagination */
+.swiper-pagination-bullet {
+  background: white !important;
+  opacity: 0.7;
+}
+
+.swiper-pagination-bullet-active {
+  background: #FFD23F !important;
+  opacity: 1;
+}
+
+/* Personnalisation des flèches de navigation */
+.swiper-button-next,
+.swiper-button-prev {
+  color: white !important;
+  background: rgba(0,0,0,0.3);
+  padding: 30px 20px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: rgba(0,0,0,0.6);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .mySwiper {
+    height: 350px;
+  }
+  
+  .slide-text h2 {
+    font-size: 2rem;
+  }
+  
+  .slide-text p {
+    font-size: 1rem;
+  }
+  
+  .btn-slide {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mySwiper {
+    height: 280px;
+  }
+  
+  .slide-text h2 {
+    font-size: 1.5rem;
+  }
+}
