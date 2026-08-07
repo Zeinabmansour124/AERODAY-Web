@@ -1,4 +1,4 @@
-import Carousel from "./carrousel";
+
 function Header() {
   return (
     <div>
@@ -101,9 +101,7 @@ function Header() {
           </div>
         </div>
       </nav>
-      <div className="mt-0.5">
-        <Carousel />
-      </div>
+      
     </div>
   );
 }
