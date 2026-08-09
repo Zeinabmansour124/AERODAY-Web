@@ -155,3 +155,265 @@
     font-size: 1.5rem;
   }
 }
+.footer-aero {
+  background-color: #0F1B3C;
+}
+
+.footer-title {
+  color: #FFD23F;
+}
+
+.footer-text {
+  color: #B8BFD1;
+}
+
+.footer-heading {
+  color: #FFFFFF;
+}
+
+.footer-link {
+  color: #B8BFD1;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: #FFD23F;
+}
+
+.footer-social {
+  color: #FFFFFF;
+  transition: color 0.2s;
+}
+
+.footer-social:hover {
+  color: #FF5A1F;
+}
+
+.footer-bottom {
+  border-top: 0.5px solid #2A3A5F;
+}
+
+.footer-bottom p {
+  color: #8A93AB;
+}
+.about-aero {
+  background-color: #F4F5F7;
+}
+
+.about-label {
+  color: #FF5A1F;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.about-title {
+  color: #0F1B3C;
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 1.4;
+}
+
+.about-text {
+  color: #52514e;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.stat-number {
+  color: #0F1B3C;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.stat-label {
+  color: #52514e;
+  font-size: 11px;
+}
+
+.about-img {
+  border-radius: 12px;
+  object-fit: cover;
+  max-height: 320px;
+}
+
+.btn-about {
+  background-color: #FF5A1F;
+  border-color: #FF5A1F;
+  color: #FFFFFF;
+  padding: 10px 20px;
+}
+
+.btn-about:hover {
+  background-color: #e04d15;
+  border-color: #e04d15;
+  color: #FFFFFF;
+}
+.upload-trigger-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #FF5A1F;
+  color: #FFFFFF;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.upload-trigger-btn:hover {
+  background-color: #e04d15;
+}
+
+.upload-trigger-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.upload-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.upload-video-preview {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+}
+
+.upload-replace-btn {
+  align-self: flex-start;
+  background: none;
+  border: 1px solid #0F1B3C;
+  color: #0F1B3C;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.video-card {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  /* max-width: 320px;  ← supprime cette ligne */
+}
+
+.video-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(15, 27, 60, 0.92) 0%,
+    rgba(15, 27, 60, 0.15) 45%,
+    rgba(15, 27, 60, 0.35) 100%
+  );
+}
+
+.video-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background-color: rgba(255, 90, 31, 0.95);
+  color: #FFFFFF;
+  font-size: 10.5px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.3px;
+}
+
+.video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.95);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #0F1B3C;
+  font-size: 20px;
+  transition: transform 0.2s;
+}
+
+.video-play:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.video-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+}
+
+.video-name {
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 15px;
+  margin: 0 0 2px;
+}
+
+.video-role {
+  color: #FFD23F;
+  font-size: 12px;
+  margin: 0;
+}
+
+.video-iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: none;
+}
+.broadcast-section {
+  background-color: #0F1B3C;
+  padding: 2.5rem 1.5rem;
+}
+
+.broadcast-title {
+  color: #1E4D8C;
+}
+
+.broadcast-subtitle {
+  color: #B8BFD1;
+}
+
+.broadcast-scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.broadcast-item {
+  flex: 0 0 90%;       /* ← vidéo plus grande (était 85%) */
+  scroll-snap-align: start;
+}
+
+@media (min-width: 768px) {
+  .broadcast-item {
+    flex: 0 0 70%;      /* ← encore plus grande sur desktop */
+    max-width: 720px;
+  }
+}

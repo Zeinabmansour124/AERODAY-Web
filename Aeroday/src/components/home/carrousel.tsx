@@ -10,9 +10,9 @@ import 'swiper/css/effect-fade';  // ✅ N'oubliez pas le style pour l'effet fad
 
 
 // Vos images (à adapter selon votre projet)
-import slide1 from '../assets/slide1.png';
-import slide2 from '../assets/slide2.png';
-import slide3 from '../assets/slide3.png';
+import slide1 from '../../assets/images/slide1.png';
+import slide2 from '../../assets/images/slide2.png';
+import slide3 from '../../assets/images/slide3.png';
 function Carousel(){
     const slides = [
     {
