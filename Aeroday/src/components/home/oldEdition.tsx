@@ -19,7 +19,7 @@ function oldEdition() {
       <section className="broadcast-section mb-5 rounded-4">
         <p className="broadcast-title fw-bold">Anciennes Éditions</p>
 
-        <div className="broadcast-scroll">
+        <div className="broadcast-scroll" ref={scrollRef} onScroll={handleScroll}>
           {editions.map((e) => (
             <div className="broadcast-item" key={e.id}>
               <EditionCard publicId={e.publicId} year={e.year} id={e.id} />

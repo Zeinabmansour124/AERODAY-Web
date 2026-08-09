@@ -4,6 +4,7 @@ import Description from './components/home/description';
 import Footer from './components/footer';
 import AfficheVideoYT from './components/home/BroadcastSection';
 import OldEdition from './components/home/oldEdition.tsx';
+import LocationMap from './components/home/locationCard.tsx';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
     <Description/>
     <OldEdition />
     <AfficheVideoYT />
+    <LocationMap />
     <Footer /> 
   </div>
 }
