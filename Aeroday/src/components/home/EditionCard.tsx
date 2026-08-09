@@ -19,7 +19,7 @@ function EditionCard({ publicId, year, thumbnailOffset }: Edition) {
       ) : (
         <>
           <img
-            src={getThumbnailUrl(publicId, thumbnailOffset)}
+            src={getThumbnailUrl(publicId)}
             alt={`Édition ${year}`}
             loading="lazy"
             className="video-thumb"

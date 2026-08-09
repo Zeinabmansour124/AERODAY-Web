@@ -2,7 +2,7 @@ export interface Edition {
   id: string;
   publicId  : string; // identifiant unique de la vidéo sur Cloudinary
   year: string;
-  thumbnailOffset?: number;
+  
 }
 
 export const editions: Edition[] = [
@@ -10,7 +10,6 @@ export const editions: Edition[] = [
     id: '1',
     publicId: 'AQNjbVeMZywN6i0vYMiMfD44wQIcHbNApiW8ugyl_LHKsz-9Ob1MOqqdsdZ1v4E2yhFFtv3hWDaCHrA7tXlsEDAslZeMeUoRqilCNLW-bjmeUg_ij157v_poster', 
     year: ' 2026',
-    thumbnailOffset: 5
   },
   {
     id: '2',
@@ -23,6 +22,3 @@ export const editions: Edition[] = [
     year: '2016'
   }
 ];
-export function getThumbnailUrl(publicId: string, offset: number = 1): string {
-  return `https://res.cloudinary.com/otjnsdoc/video/upload/so_${offset}/${publicId}.jpg`;
-}
