@@ -387,12 +387,15 @@
 .broadcast-section {
   background-color: #0F1B3C;
   padding: 2.5rem 1.5rem;
+  padding: 48px 24px; /* au lieu de ~24px */
+
 }
 
 .broadcast-title {
   color: #1E4D8C;
+  font-size: 24px;
+  font-weight: 700;
 }
-
 .broadcast-subtitle {
   color: #B8BFD1;
 }
@@ -416,4 +419,25 @@
     flex: 0 0 70%;      /* ← encore plus grande sur desktop */
     max-width: 720px;
   }
+}
+.broadcast-dots {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.broadcast-dot {
+  width: 6px;
+  height: 3px;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.25);
+  transition: all 0.25s ease;
+}
+
+.broadcast-dot.active {
+  width: 18px;
+  background-color: #FF5A1F;
+}
+.video-play {
+  color:  #FF5A1F; 
 }

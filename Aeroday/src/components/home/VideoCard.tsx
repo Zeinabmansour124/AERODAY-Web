@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import type { Broadcast } from '../../assets/videos/video';
-import { FaPlay } from 'react-icons/fa';gi
+import { useState } from "react";
+import type { Broadcast } from "../../assets/videos/video";
+import { FaPlay } from "react-icons/fa";
 
 function VideoCard({ videoId, name, role }: Broadcast) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -18,7 +18,12 @@ function VideoCard({ videoId, name, role }: Broadcast) {
         ></iframe>
       ) : (
         <>
-          <img src={thumbnail} alt={name} loading="lazy" className="video-thumb" />
+          <img
+            src={thumbnail}
+            alt={name}
+            loading="lazy"
+            className="video-thumb"
+          />
           <div className="video-overlay"></div>
           <FaPlay size={18} />
           <button
@@ -26,7 +31,7 @@ function VideoCard({ videoId, name, role }: Broadcast) {
             onClick={() => setIsPlaying(true)}
             aria-label={`Lire la vidéo de ${name}`}
           >
-            <i className="ti ti-player-play"></i>
+            <FaPlay size={18} />
           </button>
           <div className="video-caption">
             <p className="video-name">{name}</p>

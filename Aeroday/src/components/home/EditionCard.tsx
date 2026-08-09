@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import type { Edition } from '../../assets/videos/edition';
 import { getVideoUrl, getThumbnailUrl } from '../../utils/cloudinary';
+import { FaPlay } from "react-icons/fa";
+
 
 function EditionCard({ publicId, year, thumbnailOffset }: Edition) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -25,12 +27,12 @@ function EditionCard({ publicId, year, thumbnailOffset }: Edition) {
           <div className="video-overlay"></div>
           <span className="video-badge">Édition {year}</span>
           <button
-            className="video-play"
-            onClick={() => setIsPlaying(true)}
-            aria-label={`Voir la vidéo de l'édition ${year}`}
-          >
-            <i className="ti ti-player-play"></i>
-          </button>
+                      className="video-play"
+                      onClick={() => setIsPlaying(true)}
+                      aria-label={`Lire la vidéo de ${name}`}
+                    >
+                      <FaPlay size={18} />
+                    </button>
         </>
       )}
     </div>
