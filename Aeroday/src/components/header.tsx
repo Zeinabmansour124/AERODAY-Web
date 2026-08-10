@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
@@ -5,9 +6,9 @@ function Header() {
       <title>Home</title>
       <nav className="navbar navbar-expand-lg bg-body-tertiary custom-navbar">
         <div className="container-fluid">
-          <a className="navbar-brand brand-white" href="#">
+          <Link className="navbar-brand brand-white" to="">
             AERODAY
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -22,14 +23,14 @@ function Header() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-auto">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <Link className="nav-link active" aria-current="page" to="/">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <Link className="nav-link" to="/about">
                   About us
-                </a>
+                </Link>
               </li>
               <li className="nav-item dropdown">
                 <a
@@ -44,20 +45,32 @@ function Header() {
                 <ul className="dropdown-menu">
                   <li>
                     <a className="dropdown-item" href="#">
-                      Action
+                      AéroChallenge
                     </a>
                   </li>
                   <li>
                     <a className="dropdown-item" href="#">
-                      Another action
+                      AéroModelisme
                     </a>
                   </li>
                   <li>
-                    <hr className="dropdown-divider" />
+                    <a className="dropdown-item" href="#">
+                      Airshow
+                    </a>
                   </li>
                   <li>
                     <a className="dropdown-item" href="#">
-                      Something else here
+                      AéroEntrepreneur
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Challenge CAO
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Vidéographie par Drone
                     </a>
                   </li>
                 </ul>
@@ -75,24 +88,27 @@ function Header() {
                 <ul className="dropdown-menu">
                   <li>
                     <a className="dropdown-item" href="#">
-                      Action
+                      Exposition Aéronautique
                     </a>
                   </li>
                   <li>
                     <a className="dropdown-item" href="#">
-                      Another action
+                      Exposition Aérospatiale
                     </a>
                   </li>
                   <li>
-                    <hr className="dropdown-divider" />
+                    <a className="dropdown-item" href="#">
+                      Ateliers Novices
+                    </a>
                   </li>
                   <li>
                     <a className="dropdown-item" href="#">
-                      Something else here
+                      Ambassadorship
                     </a>
                   </li>
                 </ul>
               </li>
+              
               <li className="nav-item">
                 <a className="nav-link disabled" aria-disabled="true">
                   Schedule
