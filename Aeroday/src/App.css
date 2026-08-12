@@ -40,3 +40,8 @@
 .footer-bottom p {
   color: #8A93AB;
 }
+
+.dropdown-item:hover {
+  background:#FF5A1F;
+  color: #FFF;
+}
