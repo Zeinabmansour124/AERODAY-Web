@@ -24,14 +24,14 @@ export default function AppRoutes() {
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<AboutUs />} />
       <Route path="/contact" element={<Contact />} />
-      <Route path="/aerochallenges" element={<AeroChallenge />} />
-      <Route path="/aeroentrepreneur" element={<AeroEntrepreneur />} />
-      <Route path="/aeromodelisme" element={<AeroModelisme />} />
+      <Route path="/AéroChallenge" element={<AeroChallenge />} />
+      <Route path="/AéroEntrepreneur" element={<AeroEntrepreneur />} />
+      <Route path="/AéroModelisme" element={<AeroModelisme />} />
       <Route path="/Airshow" element={<Airshow/>} />
       <Route path="/AmbassadorShip" element={<AmbassadorShip/>} />
       <Route path="/Challenge CAO" element={<ChallengeCAO/>} />
       <Route path="/Contact" element={<Contact/>} />
-      <Route path="/Videographie par drone" element={<Drone/>} />
+      <Route path="/Vidéographie par Drone" element={<Drone/>} />
       <Route path="/Exposition Aéronautique" element={<ExpAero/>} />
       <Route path="/Exposition Aérospatiale" element={<ExpSpace/>} />
       <Route path="/University Map" element={<Map/>} />

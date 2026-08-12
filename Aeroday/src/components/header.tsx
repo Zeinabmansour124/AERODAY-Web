@@ -44,34 +44,34 @@ function Header() {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <Link className="dropdown-item" to="">
+                    <Link className="dropdown-item" to="/AéroChallenge">
                       AéroChallenge
                     </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link className="dropdown-item" to="/AéroModelisme">
                       AéroModelisme
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link className="dropdown-item" to="/Airshow">
                       Airshow
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link className="dropdown-item" to="/AéroEntrepreneur">
                       AéroEntrepreneur
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link className="dropdown-item" to="/Challenge CAO">
                       Challenge CAO
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link className="dropdown-item" to="/Vidéographie par Drone">
                       Vidéographie par Drone
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </li>
@@ -87,51 +87,51 @@ function Header() {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link className="dropdown-item" to="/Exposition Aéronautique">
                       Exposition Aéronautique
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link className="dropdown-item" to="Exposition Aérospatiale">
                       Exposition Aérospatiale
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link className="dropdown-item" to="/Ateliers Novices">
                       Ateliers Novices
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link className="dropdown-item" to="AmbassadorShip">
                       Ambassadorship
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </li>
               
               <li className="nav-item">
-                <a className="nav-link disabled" aria-disabled="true">
+                <Link  className="nav-link " to="/Schedule">
                   Schedule
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link disabled" aria-disabled="true">
+                <Link  className="nav-link "  to="/Team">
                   Team
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link disabled" aria-disabled="true">
+                <Link className="nav-link "  to="/University Map">
                   University Map
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link disabled" aria-disabled="true">
+                <Link className="nav-link " to="/Sponsors">
                   Sponsors
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a
-                  href="#contact"
+                <Link
+                  to="/Contact"
                   className="btn ms-5"
                   style={{
                     "--bs-btn-bg": "#FF5A1F",
@@ -142,7 +142,7 @@ function Header() {
                   }}
                 >
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
