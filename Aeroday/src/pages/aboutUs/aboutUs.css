@@ -1,0 +1,57 @@
+.about-aero {
+  background-color: #F4F5F7;
+}
+
+.about-label {
+  color: #FF5A1F;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.about-title {
+  color: #0F1B3C;
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 1.4;
+}
+
+.about-text {
+  color: #52514e;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.key-numbers {
+  padding: 60px 20px;
+  background-color: #FF5A1F; /* à ajuster selon ton thème */
+}
+
+.key-numbers-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 150px;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #1E4D8C; /* orange comme "AERODAY" */
+}
+
+.stat-label {
+  font-size: 0.95rem;
+  color: #152b46;
+  margin-top: 8px;
+  font-weight:bolder;
+}

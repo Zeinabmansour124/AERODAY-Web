@@ -44,9 +44,9 @@ function Header() {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link className="dropdown-item" to="">
                       AéroChallenge
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <a className="dropdown-item" href="#">
