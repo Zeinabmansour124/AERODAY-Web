@@ -18,24 +18,24 @@ function Carousel(){
     {
       id: 1,
       image: slide1,
-     /* title: 'Promotion Exceptionnelle',
-      description: 'Jusqu\'à -50% sur toute la collection',
-      buttonText: 'Voir l\'offre',*/
+      title: 'AeroRescue',
+      description: "L'aéronautique face aux catastrophes naturelles",
+      /*buttonText: 'Voir l\'offre',*/
       
     },
     {
       id: 2,
       image: slide2,
-     /* title: 'Nouveautés Printemps',
-      description: 'Découvrez notre nouvelle collection',
-      buttonText: 'Découvrir',*/
+      title: 'Depuis Le Ciel Protégeons notre terre',
+      /*description: 'Découvrez notre nouvelle collection',*/
+      /*buttonText: 'Découvrir',*/
       
     },
     {
       id: 3,
       image: slide3,
-      /* title: 'Soldes d\'Été',
-      description: 'Profitez des meilleurs prix',
+      title: 'AERODAY , Tunisie 2026',
+      /*description: 'Profitez des meilleurs prix',
       buttonText: 'Acheter maintenant',*/
       
     }
@@ -71,8 +71,8 @@ function Carousel(){
             />
             <div className="slide-overlay">
               <div className="slide-text">
-                {/* <h2>{slide.title}</h2> 
-                <p>{slide.description}</p>*/}
+                 <h2>{slide.title}</h2> 
+                <p>{slide.description}</p>
                 <a>
                   {/* {slide.buttonText} */}
                 </a>

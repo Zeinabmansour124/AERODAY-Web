@@ -494,3 +494,18 @@
     max-width: 100%;
   }
 }
+
+.slide-text h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  color: #f5a623; /* orange AERODAY */
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+}
+
+.slide-text p {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  color: #e2e8f0; /* blanc cassé, lisible sur fond bleu marine */
+  font-size: 1.1rem;
+}
