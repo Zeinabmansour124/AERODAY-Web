@@ -1,0 +1,234 @@
+.team-section {
+  position: relative;
+  overflow: hidden;
+  background-color: #e8e7e6;
+  padding: 60px 32px;
+  border-radius: 12px;
+}
+
+.team-decoration {
+  position: absolute;
+  opacity: 0.12;
+  pointer-events: none;
+  font-size: 60px;
+}
+
+.team-decoration--drone {
+  top: 10px;
+  right: -15px;
+}
+
+.team-decoration--seismo {
+  bottom: 0;
+  left: 0;
+}
+
+.team-header {
+  position: relative;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.team-badge {
+  display: inline-block;
+  background-color: #C1121F;
+  color: #EADBC8;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+.team-title {
+  color: #1C1B1A;
+  font-size: 26px;
+  font-weight: 500;
+  margin: 16px 0 0;
+}
+
+.team-tier {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.team-tier--president {
+  display: flex;
+  justify-content: center;
+}
+
+.team-tier-label {
+  text-align: center;
+  color: #102e3d;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+}
+
+.team-tier-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Cartes plus grandes */
+.president-card {
+  background-color: #FFFFFF;
+  border: 2px solid #C1121F;
+  border-radius: 12px;
+  padding: 32px 28px;
+  text-align: center;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.president-badge {
+  display: inline-block;
+  background-color: #C1121F;
+  color: #EADBC8;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+.member-card {
+  background-color: #FFFFFF;
+  border: 1px solid #593d15;
+  border-radius: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 16px;
+  width: 200px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.member-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.member-card--large {
+  padding: 28px 20px;
+  width: 220px;
+}
+
+.member-card--medium {
+  padding: 22px 18px;
+  width: 200px;
+}
+
+.member-card--small {
+  padding: 18px 14px;
+  width: 170px;
+}
+
+.member-avatar-initials,
+.member-avatar-img {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #EADBC8;
+  font-weight: 500;
+  margin-bottom: 12px;
+  object-fit: cover;
+}
+
+.member-name {
+  color: #1C1B1A;
+  font-weight: 600;
+  margin: 0 0 4px;
+  font-size: 15px;
+}
+
+.member-card--large .member-name {
+  font-size: 18px;
+}
+
+.member-card--medium .member-name {
+  font-size: 15px;
+}
+
+.member-card--small .member-name {
+  font-size: 13px;
+}
+
+.member-position {
+  color: #E85D04;
+  margin: 0 0 8px;
+  font-size: 13px;
+}
+
+.member-card--large .member-position {
+  font-size: 14px;
+  color: #C1121F;
+}
+
+.member-card--medium .member-position,
+.member-card--small .member-position {
+  font-size: 12px;
+  color: #5C6B73;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .team-section {
+    padding: 40px 20px;
+  }
+
+  .team-tier-row {
+    gap: 14px;
+  }
+
+  .member-card {
+    width: 170px !important;
+    padding: 16px 12px;
+  }
+
+  .president-card {
+    width: 210px;
+    padding: 24px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-section {
+    padding: 30px 12px;
+  }
+
+  .team-tier-row {
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .member-card {
+    width: 140px !important;
+    padding: 14px 10px;
+  }
+
+  .member-card .member-name {
+    font-size: 13px;
+  }
+
+  .member-card .member-position {
+    font-size: 10px;
+  }
+
+  .president-card {
+    width: 180px;
+    padding: 20px 14px;
+  }
+
+  .team-title {
+    font-size: 22px;
+  }
+}

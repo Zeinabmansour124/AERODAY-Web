@@ -1,3 +1,54 @@
+.footer-link:hover {
+  color: 
+#FFD23F;
+}
+
+.footer-social {
+  color: 
+#FFFFFF;
+  transition: color 0.2s;
+}
+
+.footer-social:hover {
+  color: 
+#FF5A1F;
+}
+
+.footer-bottom {
+  border-top: 0.5px solid 
+#2A3A5F;
+}
+
+.footer-bottom p {
+  color: 
+#8A93AB;
+}
+.footer-aero {
+  background-color: #0F1B3C;
+  }
+
+.footer-title {
+  color: 
+#FFD23F;
+}
+
+.footer-text {
+  color: 
+#B8BFD1;
+}
+
+.footer-heading {
+  color: 
+#FFFFFF;
+}
+
+.footer-link {
+  color: 
+#B8BFD1;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
 .slide-content {
   position: relative;
   width: 100%;
@@ -70,4 +121,9 @@
   .slide-text {
     max-width: 90%;
   }
+}
+.dropdown-item:hover {
+  background:
+#FF5A1F;
+  color: #FFF;
 }

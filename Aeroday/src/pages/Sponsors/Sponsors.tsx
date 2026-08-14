@@ -1,7 +1,6 @@
 function Sponsors(){
     return (
         <div>
-            
         </div>
     );
 
