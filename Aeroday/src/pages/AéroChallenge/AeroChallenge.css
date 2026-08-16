@@ -1,0 +1,996 @@
+/* PartnersSection.module.css */
+
+/* Container principal */
+.partnersContainer {
+  max-width: 1200px;
+  margin: 32px auto 0;
+}
+
+/* Carte principale */
+.partnersCard {
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 4px 24px rgba(15, 27, 60, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+/* En-tête de section */
+.partnersHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.partnersIconWrapper {
+  width: 40px;
+  height: 40px;
+  background: #FF5A1F;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.partnersTitle {
+  color: #0F1B3C;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.partnersSubtitle {
+  color: #4a5568;
+  font-size: 13px;
+  margin: 4px 0 0 0;
+}
+
+/* Grille des partenaires */
+/* Ajouter à votre CSS */
+.partnersGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1200px; /* Limite la largeur */
+  margin: 0 auto; /* Centre la grille */
+  padding: 0 20px; /* Ajoute un peu d'espace */
+}
+
+/* Carte d'un partenaire */
+.partnerCard {
+  background: #F4F5F7;
+  border-radius: 16px;
+  padding: 24px 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.partnerCard:hover {
+  border-color: #FF5A1F;
+  transform: translateY(-4px);
+}
+
+/* Variante pour le partenaire technique (bordure jaune) */
+.partnerCardTechnical:hover {
+  border-color: #FFD23F;
+}
+
+/* Logo du partenaire */
+.partnerLogoWrapper {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #0F1B3C, #1a2d5c);
+  border-radius: 16px;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.partnerLogoWrapper svg {
+  width: 32px;
+  height: 32px;
+}
+
+/* Nom du partenaire */
+.partnerName {
+  color: #0F1B3C;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+}
+
+/* Badges */
+.partnerBadge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.partnerBadgePrimary {
+  background: #FF5A1F;
+  color: #FFFFFF;
+}
+
+.partnerBadgeSecondary {
+  background: #FFD23F;
+  color: #0F1B3C;
+}
+
+.partnerBadgeDark {
+  background: #0F1B3C;
+  color: #FFD23F;
+}
+
+/* Description du partenaire */
+.partnerDescription {
+  color: #4a5568;
+  font-size: 11px;
+  margin: 8px 0 0 0;
+  line-height: 1.5;
+}
+
+/* Barre de séparation */
+.partnersDivider {
+  margin-top: 24px;
+  height: 3px;
+  background: linear-gradient(90deg, #FF5A1F, #FFD23F, #FF5A1F);
+  border-radius: 2px;
+  opacity: 0.5;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .partnersGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .partnersCard {
+    padding: 20px 16px;
+  }
+
+  .partnersGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .partnersHeader {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #F4F5F7;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #0F1B3C;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+/* ========== ANIMATIONS 3D ========== */
+@keyframes droneFloat {
+  0%, 100% {
+    transform: translateY(-50%) translateZ(0) rotateX(10deg) rotateY(0deg);
+  }
+  50% {
+    transform: translateY(-60%) translateZ(20px) rotateX(15deg) rotateY(180deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes waveExpand {
+  0% {
+    transform: scale(0.5) rotateX(70deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.5) rotateX(70deg);
+    opacity: 0;
+  }
+}
+
+@keyframes debrisFloat {
+  0%, 100% {
+    transform: translateY(0) rotateX(0deg) rotateY(0deg);
+  }
+  25% {
+    transform: translateY(-15px) rotateX(45deg) rotateY(90deg);
+  }
+  50% {
+    transform: translateY(-5px) rotateX(90deg) rotateY(180deg);
+  }
+  75% {
+    transform: translateY(-20px) rotateX(135deg) rotateY(270deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 90, 31, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 90, 31, 0.6);
+  }
+}
+
+@keyframes crackGlow {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes partnerFloat {
+  0%, 100% {
+    transform: translateY(0) rotateY(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotateY(5deg);
+  }
+}
+
+/* ========== HEADER ========== */
+.header {
+  background: #0F1B3C;
+  border-radius: 16px;
+  padding: 32px 40px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8px 32px rgba(15, 27, 60, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.header-content h1 {
+  color: #FFFFFF;
+  font-size: 28px;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.header-content p {
+  color: #FFD23F;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 8px 0 0 0;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.header-badge {
+  background: #FF5A1F;
+  color: #FFFFFF;
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Drone 3D dans le header */
+.header-drone {
+  position: absolute;
+  right: 80px;
+  top: 50%;
+  width: 80px;
+  height: 80px;
+  transform-style: preserve-3d;
+  animation: droneFloat 4s ease-in-out infinite;
+}
+
+.header-drone .face {
+  position: absolute;
+  border-radius: 4px;
+}
+
+.header-drone .face-front {
+  width: 40px;
+  height: 20px;
+  background: #FF5A1F;
+  transform: translateZ(10px);
+  box-shadow: inset -5px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.header-drone .face-back {
+  width: 40px;
+  height: 20px;
+  background: #FF5A1F;
+  transform: translateZ(-10px) rotateY(180deg);
+}
+
+.header-drone .face-left {
+  width: 20px;
+  height: 20px;
+  background: #FFD23F;
+  transform: rotateY(90deg) translateZ(20px);
+}
+
+.header-drone .face-right {
+  width: 20px;
+  height: 20px;
+  background: #FFD23F;
+  transform: rotateY(-90deg) translateZ(20px);
+}
+
+.header-drone .face-top {
+  width: 40px;
+  height: 20px;
+  background: #FF5A1F;
+  transform: rotateX(90deg) translateZ(10px);
+  opacity: 0.8;
+}
+
+.header-drone .face-bottom {
+  width: 40px;
+  height: 20px;
+  background: #FF5A1F;
+  transform: rotateX(-90deg) translateZ(10px);
+  opacity: 0.8;
+}
+
+.header-drone .propeller-h {
+  position: absolute;
+  width: 60px;
+  height: 4px;
+  background: #FFD23F;
+  transform: translateZ(12px) translateX(-10px);
+  border-radius: 2px;
+  animation: spin 0.3s linear infinite;
+}
+
+.header-drone .propeller-v {
+  position: absolute;
+  width: 4px;
+  height: 60px;
+  background: #FFD23F;
+  transform: translateZ(12px) translateY(-10px);
+  border-radius: 2px;
+  animation: spin 0.3s linear infinite;
+}
+
+.header-drone .tail {
+  position: absolute;
+  width: 30px;
+  height: 8px;
+  background: #0F1B3C;
+  transform: translateX(-35px) translateZ(0px);
+  border-radius: 2px;
+}
+
+/* ========== GRILLE PRINCIPALE ========== */
+.main-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+
+/* ========== CARTE CHALLENGE ========== */
+.challenge-card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(15, 27, 60, 0.08);
+  position: relative;
+}
+
+/* Bandeau décoratif 3D */
+.banner {
+  height: 220px;
+  background: #1E4D8C;
+  position: relative;
+  overflow: hidden;
+  perspective: 800px;
+}
+
+/* Ondes sismiques 3D */
+.wave-group {
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.wave-group-1 {
+  top: 60%;
+  left: 30%;
+}
+
+.wave-group-2 {
+  top: 70%;
+  left: 70%;
+}
+
+.wave {
+  position: absolute;
+  border-radius: 50%;
+  transform: rotateX(70deg);
+}
+
+.wave-group-1 .wave:nth-child(1) {
+  width: 80px;
+  height: 80px;
+  border: 3px solid #FF5A1F;
+  animation: waveExpand 3s ease-out infinite;
+}
+
+.wave-group-1 .wave:nth-child(2) {
+  width: 80px;
+  height: 80px;
+  border: 3px solid #FF5A1F;
+  animation: waveExpand 3s ease-out infinite 1s;
+}
+
+.wave-group-1 .wave:nth-child(3) {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #FFD23F;
+  animation: waveExpand 3s ease-out infinite 2s;
+}
+
+.wave-group-2 .wave:nth-child(1) {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #FFD23F;
+  animation: waveExpand 2.5s ease-out infinite 0.5s;
+}
+
+.wave-group-2 .wave:nth-child(2) {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #FF5A1F;
+  animation: waveExpand 2.5s ease-out infinite 1.5s;
+}
+
+/* Débris 3D */
+.debris {
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.debris-1 {
+  top: 20%;
+  left: 15%;
+  animation: debrisFloat 6s ease-in-out infinite;
+}
+
+.debris-2 {
+  top: 35%;
+  left: 80%;
+  animation: debrisFloat 5s ease-in-out infinite 1s;
+}
+
+.debris-3 {
+  top: 15%;
+  left: 55%;
+  animation: debrisFloat 7s ease-in-out infinite 2s;
+}
+
+.debris-4 {
+  top: 50%;
+  left: 45%;
+  animation: debrisFloat 4.5s ease-in-out infinite 0.5s;
+}
+
+.debris-cube {
+  position: absolute;
+  box-shadow: 4px 4px 0 rgba(255, 90, 31, 0.3);
+}
+
+.debris-cube.yellow {
+  background: #FFD23F;
+  box-shadow: 3px 3px 0 rgba(255, 210, 63, 0.3);
+}
+
+.debris-cube.orange {
+  background: #FF5A1F;
+  box-shadow: 3px 3px 0 rgba(255, 90, 31, 0.3);
+}
+
+/* Drone 3D principal dans le bandeau */
+.banner-drone {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transform-style: preserve-3d;
+  animation: droneFloat 5s ease-in-out infinite;
+  width: 80px;
+  height: 80px;
+}
+
+.banner-drone .d-face {
+  position: absolute;
+  border-radius: 6px;
+}
+
+.banner-drone .d-front {
+  width: 50px;
+  height: 24px;
+  background: linear-gradient(135deg, #FF5A1F, #FF7A3F);
+  transform: translateZ(12px);
+  box-shadow: inset -3px -3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.banner-drone .d-back {
+  width: 50px;
+  height: 24px;
+  background: linear-gradient(135deg, #FF5A1F, #FF7A3F);
+  transform: translateZ(-12px) rotateY(180deg);
+}
+
+.banner-drone .d-left {
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #FFD23F, #FFE45F);
+  transform: rotateY(90deg) translateZ(25px);
+}
+
+.banner-drone .d-right {
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #FFD23F, #FFE45F);
+  transform: rotateY(-90deg) translateZ(25px);
+}
+
+.banner-drone .d-top {
+  width: 50px;
+  height: 24px;
+  background: #FF5A1F;
+  transform: rotateX(90deg) translateZ(12px);
+  opacity: 0.7;
+}
+
+.banner-drone .d-bottom {
+  width: 50px;
+  height: 24px;
+  background: #FF5A1F;
+  transform: rotateX(-90deg) translateZ(12px);
+  opacity: 0.7;
+}
+
+.banner-drone .arm-h {
+  position: absolute;
+  width: 80px;
+  height: 6px;
+  background: #0F1B3C;
+  transform: translateZ(12px) translateX(-15px);
+  border-radius: 3px;
+}
+
+.banner-drone .arm-v {
+  position: absolute;
+  width: 6px;
+  height: 80px;
+  background: #0F1B3C;
+  transform: translateZ(12px) translateY(-15px);
+  border-radius: 3px;
+}
+
+.banner-drone .prop {
+  position: absolute;
+  background: #FFD23F;
+  border-radius: 2px;
+  animation: spin 0.2s linear infinite;
+}
+
+.banner-drone .camera {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: #0F1B3C;
+  transform: rotateX(-90deg) translateZ(20px);
+  border-radius: 4px;
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Fissures SVG */
+.cracks-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.crack-main {
+  fill: none;
+  stroke: #FFD23F;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 4px rgba(255, 210, 63, 0.6));
+  animation: crackGlow 3s ease-in-out infinite;
+}
+
+.crack-secondary {
+  fill: none;
+  stroke: #FF5A1F;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 4px rgba(255, 90, 31, 0.6));
+  animation: crackGlow 2.5s ease-in-out infinite 1s;
+}
+
+.crack-branch {
+  fill: none;
+  stroke-width: 1.5;
+  opacity: 0.6;
+}
+
+/* Épicentre glow */
+.epicenter {
+  position: absolute;
+  border-radius: 50%;
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.epicenter-1 {
+  top: 65%;
+  left: 30%;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(255, 90, 31, 0.5) 0%, rgba(255, 90, 31, 0.15) 40%, transparent 70%);
+}
+
+.epicenter-2 {
+  top: 75%;
+  left: 70%;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(255, 210, 63, 0.4) 0%, rgba(255, 210, 63, 0.1) 40%, transparent 70%);
+  animation-delay: 0.5s;
+}
+
+/* Badge Aéromodélisme */
+.banner-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 32px;
+  z-index: 10;
+  background: #FF5A1F;
+  color: #FFFFFF;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Contenu carte challenge */
+.challenge-content {
+  padding: 28px 32px 32px 32px;
+}
+
+.tags {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tag-dark {
+  background: #0F1B3C;
+  color: #FFD23F;
+}
+
+.tag-light {
+  background: #F4F5F7;
+  color: #0F1B3C;
+}
+
+.tag-cta {
+  background: #FF5A1F;
+  color: #FFFFFF;
+}
+
+.challenge-content h2 {
+  color: #0F1B3C;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+}
+
+.challenge-content p {
+  color: #4a5568;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0 0 20px 0;
+}
+
+.challenge-content p strong {
+  color: #0F1B3C;
+}
+
+.objectives-box {
+  background: #F4F5F7;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+  border-left: 4px solid #FF5A1F;
+}
+
+.objectives-box h3 {
+  color: #0F1B3C;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.objectives-box ul {
+  color: #4a5568;
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 0;
+  padding-left: 18px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: #FF5A1F;
+  color: #FFFFFF;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(255, 90, 31, 0.3);
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background: #e54d18;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #0F1B3C;
+  border: 2px solid #0F1B3C;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #0F1B3C;
+  color: #FFFFFF;
+}
+
+/* ========== CARTE RESPONSABLE ========== */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 4px 24px rgba(15, 27, 60, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-center {
+  text-align: center;
+}
+
+/* Mini drone décoratif carte responsable */
+.mini-drone {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  transform-style: preserve-3d;
+  animation: droneFloat 3s ease-in-out infinite;
+}
+
+.mini-drone .md-face {
+  position: absolute;
+  border-radius: 2px;
+}
+
+.mini-drone .md-front {
+  width: 24px;
+  height: 16px;
+  background: #FF5A1F;
+  transform: translateZ(4px);
+}
+
+.mini-drone .md-back {
+  width: 24px;
+  height: 16px;
+  background: #FF5A1F;
+  transform: translateZ(-4px) rotateY(180deg);
+}
+
+.mini-drone .md-left {
+  width: 16px;
+  height: 16px;
+  background: #FFD23F;
+  transform: rotateY(90deg) translateZ(7px);
+}
+
+.mini-drone .md-right {
+  width: 14px;
+  height: 8px;
+  background: #FFD23F;
+  transform: rotateY(-90deg) translateZ(7px);
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #0F1B3C, #1a2d5c);
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  box-shadow: 0 4px 16px rgba(15, 27, 60, 0.2);
+}
+
+.card h3 {
+  color: #0F1B3C;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+}
+
+.card .role {
+  color: #FF5A1F;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card .bio {
+  color: #4a5568;
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #F4F5F7;
+  color: #0F1B3C;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.contact-link:hover {
+  background: #0F1B3C;
+  color: #FFFFFF;
+}
+
+/* Carte stats */
+.stats-card {
+  background: #1E4D8C;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 4px 24px rgba(15, 27, 60, 0.15);
+  position: relative;
+  overflow: hidden;
+  width: 500px;
+  height: 300px;
+}
+
+.stats-card h4 {
+  color: #FFD23F;
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-label {
+  color: #FFFFFF;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.stat-value {
+  color: #FFD23F;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.stat-value.prize {
+  color: #FF5A1F;
+}
+
+.stat-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 14px 0;
+}
+
+
+
+.prozePool{
+  color: #FFD23F;
+  font-size :150px;
+  
+  forced-color-adjust: auto;
+}
