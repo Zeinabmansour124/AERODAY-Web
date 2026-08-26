@@ -17,6 +17,7 @@ import Schedule from '../pages/Schedule/Schedule';
 import Sponsors from '../pages/Sponsors/Sponsors';
 import Team from '../pages/Team/Team'
 import ExpAero from '../pages/expAero/ExpAero';
+import WR from '../pages/WaterRocketry/wr';
 
 export default function AppRoutes() {
   return (
@@ -39,6 +40,7 @@ export default function AppRoutes() {
       <Route path="/Schedule" element={<Schedule/>} />
       <Route path="/Sponsors" element={<Sponsors/>} />
       <Route path="/Team" element={<Team/>} />
+      <Route path="/Water Rocketry" element={<WR/>}/>
       
       
     </Routes>

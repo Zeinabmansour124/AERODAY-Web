@@ -1,4 +1,4 @@
-interface Partenaire {
+export interface Partenaire {
   id: number;
   name: string;
   role: string;
@@ -7,3 +7,4 @@ interface Partenaire {
   description: string;
   icon: React.ReactNode;
 }
+

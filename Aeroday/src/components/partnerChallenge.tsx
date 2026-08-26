@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-
+import type { Partenaire } from '../content/partenaire.ts';
 
 const PartnerChallenge: React.FC = () => {
   const [hoveredPartner, setHoveredPartner] = useState<number | null>(null);
 
-  const partners: Partner[] = [
+  const partners: Partenaire[] = [
     {
       id: 1,
       name: 'AeroTech Maroc',

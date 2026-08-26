@@ -2,81 +2,197 @@ import React from 'react';
 import { User, Mail, Phone, BarChart3 } from 'lucide-react';
 import type { TeamMember } from '../content/team';
 
-// Définir l'interface des props
 interface SBChallengeProps {
-  member: TeamMember;
+  members: TeamMember[];
 }
-const SBChallenge: React.FC<SBChallengeProps> = ({ member }) => {
-  if (!member) {
+
+const SBChallenge: React.FC<SBChallengeProps> = ({ members }) => {
+  if (!members || !Array.isArray(members) || members.length === 0) {
     return (
       <div className="sidebar">
         <div className="card card-center">
-          <p>Aucun membre sélectionné</p>
+          <div
+            className="avatar"
+            style={{ marginBottom: '16px' }}
+          >
+            <User size={42} color="#fff" />
+          </div>
+          <h3>Aucun membre</h3>
+          <p className="bio">Aucun responsable n&apos;est sélectionné pour le moment.</p>
         </div>
       </div>
     );
   }
+
+  const displayMembers = members.slice(0, 2);
+
   return (
     <div className="sidebar">
-      {/* Card du responsable */}
-      <div className="card card-center">
-        <div className="mini-drone mt-5">
+      {/* ─── CARTE RESPONSABLES ─── */}
+      <div className="card card-center" style={{ position: 'relative' }}>
+        {/* Mini drone décoratif 3D */}
+        <div className="mini-drone">
           <div className="md-face md-front"></div>
           <div className="md-face md-back"></div>
           <div className="md-face md-left"></div>
           <div className="md-face md-right"></div>
         </div>
 
-        <div className="avatar">
-          <User size={28} />
-        </div>
-        <h3>{member.name}</h3>
-        <p className="role">Responsable du challenge</p>
-        
-        <div className="contact-links">
-          <a href={`mailto:${member.contact.aerodayEmail}`} className="contact-link">
-            <Mail size={15} className="icon-inline" />
-            {member.contact.aerodayEmail}
-          </a>
-          <a href={`tel:${member.contact.phone}`} className="contact-link">
-            <Phone size={15} className="icon-inline" />
-            {member.contact.phone}
-          </a>
+        <style>{`
+          @keyframes droneFloat {
+            0%, 100% { transform: translateY(0) rotateX(10deg) rotateY(20deg); }
+            50% { transform: translateY(-8px) rotateX(15deg) rotateY(25deg); }
+          }
+        `}</style>
+
+        {/* Container des 2 responsables côte à côte */}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '1.5rem',
+            justifyContent: 'center',
+            alignItems: 'stretch',
+            width: '100%',
+          }}
+        >
+          {displayMembers.map((member, index) => (
+            <div
+              key={member.id || index}
+              style={{
+                flex: '1 1 0',
+                minWidth: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                padding: index === 0 ? '0 1.25rem 0 0' : '0 0 0 1.25rem',
+                borderRight: index === 0 && displayMembers.length > 1
+                  ? '1px solid rgba(15, 27, 60, 0.1)'
+                  : 'none',
+              }}
+            >
+              {/* Avatar */}
+              <div className="avatar" style={{ width: '80px', height: '80px' }}>
+                <User size={36} color="#fff" />
+              </div>
+
+              {/* Nom */}
+              <h3 style={{ fontSize: '16px' }}>{member.name}</h3>
+
+              {/* Rôle */}
+              <p className="role">
+                {index === 0 ? 'Responsable du challenge' : 'Co-responsable du challenge'}
+              </p>
+
+              {/* Bio / Description */}
+              <p className="bio" style={{ fontSize: '12px', marginBottom: '16px' }}>
+{/* Bio / Description */}
+<p className="bio" style={{ fontSize: '12px', marginBottom: '16px' }}>
+  {member.role }
+</p>              </p>
+
+              {/* Liens de contact */}
+              <div className="contact-links" style={{ width: '100%' }}>
+                {member.contact?.aerodayEmail && (
+                  <a
+                    href={`mailto:${member.contact.aerodayEmail}`}
+                    className="contact-link"
+                    title={member.contact.aerodayEmail}
+                  >
+                    <Mail size={15} />
+                    <span
+                      style={{
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap',
+                        maxWidth: '140px',
+                      }}
+                    >
+                      {member.contact.aerodayEmail}
+                    </span>
+                  </a>
+                )}
+                {member.contact?.phone && (
+                  <a
+                    href={`tel:${member.contact.phone}`}
+                    className="contact-link"
+                  >
+                    <Phone size={15} />
+                    <span>{member.contact.phone}</span>
+                  </a>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Statistiques */}
+      {/* ─── CARTE PRIZE POOL ─── */}
       <div className="stats-card">
-        {/* Mini débris décoratifs */}
-        <div className="stats-debris stats-debris-1">
+        {/* Débris décoratifs */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '16px',
+            right: '20px',
+          }}
+        >
           <div
-            className="sd-cube"
             style={{
               width: '8px',
               height: '8px',
               background: '#FF5A1F',
-              transform: 'rotateX(45deg) rotateY(45deg)',
+              borderRadius: '1px',
+              opacity: 0.5,
+              transform: 'rotate(15deg)',
             }}
-          ></div>
+          />
         </div>
-        <div className="stats-debris stats-debris-2">
+        <div
+          style={{
+            position: 'absolute',
+            top: '32px',
+            right: '32px',
+          }}
+        >
           <div
-            className="sd-cube"
             style={{
               width: '6px',
               height: '6px',
               background: '#FFD23F',
-              transform: 'rotateX(30deg) rotateY(60deg)',
+              borderRadius: '1px',
+              opacity: 0.4,
+              transform: 'rotate(45deg)',
             }}
-          ></div>
+          />
         </div>
 
         <h4>
-          <BarChart3 size={17} className="icon-inline " />
+          <BarChart3 size={17} style={{ verticalAlign: 'middle', marginRight: '6px' }} />
           Prize pool
         </h4>
-        <p className='prizePool ctions d-flex flex-column align-items-center justify-content-end mt-auto'>
-          soon ....
+
+        <div className="stat-divider" style={{ margin: '20px 0' }} />
+
+        <div className="stat-row">
+          <span className="stat-label">Récompense totale</span>
+          <span className="stat-value prize">—</span>
+        </div>
+
+        <div className="stat-divider" />
+
+        <p
+          style={{
+            color: '#FFD23F',
+            fontSize: '14px',
+            fontWeight: 700,
+            textAlign: 'center',
+            margin: '24px 0 0 0',
+            letterSpacing: '1px',
+            opacity: 0.9,
+          }}
+        >
+          Bientôt disponible …
         </p>
       </div>
     </div>

@@ -129,7 +129,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 29 660 586",
             personalEmail: "behedesu@gmail.com",
-            aerodayEmail: "nouran.sbai@aeroday.tn"
+            aerodayEmail: ""
         }
     },
     {
@@ -221,17 +221,7 @@ export const team: TeamMember[] = [
             aerodayEmail: ""
         }
     },
-    {
-        id: 19,
-        name: "Sandra Ben Maiz",
-        role: "Sponsoring",
-        image: "",
-        contact: {
-            phone: "+216 21 178 360",
-            personalEmail: "sandra.benmaiz@insat.ucar.tn",
-            aerodayEmail: ""
-        }
-    },
+    
     {
         id: 20,
         name: "May Nefzi",

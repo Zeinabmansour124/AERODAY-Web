@@ -73,6 +73,11 @@ function Header() {
                       Vidéographie par Drone
                     </Link>
                   </li>
+                  <li>
+                    <Link className="dropdown-item" to="/Water Rocketry">
+                      Water Rocketry
+                    </Link>
+                  </li>
                 </ul>
               </li>
               <li className="nav-item dropdown">

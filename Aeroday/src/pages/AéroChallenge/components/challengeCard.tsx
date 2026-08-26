@@ -126,9 +126,10 @@ const ChallengeCard: React.FC = () => {
   <div className="row align-items-center g-4">
     {/* Texte à gauche */}
     <div className="col-lg-8 col-md-7">
-      <div>
+                  <ul style={{ color: '#4a5568', fontSize: '14px', lineHeight: 1.8, margin: 0, paddingLeft: '18px' }}>
+
         L'AéroChallenge est une compétition ouverte aux étudiants et passionnés, qui met les participants au défi de piloter leurs drones sur un circuit prédéfini, naviguant avec précision à travers les obstacles de la piste de course, tout en respectant les exigences du cahier des charges. Ce challenge a pour objectif de réunir les passionnés de drones dans un affrontement captivant où leur talent, leurs compétences et leur enthousiasme seront mis en lumière.
-      </div>
+      </ul>
     </div>
     
     {/* Image à droite */}
