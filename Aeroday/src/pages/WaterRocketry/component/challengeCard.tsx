@@ -5,6 +5,8 @@ import wrIMG from "../../../assets/images/wr.png";
 const ChallengeCard: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [showCahierModal, setShowCahierModal] = useState(false);
+  const [isRegisterHovered, setIsRegisterHovered] = useState(false);
+  const [isCahierHovered, setIsCahierHovered] = useState(false);
 
   const handleInscriptionClick = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
@@ -594,9 +596,9 @@ const ChallengeCard: React.FC = () => {
           </div>
         </div>
 
-        {/* Contenu carte - MODIFICATION ICI : Texte à gauche, image à droite */}
+        {/* Contenu carte */}
         <div style={{ padding: "28px 32px 32px 32px" }}>
-          <div className="row align-items-center">
+          <div className="row align-items-center g-4">
             {/* Texte à gauche */}
             <div className="col-lg-8 col-md-7">
               <div
@@ -649,10 +651,76 @@ const ChallengeCard: React.FC = () => {
               />
             </div>
           </div>
+
+          {/* ========== BOUTONS CENTRÉS AVEC PALETTE WATER ROCKET ========== */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "12px",
+              flexWrap: "wrap",
+              marginTop: "24px",
+            }}
+          >
+            <button
+              onClick={handleInscriptionClick}
+              onMouseEnter={() => setIsRegisterHovered(true)}
+              onMouseLeave={() => setIsRegisterHovered(false)}
+              style={{
+                background: isRegisterHovered ? "#e68a00" : "#FF9F1C",
+                color: "#FFFFFF",
+                border: "none",
+                padding: "14px 28px",
+                borderRadius: "10px",
+                fontSize: "14px",
+                fontWeight: 700,
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                transition: "all 0.2s",
+                boxShadow: isRegisterHovered
+                  ? "0 6px 18px rgba(255,159,28,0.4)"
+                  : "0 4px 12px rgba(255,159,28,0.3)",
+                transform: isRegisterHovered ? "translateY(-2px)" : "translateY(0)",
+              }}
+            >
+              <span>📝</span>
+              S'inscrire au challenge
+            </button>
+
+            <button
+              onClick={handleCahierClick}
+              onMouseEnter={() => setIsCahierHovered(true)}
+              onMouseLeave={() => setIsCahierHovered(false)}
+              style={{
+                background: isCahierHovered ? "#0a5c66" : "#087E8B",
+                color: "#FFFFFF",
+                border: "none",
+                padding: "14px 28px",
+                borderRadius: "10px",
+                fontSize: "14px",
+                fontWeight: 700,
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                transition: "all 0.2s",
+                boxShadow: isCahierHovered
+                  ? "0 6px 18px rgba(8,126,139,0.4)"
+                  : "0 4px 12px rgba(8,126,139,0.3)",
+                transform: isCahierHovered ? "translateY(-2px)" : "translateY(0)",
+              }}
+            >
+              <span>📄</span>
+              Cahier des charges
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* ========== MODALES ========== */}
+      {/* ========== MODALE INSCRIPTION ========== */}
       {showModal && (
         <>
           <div
@@ -709,6 +777,13 @@ const ChallengeCard: React.FC = () => {
                     borderRadius: "10px",
                     fontSize: "16px",
                     fontWeight: 700,
+                    transition: "all 0.2s",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.target as HTMLButtonElement).style.background = "#e68a00";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.target as HTMLButtonElement).style.background = "#FF9F1C";
                   }}
                 >
                   OK
@@ -719,6 +794,7 @@ const ChallengeCard: React.FC = () => {
         </>
       )}
 
+      {/* ========== MODALE CAHIER DES CHARGES ========== */}
       {showCahierModal && (
         <>
           <div
@@ -776,6 +852,13 @@ const ChallengeCard: React.FC = () => {
                     borderRadius: "10px",
                     fontSize: "16px",
                     fontWeight: 700,
+                    transition: "all 0.2s",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.target as HTMLButtonElement).style.background = "#0a5c66";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.target as HTMLButtonElement).style.background = "#087E8B";
                   }}
                 >
                   OK

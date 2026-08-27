@@ -85,6 +85,22 @@ const ChallengeCard: React.FC = () => {
               from { opacity: 0; transform: scale(0.8) translateY(-20px); }
               to { opacity: 1; transform: scale(1) translateY(0); }
             }
+            @keyframes droneHover {
+              0%, 100% { transform: translate(0, 0) rotate(0deg); }
+              25% { transform: translate(6px, -4px) rotate(1deg); }
+              50% { transform: translate(-3px, -2px) rotate(-1deg); }
+              75% { transform: translate(4px, -6px) rotate(0.5deg); }
+            }
+            @keyframes dronePropeller {
+              0% { transform: scaleX(1); }
+              50% { transform: scaleX(0.1); }
+              100% { transform: scaleX(1); }
+            }
+            @keyframes droneScan {
+              0% { opacity: 0; }
+              50% { opacity: 0.35; }
+              100% { opacity: 0; }
+            }
           `}</style>
 
           {/* Fond de chaleur / ondulation thermique */}
@@ -193,25 +209,6 @@ const ChallengeCard: React.FC = () => {
             </div>
           </div>
 
-          <style>{`
-            @keyframes droneHover {
-              0%, 100% { transform: translate(0, 0) rotate(0deg); }
-              25% { transform: translate(6px, -4px) rotate(1deg); }
-              50% { transform: translate(-3px, -2px) rotate(-1deg); }
-              75% { transform: translate(4px, -6px) rotate(0.5deg); }
-            }
-            @keyframes dronePropeller {
-              0% { transform: scaleX(1); }
-              50% { transform: scaleX(0.1); }
-              100% { transform: scaleX(1); }
-            }
-            @keyframes droneScan {
-              0% { opacity: 0; }
-              50% { opacity: 0.35; }
-              100% { opacity: 0; }
-            }
-          `}</style>
-
           {/* Badge */}
           <div
             style={{
@@ -237,27 +234,36 @@ const ChallengeCard: React.FC = () => {
         {/* ========== CONTENU CARTE ========== */}
         <div style={{ padding: '28px 32px 32px 32px' }}>
           <div style={{ background: '#fef2f2', borderRadius: '12px', padding: '20px', marginBottom: '24px', borderLeft: '4px solid #e63946' }}>
-           <div className="row align-items-center g-4">
-    {/* Texte à gauche */}
-    <div className="col-lg-8 col-md-7">
-                  <ul style={{ color: '#4a5568', fontSize: '14px', lineHeight: 1.8, margin: 0, paddingLeft: '18px' }}>
-
-Le Challenge AéroEntrepreneur est une compétition alliant aéronautique et entrepreneuriat, destinée aux jeunes porteurs d’un esprit d’innovation et d’initiative. Durant 24 heures, les équipes devront concevoir et proposer des solutions aux problématiques qui leur seront présentées au début du challenge. Tout au long de l’événement, les participants bénéficieront de l’accompagnement de coaches spécialisés dans les deux domaines, ainsi que de formations ciblées pour enrichir leurs compétences.      </ul>
-    </div>
-    
-    {/* Image à droite */}
-    <div className="col-lg-4 col-md-5 text-center">
-      <img 
-        src={aeroIMg} 
-        alt="AéroChallenge"
-        className="img-fluid rounded"
-        style={{ maxHeight: '200px', objectFit: 'cover' }}
-      />
-    </div>
-  </div>
+            <div className="row align-items-center g-4">
+              {/* Texte à gauche */}
+              <div className="col-lg-8 col-md-7">
+                <ul style={{ color: '#4a5568', fontSize: '14px', lineHeight: 1.8, margin: 0, paddingLeft: '18px' }}>
+                  Le Challenge AéroEntrepreneur est une compétition alliant aéronautique et entrepreneuriat, destinée aux jeunes porteurs d'un esprit d'innovation et d'initiative. Durant 24 heures, les équipes devront concevoir et proposer des solutions aux problématiques qui leur seront présentées au début du challenge. Tout au long de l'événement, les participants bénéficieront de l'accompagnement de coaches spécialisés dans les deux domaines, ainsi que de formations ciblées pour enrichir leurs compétences.
+                </ul>
+              </div>
+              
+              {/* Image à droite */}
+              <div className="col-lg-4 col-md-5 text-center">
+                <img 
+                  src={aeroIMg} 
+                  alt="AéroChallenge"
+                  className="img-fluid rounded"
+                  style={{ maxHeight: '200px', objectFit: 'cover' }}
+                />
+              </div>
+            </div>
           </div>
 
-          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+          {/* ========== BOUTONS CENTRÉS ========== */}
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: '12px',
+              flexWrap: 'wrap',
+            }}
+          >
             <button
               onClick={handleInscriptionClick}
               style={{
@@ -275,7 +281,7 @@ Le Challenge AéroEntrepreneur est une compétition alliant aéronautique et ent
               onMouseEnter={(e) => { (e.target as HTMLButtonElement).style.background = '#c62828'; (e.target as HTMLButtonElement).style.transform = 'translateY(-2px)'; }}
               onMouseLeave={(e) => { (e.target as HTMLButtonElement).style.background = '#e63946'; (e.target as HTMLButtonElement).style.transform = 'translateY(0)'; }}
             >
-              📝 S&apos;inscrire au challenge
+              📝 S'inscrire au challenge
             </button>
             <button
               onClick={handleCahierClick}
@@ -322,7 +328,21 @@ Le Challenge AéroEntrepreneur est une compétition alliant aéronautique et ent
                 Les inscriptions pour ce challenge ne sont pas encore ouvertes.<br />Veuillez revenir ultérieurement.
               </p>
               <div className="d-grid">
-                <button className="btn text-white border-0 py-3" onClick={handleCloseModal} style={{ background: '#e63946', borderRadius: '10px', fontSize: '16px', fontWeight: 700, transition: 'all 0.2s' }}>OK</button>
+                <button 
+                  className="btn text-white border-0 py-3" 
+                  onClick={handleCloseModal} 
+                  style={{ 
+                    background: '#e63946', 
+                    borderRadius: '10px', 
+                    fontSize: '16px', 
+                    fontWeight: 700, 
+                    transition: 'all 0.2s' 
+                  }}
+                  onMouseEnter={(e) => { (e.target as HTMLButtonElement).style.background = '#c62828'; }}
+                  onMouseLeave={(e) => { (e.target as HTMLButtonElement).style.background = '#e63946'; }}
+                >
+                  OK
+                </button>
               </div>
             </div>
           </div>
@@ -349,10 +369,24 @@ Le Challenge AéroEntrepreneur est une compétition alliant aéronautique et ent
               </div>
               <h4 className="text-center mb-3" style={{ color: '#1a0a0a', fontWeight: 700 }}>Cahier des charges indisponible</h4>
               <p className="text-center mb-4" style={{ color: '#4a5568', fontSize: '15px', lineHeight: 1.6 }}>
-                Le cahier des charges pour ce challenge n&apos;est pas encore disponible.<br />Veuillez revenir ultérieurement.
+                Le cahier des charges pour ce challenge n'est pas encore disponible.<br />Veuillez revenir ultérieurement.
               </p>
               <div className="d-grid">
-                <button className="btn text-white border-0 py-3" onClick={handleCloseCahierModal} style={{ background: '#7c1d1d', borderRadius: '10px', fontSize: '16px', fontWeight: 700, transition: 'all 0.2s' }}>OK</button>
+                <button 
+                  className="btn text-white border-0 py-3" 
+                  onClick={handleCloseCahierModal} 
+                  style={{ 
+                    background: '#7c1d1d', 
+                    borderRadius: '10px', 
+                    fontSize: '16px', 
+                    fontWeight: 700, 
+                    transition: 'all 0.2s' 
+                  }}
+                  onMouseEnter={(e) => { (e.target as HTMLButtonElement).style.background = '#5c1414'; }}
+                  onMouseLeave={(e) => { (e.target as HTMLButtonElement).style.background = '#7c1d1d'; }}
+                >
+                  OK
+                </button>
               </div>
             </div>
           </div>
