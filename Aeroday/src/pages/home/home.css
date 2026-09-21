@@ -191,9 +191,11 @@
 }
 
 .about-img {
-  border-radius: 12px;
-  object-fit: cover;
-  max-height: 320px;
+  width: 100%;
+  height: 560px;         /* la hauteur s'adapte au ratio de l'image */
+  object-fit: cover;  
+  display: block;       /* évite un espace blanc sous l'image */
+  border-radius: 12px;  /* optionnel : coins arrondis */
 }
 
 .btn-about {

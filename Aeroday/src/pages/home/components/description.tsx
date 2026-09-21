@@ -2,7 +2,7 @@ import describeImg from '../../../assets/images/description.jpg';
 
 function Description() {
   return (
-    <section className="about-aero py-5 px-4">
+    <section className="about-aero py-6 px-4">
       <div className="container-fluid">
         <div className="row align-items-center g-5 mb-5">
           {/* Colonne texte */}
@@ -34,7 +34,7 @@ function Description() {
           </div>
 
           {/* Colonne image */}
-          <div className="col-13 col-lg-6 ">
+          <div className="col-12 col-lg-6 ">
             <img
               src={describeImg}
               className="about-img w-100"

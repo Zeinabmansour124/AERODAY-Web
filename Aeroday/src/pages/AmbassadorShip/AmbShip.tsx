@@ -12,7 +12,7 @@ function AmbShip(){
   }
 
   return (
-    <div className='main-grid mt-2 me-3 mb-5'>
+    <div className='main-grid mt-2 me-3 '>
       <Card/>
       {/* CORRECTION 3: member → members (pluriel) */}
       <SBChallenge members={respo} />

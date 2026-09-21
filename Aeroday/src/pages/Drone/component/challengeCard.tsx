@@ -20,7 +20,7 @@ const ChallengeCard_NaturalDisaster_General: React.FC = () => {
           overflow: 'hidden',
           boxShadow: '0 4px 24px rgba(15, 27, 60, 0.08)',
           position: 'relative',
-          maxWidth: '920px',
+          maxWidth: '1420px',
           width: '100%',
           fontFamily: "'Segoe UI', system-ui, sans-serif",
         }}

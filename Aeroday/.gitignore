@@ -41,3 +41,8 @@ coverage/
 *.cache
 .temp/
 .tmp/
+
+
+#donnee
+cloudinary.ts
+team.ts

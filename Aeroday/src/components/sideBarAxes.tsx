@@ -1,12 +1,15 @@
 import React from 'react';
 import { User, Mail, Phone, BarChart3 } from 'lucide-react';
 import type { TeamMember } from '../content/team';
+import { getMediaUrl } from '../utils/getMediaUrl';
 
 interface SBChallengeProps {
   members: TeamMember[];
 }
 
 const SBChallenge: React.FC<SBChallengeProps> = ({ members }) => {
+    const url = members.image ? getMediaUrl(members.image) : ''
+
   if (!members || !Array.isArray(members) || members.length === 0) {
     return (
       <div className="sidebar">
@@ -72,16 +75,24 @@ const SBChallenge: React.FC<SBChallengeProps> = ({ members }) => {
               }}
             >
               {/* Avatar */}
-              <div className="avatar" style={{ width: '80px', height: '80px' }}>
-                <User size={36} color="#fff" />
-              </div>
+             <div className="avatar" style={{ width: '80px', height: '80px' }}>
 
+      {url ? (
+        <img
+          src={url}
+          alt={member.name}
+          style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }}
+        />
+      ) : (
+        <User size={36} color="#fff" />
+      )}
+    </div>
               {/* Nom */}
               <h3 style={{ fontSize: '16px' }}>{member.name}</h3>
 
               {/* Rôle */}
               <p className="role">
-                {index === 0 ? 'Responsable du challenge' : 'Co-responsable du challenge'}
+                {index === 0 ? 'Responsable du l axe' : 'Co-responsable du l axe'}
               </p>
 
               {/* Bio / Description */}

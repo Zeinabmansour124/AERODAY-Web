@@ -17,13 +17,17 @@ const ChallengeCard: React.FC = () => {
     <>
       {/* ========== CARTE CHALLENGE ========== */}
       <div
-        className="ms-3"
         style={{
           background: "#FFFFFF",
           borderRadius: "20px",
           overflow: "hidden",
           boxShadow: "0 4px 24px rgba(15, 27, 60, 0.08)",
           position: "relative",
+          width: "100%", 
+          height: "100%", 
+          margin: 0, 
+          display: "flex",
+          flexDirection: "column",
         }}
       >
         {/* Bandeau Inondation / Flood */}
@@ -597,18 +601,23 @@ const ChallengeCard: React.FC = () => {
         </div>
 
         {/* Contenu carte */}
-        <div style={{ padding: "28px 32px 32px 32px" }}>
-          <div className="row align-items-center g-4">
-            {/* Texte à gauche */}
-            <div className="col-lg-8 col-md-7">
-              <div
-                style={{
-                  background: "#EDF6F9",
-                  borderRadius: "12px",
-                  padding: "20px",
-                  borderLeft: "4px solid #FF9F1C",
-                }}
-              >
+        <div style={{ padding: "28px 32px 32px 32px", flex: 1, display: "flex", flexDirection: "column" }}>
+          
+          {/* ========== BOÎTE GRISE AVEC TEXTE ET IMAGE À L'INTÉRIEUR ========== */}
+          <div
+            style={{
+              background: "#EDF6F9",
+              borderRadius: "12px",
+              padding: "20px",
+              borderLeft: "4px solid #FF9F1C",
+              marginBottom: "24px", // Espace avant les boutons
+            }}
+          >
+            {/* Conteneur Flexbox pour mettre le texte et l'image côte à côte */}
+            <div style={{ display: "flex", gap: "24px", alignItems: "center", flexWrap: "wrap" }}>
+              
+              {/* Texte (prend tout l'espace disponible) */}
+              <div style={{ flex: "1 1 300px" }}>
                 <ul
                   style={{
                     color: "#4a5568",
@@ -639,16 +648,17 @@ const ChallengeCard: React.FC = () => {
                   vers une victime en détresse piégée au milieu des flots.
                 </ul>
               </div>
-            </div>
 
-            {/* Image à droite */}
-            <div className="col-lg-4 col-md-5 text-center">
-              <img
-                src={wrIMG}
-                alt="AéroChallenge"
-                className="img-fluid rounded"
-                style={{ maxHeight: "200px", objectFit: "cover" }}
-              />
+              {/* Image (taille d'origine restaurée) */}
+              <div style={{ flex: "0 0 auto", display: "flex", justifyContent: "center", width: "100%", maxWidth: "200px", margin: "0 auto" }}>
+                <img
+                  src={wrIMG}
+                  alt="AéroChallenge"
+                  className="img-fluid rounded"
+                  style={{ maxHeight: "200px", objectFit: "cover" }}
+                />
+              </div>
+              
             </div>
           </div>
 
@@ -660,7 +670,7 @@ const ChallengeCard: React.FC = () => {
               alignItems: "center",
               gap: "12px",
               flexWrap: "wrap",
-              marginTop: "24px",
+              marginTop: "auto", 
             }}
           >
             <button

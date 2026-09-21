@@ -192,7 +192,7 @@ const CAD3DViewer: React.FC = () => {
   };
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '320px' }}>
+    <div style={{ position: 'relative', width: '100%', height: '360px' }}>
       <div ref={mountRef} style={{ width: '100%', height: '100%' }} />
 
       <div
@@ -301,23 +301,6 @@ const CAD3DViewer: React.FC = () => {
         >
           Z
         </button>
-      </div>
-
-      <div
-        style={{
-          position: 'absolute',
-          bottom: '16px',
-          right: '140px',
-          background: 'rgba(255, 255, 255, 0.9)',
-          padding: '4px 10px',
-          borderRadius: '6px',
-          fontSize: '12px',
-          fontWeight: 700,
-          color: '#1E293B',
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
-        }}
-      >
-        01/02
       </div>
 
       <style>{`
@@ -431,24 +414,25 @@ const CAODisasterChallengeCard: React.FC = () => {
   return (
     <>
       <div
-        className="ms-3"
         style={{
           background: '#FFFFFF',
           borderRadius: '20px',
           overflow: 'hidden',
           boxShadow: '0 4px 24px rgba(15, 27, 60, 0.08)',
           position: 'relative',
-          maxWidth: '900px',
-          width: '100%',
-          margin: '20px auto',
+          width: '100%', // Prend toute la largeur disponible
+          height: '100%', // S'aligne en hauteur avec la carte de droite
+          margin: 0, // Supprime les marges auto qui créaient l'espace
           fontFamily: "'Segoe UI', system-ui, sans-serif",
+          display: 'flex',
+          flexDirection: 'column',
         }}
       >
         {/* Banner 3D */}
         <CAD3DViewer />
 
         {/* Contenu carte */}
-        <div style={{ padding: '36px 40px 40px 40px' }}>
+        <div style={{ padding: '36px 40px 40px 40px', flex: 1, display: 'flex', flexDirection: 'column' }}>
 
           {/* Box orange avec texte et image à l'intérieur */}
           <div style={{
@@ -457,10 +441,11 @@ const CAODisasterChallengeCard: React.FC = () => {
             padding: '24px',
             borderLeft: '4px solid #FF4D00',
             marginBottom: '32px',
+            flex: 1,
           }}>
             <div style={{
               display: 'grid',
-              gridTemplateColumns: '1fr 200px',
+              gridTemplateColumns: '1fr minmax(150px, 200px)', // Rendu plus flexible
               gap: '24px',
               alignItems: 'start',
             }}>
@@ -476,8 +461,9 @@ const CAODisasterChallengeCard: React.FC = () => {
               </div>
 
               <div style={{
-                width: '200px',
-                height: '200px',
+                width: '100%',
+                aspectRatio: '1 / 1', // Garde un carré parfait
+                maxWidth: '200px',
                 borderRadius: '12px',
                 overflow: 'hidden',
                 boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
@@ -504,6 +490,7 @@ const CAODisasterChallengeCard: React.FC = () => {
             gap: '16px', 
             flexWrap: 'wrap', 
             justifyContent: 'center',
+            marginTop: 'auto', // Pousse les boutons vers le bas si la carte est plus grande
           }}>
             <button
               onClick={handleInscriptionClick}

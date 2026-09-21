@@ -6,6 +6,7 @@
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^9.3.1",
     "@mui/material": "^9.3.1",
+    "@supabase/supabase-js": "^2.116.0",
     "@types/three": "^0.185.4",
     "bootstrap": "^5.3.8",
     "firebase": "^12.17.1",

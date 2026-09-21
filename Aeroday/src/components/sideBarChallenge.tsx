@@ -27,9 +27,12 @@ const SBChallenge: React.FC<SBChallengeProps> = ({ members }) => {
   const displayMembers = members.slice(0, 2);
 
   return (
-    <div className="sidebar">
+    <div className="sidebar" style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
       {/* ─── CARTE RESPONSABLES ─── */}
-      <div className="card card-center" style={{ position: 'relative' }}>
+      <div
+        className="card card-center"
+        style={{ position: 'relative', width: '100%', boxSizing: 'border-box' }}
+      >
         {/* Mini drone décoratif 3D */}
         <div className="mini-drone">
           <div className="md-face md-front"></div>
@@ -86,32 +89,32 @@ const SBChallenge: React.FC<SBChallengeProps> = ({ members }) => {
 
               {/* Bio / Description */}
               <p className="bio" style={{ fontSize: '12px', marginBottom: '16px' }}>
-{/* Bio / Description */}
-<p className="bio" style={{ fontSize: '12px', marginBottom: '16px' }}>
-  {member.role }
-</p>              </p>
+                {member.role}
+              </p>
 
               {/* Liens de contact */}
               <div className="contact-links" style={{ width: '100%' }}>
-                {member.contact?.aerodayEmail && (
-                  <a
-                    href={`mailto:${member.contact.aerodayEmail}`}
-                    className="contact-link"
-                    title={member.contact.aerodayEmail}
+                {/* Email : toujours affiché, même si non renseigné */}
+                <a
+                  href={member.contact?.aerodayEmail ? `mailto:${member.contact.aerodayEmail}` : undefined}
+                  className="contact-link"
+                  title={member.contact?.aerodayEmail || 'Email non disponible'}
+                  style={!member.contact?.aerodayEmail ? { opacity: 0.5, cursor: 'default' } : undefined}
+                  onClick={!member.contact?.aerodayEmail ? (e) => e.preventDefault() : undefined}
+                >
+                  <Mail size={15} />
+                  <span
+                    style={{
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap',
+                      maxWidth: '140px',
+                    }}
                   >
-                    <Mail size={15} />
-                    <span
-                      style={{
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap',
-                        maxWidth: '140px',
-                      }}
-                    >
-                      {member.contact.aerodayEmail}
-                    </span>
-                  </a>
-                )}
+                    {member.contact?.aerodayEmail || 'Non renseigné'}
+                  </span>
+                </a>
+
                 {member.contact?.phone && (
                   <a
                     href={`tel:${member.contact.phone}`}
@@ -128,7 +131,7 @@ const SBChallenge: React.FC<SBChallengeProps> = ({ members }) => {
       </div>
 
       {/* ─── CARTE PRIZE POOL ─── */}
-      <div className="stats-card">
+      <div className="stats-card" style={{ width: '100%', boxSizing: 'border-box' }}>
         {/* Débris décoratifs */}
         <div
           style={{

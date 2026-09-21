@@ -1,6 +1,7 @@
 export interface Edition {
   id: string;
-  publicId  : string; // identifiant unique de la vidéo sur Cloudinary
+  publicId?: string; // identifiant unique de la vidéo sur Cloudinary
+  filename?: string; // nom du fichier vidéo (optionnel)
   year: string;
   
 }
@@ -18,7 +19,7 @@ export const editions: Edition[] = [
   },
     {
     id: '3',
-    publicId: 'aeroday_2016_à_l_INSAT_Tunis_zx5rpq',
+    filename: 'ed13',
     year: '2016'
   }
 ];

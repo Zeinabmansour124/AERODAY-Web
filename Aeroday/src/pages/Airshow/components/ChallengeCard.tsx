@@ -222,8 +222,7 @@ const MysteriousChallengeCard: React.FC<MysteriousChallengeProps> = ({
               <div className="col-lg-8 col-md-7">
                 <div className="forest-text">
                   <p style={{ color: '#4a5568', fontSize: '14px', lineHeight: 1.8, margin: 0 }}>
-                    L'AirShow est un challenge dédié aux avions radio-commandés, où les participants doivent concevoir et réaliser leur propre PolyClub en suivant un cahier des charges rigoureux. Au cours de ce show aérien compétitif, chaque équipe présente un spectacle innovant, mettant en avant leurs compétences en pilotage devant un jury de professionnels et un public enthousiaste.
-                  </p>
+                   L'AirShow est un challenge dédié aux avions radio-commandés, où les participants conçoivent et réalisent leur propre PolyClub selon un cahier des charges rigoureux. Mais cette édition réserve une surprise technique qui va changer la donne pour tous les participants.Une exigence jamais imposée jusqu'ici, pensée pour repousser les limites de votre ingéniosité. Chaque équipe présente ensuite un spectacle innovant devant un jury de professionnels et un public enthousiaste. Découvrez la surprise dans le cahier des charges !                  </p>
                 </div>
               </div>
               
