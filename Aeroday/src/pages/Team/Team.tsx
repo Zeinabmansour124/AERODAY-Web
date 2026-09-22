@@ -1,5 +1,6 @@
 import { team } from '../../content/team';
 import type { TeamMember } from '../../content/team';
+import { getMediaUrlImg } from '../../utils/getMediaUrlImg';   // ← AJOUT ligne 3
 import './Team.css';
 
 const avatarColors = ['#5C6B73', '#9A6D45', '#C1121F', '#E85D04'];
@@ -17,7 +18,7 @@ const renderAvatar = (member: TeamMember, size: number, bgColor: string = "#C112
   if (member.image && member.image !== "") {
     return (
       <img
-        src={member.image}
+        src={getMediaUrlImg(member.image)}   
         alt={member.name}
         className="member-avatar-img"
         style={{
@@ -52,6 +53,10 @@ const renderAvatar = (member: TeamMember, size: number, bgColor: string = "#C112
   }
 };
 
+// ═══════════════════════════════════════════════════
+// LE RESTE EST IDENTIQUE À VOTRE CODE ORIGINAL
+// ═══════════════════════════════════════════════════
+
 function Team() {
   const president = team.find((m) => m.id === 0);
   const vps = team.filter((m) => m.id >= 1 && m.id <= 4);
@@ -62,8 +67,12 @@ function Team() {
 
   return (
     <section className="team-section">
-      <div className="team-decoration team-decoration--drone">🚁</div>
-      <div className="team-decoration team-decoration--seismo">🌍</div>
+      <div className="team-decoration team-decoration--drone"
+      style={{ fontSize: '600px' }}>
+        🚁</div>
+      <div className="team-decoration team-decoration--seismo"
+      style={{ fontSize: '600px' }}>
+        🌍</div>
 
       <div className="team-header">
         <span className="team-badge">ÉQUIPE</span>

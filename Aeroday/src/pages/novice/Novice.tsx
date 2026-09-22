@@ -23,7 +23,7 @@ function Novice(){
             <div className='mt-2'>
                 <SBChallenge members={respo}/>
             </div>
-            <PartnerChallenge/>
+            {/* <PartnerChallenge/> */}
         </div>
     )
 }

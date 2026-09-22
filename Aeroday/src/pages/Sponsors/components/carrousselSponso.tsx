@@ -10,6 +10,13 @@ import digisysLogo from '../../../assets/images/sponsos/sponso2.png';
 import atrLogo from '../../../assets/images/sponsos/sponso3.png';
 import dassaultLogo from '../../../assets/images/sponsos/sponso4.svg';
 import tunisairLogo from '../../../assets/images/sponsos/sponso5.webp';
+import campi from '../../../assets/images/sponsos/campi.jpg'
+import dayl from '../../../assets/images/sponsos/dayyn.jpg';
+import gamep from '../../../assets/images/sponsos/gameProduction.jpg';
+import gov from '../../../assets/images/sponsos/govJeun.png';
+import inspireTech from '../../../assets/images/sponsos/Inspiretech.png';
+import orange from '../../../assets/images/sponsos/orange.webp';
+import topnet from '../../../assets/images/sponsos/topnet.png';
 
 const SponsorsCarousel: React.FC = () => {
   const [isPaused, setIsPaused] = useState(false);
@@ -18,11 +25,19 @@ const SponsorsCarousel: React.FC = () => {
 
   // Sponsors avec leurs logos
   const sponsors = [
+    { name: 'ATR', logo: atrLogo },
+    { name: 'TOPNET', logo: topnet },
     { name: 'Agil', logo: agilLogo },
     { name: 'DIGISYS', logo: digisysLogo },
-    { name: 'ATR', logo: atrLogo },
     { name: 'FAB43', logo: dassaultLogo },
     { name: 'AESS', logo: tunisairLogo },
+    { name: 'CAMPi', logo: campi },
+    { name: 'DAYYN', logo: dayl },
+    { name: 'GAME PRODUCTION', logo: gamep },
+    { name: 'GOV JEUN', logo: gov },
+    { name: 'INSPIRETECH', logo: inspireTech },
+    { name: 'ORANGE', logo: orange },
+
   ];
 
   const itemsPerView = 4;

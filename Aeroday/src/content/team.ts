@@ -15,7 +15,7 @@ export const team: TeamMember[] = [
         id: 0,
         name: "Insaf Medimegh",
         role: "Président",
-        image: "https://supabase.com/dashboard/project/belywafxvfqalhyhvofy/storage/files/buckets/commite?preview=insaf.png",
+        image: "insaf.jpg",
         contact: {
             phone: "+216 55 532 572",
             personalEmail: "medimeghinsaf@gmail.com",
@@ -26,7 +26,7 @@ export const team: TeamMember[] = [
         id: 1,
         name: "Ghada Abassi",
         role: "VP Organisation",
-        image: "",
+        image: "ghadaAbassi.jpg",
         contact: {
             phone: "+216 58 413 901",
             personalEmail: "ghada.abassi04@gmail.com ",
@@ -37,7 +37,7 @@ export const team: TeamMember[] = [
         id: 2,
         name: "Youssef Sfeihi",
         role: "VP Technique",
-        image: "sfei7i",
+        image: "sfeihi.jpg",
         contact: {
             phone: "+216 53 505 508",
             personalEmail: "Mouadh.bhs@gmail.com",
@@ -48,7 +48,7 @@ export const team: TeamMember[] = [
         id: 3,
         name: "Mariem Daboussi",
         role: "VP Finance et Trésorier",
-        image: "mrmDaboussi",
+        image: "mrmDaboussi.jpg",
         contact: {
             phone: "+216 25 600 109",
             personalEmail: "mariemdaboussi305@gmail.com",
@@ -59,7 +59,7 @@ export const team: TeamMember[] = [
         id: 4,
         name: "Mariem Hammami",
         role: "VP Branding",
-        image: "mrmHammami",
+        image: "mrmHammami.jpg",
         contact: {
             phone: "+216 21 903 388",
             personalEmail: "mariemhm0305@gmail.com",
@@ -70,7 +70,7 @@ export const team: TeamMember[] = [
         id: 5,
         name: "Melek Hmadi",
         role: "Aérochallenge et Videographie par Drone",
-        image: "malakEURO26",
+        image: "malak.jpg",
         contact: {
             phone: "+216 29 504 065",
             personalEmail: "malekhmadi281@gmail.com",
@@ -81,7 +81,7 @@ export const team: TeamMember[] = [
         id: 6,
         name: "Ahmed Brich",
         role: "CAO",
-        image: "briche",
+        image: "briche.jpg",
         contact: {
             phone: "+216 20 726 510",
             personalEmail: "Ahmed.berriche@insat.ucar.tn",
@@ -92,7 +92,7 @@ export const team: TeamMember[] = [
         id: 7,
         name: "Yassine Ben Salem",
         role: "AéroEntrepreneur",
-        image: "yassineBenSalem",
+        image: "yassineBnSalem.jpg",
         contact: {
             phone: "+216 95 109 997",
             personalEmail: "Ccps62075@gmail.com",
@@ -103,7 +103,7 @@ export const team: TeamMember[] = [
         id: 8,
         name: "Houssem Eddine Zaibi",
         role: "Airshow",
-        image: "houssem",
+        image: "houssem.jpg",
         contact: {
             phone: "+216 94 169 508",
             personalEmail: "zaibihoussemeddine@gmail.com",
@@ -114,7 +114,7 @@ export const team: TeamMember[] = [
         id: 9,
         name: "Ibrahim Ben Hmida",
         role: "Rocketry",
-        image: "Ibrahim",
+        image: "Ibrahim.jpg",
         contact: {
             phone: "+216 24 138 777",
             personalEmail: "ibrahim.benhmida@insat.ucar.tn",
@@ -125,7 +125,7 @@ export const team: TeamMember[] = [
         id: 10,
         name: "Behe Eddine Anaya",
         role: "Aeromodelisme",
-        image: "baha",
+        image: "baha.jpg",
         contact: {
             phone: "+216 29 660 586",
             personalEmail: "behedesu@gmail.com",
@@ -136,7 +136,7 @@ export const team: TeamMember[] = [
         id: 11,
         name: "Nour Hsssen",
         role: "Ateliers Novices",
-        image: "NourHsssen",
+        image: "nour.jpg",
         contact: {
             phone: "+216 95 704 502",
             personalEmail: "nourelhouda.hassen@insat.ucar.tn",
@@ -147,7 +147,7 @@ export const team: TeamMember[] = [
         id: 12,
         name: "Malak Soltany",
         role: "Ateliers Novices",
-        image: "malakSoltany",
+        image: "malakSoltany.jpg",
         contact: {
             phone: "+216 93 406 516",
             personalEmail: "maleksoltany26@gmail.com",
@@ -158,7 +158,7 @@ export const team: TeamMember[] = [
         id: 13,
         name: "Tesnim Boubakri",
         role: "tasnime",
-        image: "IMG_9770",
+        image: "tasnime.jpg",
         contact: {
             phone: "+216 93 378 350",
             personalEmail: "tesnimboubakri9@gmail.com.",
@@ -169,7 +169,7 @@ export const team: TeamMember[] = [
         id: 14,
         name: "Azza Baaziz",
         role: "Responsable Exposition",
-        image: "azza",
+        image: "azza.jpg",
         contact: {
             phone: "+216 58 495 626",
             personalEmail: "baazizazza93@gmail.com",
@@ -179,7 +179,7 @@ export const team: TeamMember[] = [
     {    id: 15,
         name: "Ranim Seddiki",
         role: "Responsable Décoration",
-        image: "ranim",
+        image: "ranim.jpg",
         contact: {
             phone: "+216 92 740 262",
             personalEmail: "ranimseddiki7@gmail.com",
@@ -190,7 +190,7 @@ export const team: TeamMember[] = [
         id: 16,
         name: "Ranim Khairedine",
         role: "Organisation",
-        image: "https://dnwmpwnyzljrvaanwjqp.supabase.co/storage/v1/object/public/team/Yosr_Yazidi.jpg",
+        image: "",
         contact: {
             phone: "+216 28 203 949",
             personalEmail: "",
@@ -201,7 +201,7 @@ export const team: TeamMember[] = [
         id: 17,
         name: "Nagham Seyhi",
         role: "Secrétaire Général et responsable ressource humaine",
-        image: "nagham",
+        image: "nagham.jpg",
         contact: {
             phone: "+216 90 100 166",
             personalEmail: "naghamessayhii@gmail.com",
@@ -214,7 +214,7 @@ export const team: TeamMember[] = [
         id: 18,
         name: "Mohamed Amine Gnichi",
         role: "Sponsoring",
-        image: "gnichi",
+        image: "gnichi.jpg",
         contact: {
             phone: "+216 96 145 452",
             personalEmail: "mohamedaminguennichi2006a@gmail.com",
@@ -226,7 +226,7 @@ export const team: TeamMember[] = [
         id: 20,
         name: "May Nefzi",
         role: "Responsable Participation ",
-        image: "MayNefzi",
+        image: "mayNefzi.jpg",
         contact: {
             phone: "+216 94 169 749",
             personalEmail: "nefzimay7@gmail.com",
@@ -237,7 +237,7 @@ export const team: TeamMember[] = [
         id: 21,
         name: "May Saidi",
         role: "Responsable Ambassadeur ",
-        image: "MaySaidi",
+        image: "maySaidi.jpg",
         contact: {
             phone: "+216 93 731 374",
             personalEmail: "may.saidi@insat.ucar.tn",
@@ -248,7 +248,7 @@ export const team: TeamMember[] = [
         id: 22,
         name: "Zeinab Mansour",
         role: "Web Master",
-        image: "",
+        image: "zineb.jpg",
         contact: {
             phone: "+216 99 725 756",
             personalEmail: "zeinabmansour06@gmail.com",
@@ -261,7 +261,7 @@ export const team: TeamMember[] = [
         id: 23,
         name: "Mariem Garali",
         role: "Media Off",
-        image: "mrmGarali",
+        image: "mrmGarali.jpg",
         contact: {
             phone: "+216 52 500 137",
             personalEmail: "meriemgarali11@gmail.com",
@@ -273,7 +273,7 @@ export const team: TeamMember[] = [
         id: 24,
         name: "Amel Ayadi",
         role: "Media On",
-        image: "amal",
+        image: "amal.jpg",
         contact: {
             phone: "+216 55 616 896",
             personalEmail: "amalayadii2005@gmail.com",
@@ -286,7 +286,7 @@ export const team: TeamMember[] = [
         id: 25,
         name: "Anas Khabouchi",
         role: "Media On",
-        image: "anas",
+        image: "anas.jpg",
         contact: {
             phone: "+216 27 264 840",
             personalEmail: "anaskh219@gmail.com",
@@ -298,7 +298,7 @@ export const team: TeamMember[] = [
         id: 26,
         name: "Firas Benghorbel",
         role: "Media on",
-        image: "firas",
+        image: "firas.jpg",
         contact: {
             phone: "+216 20 419 333",
             personalEmail: "fmetuber1998@gmail.com",
@@ -309,7 +309,7 @@ export const team: TeamMember[] = [
         id: 27,
         name: "Mehdi Mareghni",
         role: "Media on",
-        image: "mahdi",
+        image: "mahdi.jpg",
         contact: {
             phone: "+216 24 017 875",
             personalEmail: "mohamedmehdimareghni@gmail.com",

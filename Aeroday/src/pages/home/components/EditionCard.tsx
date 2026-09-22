@@ -1,62 +1,126 @@
-import { useState } from 'react';
-import type { Edition } from '../../../assets/videos/edition';
-import { getVideoUrl, getThumbnailUrl } from '../../../utils/cloudinary';
+import { useEffect, useState } from 'react';
 import { FaPlay } from "react-icons/fa";
-import { getMediaUrl } from '../../../utils/getMediaUrl';
 
-function EditionCard({ publicId, filename, year, thumbnailOffset }: Edition) {
+// ⚠️ Remplacez ces deux valeurs par les vôtres
+const CLOUDINARY_CLOUD = 'otjnsdoc';                 // ← à remplacer
+const SUPABASE_URL = 'https://belywafxvfqalhyhvofy.supabase.co';    // ← à remplacer
+
+interface EditionCardProps {
+  id: string;
+  year: number;
+  source: 'cloudinary' | 'supabase';
+  publicId?: string;
+  supabasePath?: string;
+  bucket?: string;
+  thumbnailOffset?: number;
+}
+
+function EditionCard({
+  year,
+  source,
+  publicId,
+  supabasePath,
+  bucket,
+  thumbnailOffset = 0,
+}: EditionCardProps) {
+  const [videoUrl, setVideoUrl] = useState<string>('');
+  const [thumbnailUrl, setThumbnailUrl] = useState<string>('');
   const [isPlaying, setIsPlaying] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  // Source vidéo : Cloudinary si publicId existe, sinon Supabase (cas de la vidéo trop lourde)
-  const videoUrl = publicId
-    ? getVideoUrl(publicId)
-    : filename
-    ? getMediaUrl(filename)
-    : '';
+  useEffect(() => {
+    try {
+      let url = '';
 
-  // La miniature générée automatiquement n'existe que côté Cloudinary
-  const thumbnailUrl = publicId ? getThumbnailUrl(publicId, thumbnailOffset) : undefined;
+      if (source === 'cloudinary' && publicId) {
+        url = `https://res.cloudinary.com/${CLOUDINARY_CLOUD}/video/upload/${publicId}.mp4`;
+        setThumbnailUrl(
+          `https://res.cloudinary.com/${CLOUDINARY_CLOUD}/video/upload/so_${thumbnailOffset}/${publicId}.jpg`
+        );
+      } else if (source === 'supabase' && supabasePath && bucket) {
+        const encodedBucket = encodeURIComponent(bucket);
+        const encodedPath = supabasePath
+          .split('/')
+          .map((s) => encodeURIComponent(s))
+          .join('/');
+        url = `${SUPABASE_URL}/storage/v1/object/public/${encodedBucket}/${encodedPath}`;
+        setThumbnailUrl('');
+      }
 
-  if (!videoUrl) return null;
+      if (!url) {
+        setError('Aucune URL générée');
+        return;
+      }
+
+      setVideoUrl(url);
+    } catch (err) {
+      console.error('Erreur chargement média:', err);
+      setError(err instanceof Error ? err.message : 'Erreur inconnue');
+    }
+  }, [source, publicId, supabasePath, bucket, thumbnailOffset]);
+
+  const handlePlay = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsPlaying(true);
+  };
 
   return (
     <div className="video-card">
-      {isPlaying ? (
-        <video
-          className="video-iframe"
-          src={videoUrl}
-          controls
-          autoPlay
-        />
-      ) : (
+      {error && (
+        <div style={{ padding: 20, color: '#fff', textAlign: 'center' }}>
+          Erreur : {error}
+        </div>
+      )}
+
+      {videoUrl && !isPlaying && (
         <>
+          {/* Vignette + overlay + bouton play */}
           {thumbnailUrl ? (
-            <img
-              src={thumbnailUrl}
-              alt={`Édition ${year}`}
-              loading="lazy"
-              className="video-thumb"
-            />
+            <img src={thumbnailUrl} alt={`Édition ${year}`} className="video-thumb" />
           ) : (
-            // Pas de thumbnail Cloudinary disponible (vidéo Supabase) :
-            // on affiche la première frame de la vidéo comme aperçu
             <video
-              className="video-thumb"
               src={videoUrl}
+              className="video-thumb"
               preload="metadata"
               muted
+              playsInline
             />
           )}
-          <div className="video-overlay"></div>
+
+          <div className="video-overlay" />
+
           <span className="video-badge">Édition {year}</span>
-          <button
-            className="video-play"
-            onClick={() => setIsPlaying(true)}
-            aria-label={`Lire la vidéo de ${year}`}
-          >
-            <FaPlay size={18} />
-          </button>
+
+          <FaPlay size={18} />
+                    <button
+                      className="video-play"
+                      onClick={() => setIsPlaying(true)}
+                      aria-label={`Lire la vidéo de ${name}`}
+                    >
+                      <FaPlay size={18} />
+                    </button>
+          <div className="video-caption">
+            <p className="video-name">Aeroday {year}</p>
+            <p className="video-role">Édition officielle</p>
+          </div>
         </>
+      )}
+
+      {videoUrl && isPlaying && (
+        <video
+          src={videoUrl}
+          className="video-iframe"
+          controls
+          autoPlay
+          playsInline
+          onEnded={() => setIsPlaying(false)}
+        />
+      )}
+
+      {!videoUrl && !error && (
+        <div style={{ padding: 20, color: '#fff', textAlign: 'center' }}>
+          Chargement...
+        </div>
       )}
     </div>
   );

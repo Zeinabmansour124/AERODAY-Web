@@ -17,7 +17,7 @@ function CAO(){
       <ChallengeCard/>
       {/* CORRECTION 3: member → members (pluriel) */}
       <SBChallenge members={respo} />
-      <PartnerChallenge/>
+      {/* <PartnerChallenge/> */}
     </div>);
 }
 

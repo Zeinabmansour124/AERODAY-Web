@@ -13,12 +13,7 @@ const ChallengeCard_AeroExpoTunisia: React.FC = () => {
   const handleCloseCahierModal = () => setShowCahierModal(false);
 
   const exhibitors = [
-    { name: 'Tunisair', type: 'Compagnie' },
-    { name: 'Sabca', type: 'Aérostructures' },
-    { name: 'Stelia', type: 'Aéronautique' },
-    { name: 'TAI', type: 'MRO' },
-    { name: 'Sfax Aero', type: 'Maintenance' },
-    { name: 'Tunisavia', type: 'Aviation' },
+    { name: 'comming soon', type: '' },
   ];
 
   return (
@@ -328,6 +323,16 @@ Plongez au cœur d’une exposition aéronautique où l’imagination des jeunes
             gap: '10px',
             marginBottom: '20px',
           }}>
+            <h2 style={{
+            color: '#2754bb',
+            fontSize: '15px',
+            fontWeight: 700,
+            margin: '0 0 10px 0',
+            textAlign: 'left',
+          }}>
+            EXHIBITORS
+          </h2> 
+            
             {exhibitors.map((ex, idx) => (
               <div
                 key={idx}

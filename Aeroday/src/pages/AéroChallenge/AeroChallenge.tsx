@@ -20,7 +20,7 @@ const AeroChallenge: React.FC = () => {
         {/* ATTENTION: utiliser 'members' (pluriel) pas 'member' */}
         <SBChallenge members={respo} />
       </div>
-      <PartnerChallenge />
+      {/* <PartnerChallenge /> */}
     </div>
   );
 };

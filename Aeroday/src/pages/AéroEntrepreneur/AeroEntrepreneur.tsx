@@ -16,7 +16,7 @@ function AeroEntrepreneur(){
         {/* ATTENTION: utiliser 'members' (pluriel) pas 'member' */}
         <SBChallenge members={respo} />
       </div>
-      <PartnerChallenge />
+      {/* <PartnerChallenge /> */}
     </div>
   );
 }

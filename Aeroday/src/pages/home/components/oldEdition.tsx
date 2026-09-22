@@ -15,33 +15,34 @@ function OldEdition() {
   };
 
   return (
-    <div>
-      <section className="broadcast-section mb-5 rounded-4">
-        <p className="broadcast-title fw-bold">Anciennes Éditions</p>
+    <section className="broadcast-section mb-5 rounded-4">
+      <p className="broadcast-title fw-bold">Anciennes Éditions</p>
 
-        <div className="broadcast-scroll" ref={scrollRef} onScroll={handleScroll}>
-          {editions.map((e) => (
-            <div className="broadcast-item" key={e.id}>
-              <EditionCard
-                id={e.id}
-                publicId={e.publicId}
-                filename={e.filename}
-                year={e.year}
-                thumbnailOffset={e.thumbnailOffset}
-              />
-            </div>
-          ))}
-        </div>
-        <div className="broadcast-dots">
-          {editions.map((_, i) => (
-            <span
-              key={i}
-              className={`broadcast-dot ${i === activeIndex ? 'active' : ''}`}
-            ></span>
-          ))}
-        </div>
-      </section>
-    </div>
+      <div className="broadcast-scroll" ref={scrollRef} onScroll={handleScroll}>
+        {editions.map((e) => (
+          <div className="broadcast-item" key={e.id}>
+            <EditionCard
+              id={e.id}
+              year={e.year}
+              source={e.source}
+              publicId={e.publicId}
+              supabasePath={e.supabasePath}
+              bucket={e.bucket}
+              thumbnailOffset={e.thumbnailOffset}
+            />
+          </div>
+        ))}
+      </div>
+
+      <div className="broadcast-dots">
+        {editions.map((_, i) => (
+          <span
+            key={i}
+            className={`broadcast-dot ${i === activeIndex ? 'active' : ''}`}
+          ></span>
+        ))}
+      </div>
+    </section>
   );
 }
 
