@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CyberRocketAnimation from "./CyberRocketAnimation";
+import CyberRocketAnimation from "./cyberRocketAnimation";
 import wrIMG from "../../../assets/images/wr.png";
 
 const ChallengeCard: React.FC = () => {

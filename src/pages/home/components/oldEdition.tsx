@@ -23,8 +23,8 @@ function OldEdition() {
           <div className="broadcast-item" key={e.id}>
             <EditionCard
               id={e.id}
-              year={e.year}
-              source={e.source}
+              year={Number(e.year)}
+              source={e.source as 'cloudinary' | 'supabase'}
               publicId={e.publicId}
               supabasePath={e.supabasePath}
               bucket={e.bucket}

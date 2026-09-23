@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { User, Mail, Phone, BarChart3, Camera, Loader2 } from 'lucide-react';
 import type { TeamMember } from '../content/team';
 import { getMediaUrlImg } from '../utils/getMediaUrlImg';
-
+import { uploadAvatar } from '../utils/uploadAvatar';
 interface SBChallengeProps {
   members: TeamMember[];
   editable?: boolean;

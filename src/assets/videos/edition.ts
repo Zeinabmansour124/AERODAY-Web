@@ -2,7 +2,7 @@ export interface Edition {
   id: string;
   publicId?: string; // identifiant unique de la vidéo sur Cloudinary
   year: number | string; // année de l'édition
-  source: VideoSource; 
+  source: String; 
   // Champs Supabase
   supabasePath?: string;           // ← optionnel (utilisé si source === 'supabase')
   bucket?: string;                 // ← optionnel

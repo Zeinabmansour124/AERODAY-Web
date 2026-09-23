@@ -139,12 +139,12 @@ function Header() {
                   to="/Contact"
                   className="btn ms-5"
                   style={{
-                    "--bs-btn-bg": "#FF5A1F",
-                    "--bs-btn-border-color": "#FF5A1F",
-                    "--bs-btn-hover-bg": "#e04d15",
-                    "--bs-btn-hover-border-color": "#e04d15",
-                    color: "#fff",
-                  }}
+  "--bs-btn-bg": "#FF5A1F",
+  "--bs-btn-border-color": "#FF5A1F",
+  "--bs-btn-hover-bg": "#e04d15",
+  "--bs-btn-hover-border-color": "#e04d15",
+  color: "#fff",
+} as React.CSSProperties}
                 >
                   Contact
                 </Link>

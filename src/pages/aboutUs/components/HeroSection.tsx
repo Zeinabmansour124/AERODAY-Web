@@ -1,5 +1,4 @@
-import React, { useRef, useEffect, useState, useCallback, MouseEvent } from "react";
-
+import React, { useRef, useEffect, useState, useCallback, type MouseEvent } from "react";
 // Import des images
 import im1 from "../../../assets/images/50.jpg";
 import im2 from "../../../assets/images/40.jpg";
@@ -378,8 +377,7 @@ const CoverFlowCarousel: React.FC = () => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [startX, setStartX] = useState<number>(0);
   const [isPaused, setIsPaused] = useState<boolean>(false);
-  const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
-
+  const autoPlayRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const goTo = useCallback((index: number): void => {
     setActiveIndex((prev) => {
       if (index < 0) return images.length - 1;
