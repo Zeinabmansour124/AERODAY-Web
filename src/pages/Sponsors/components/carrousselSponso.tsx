@@ -17,6 +17,7 @@ import gov from '../../../assets/images/sponsos/govJeun.png';
 import inspireTech from '../../../assets/images/sponsos/Inspiretech.png';
 import orange from '../../../assets/images/sponsos/orange.webp';
 import topnet from '../../../assets/images/sponsos/topnet.png';
+import himeya from '../../../assets/images/sponsos/logo-min.png'
 
 const SponsorsCarousel: React.FC = () => {
   const [isPaused, setIsPaused] = useState(false);
@@ -37,6 +38,7 @@ const SponsorsCarousel: React.FC = () => {
     { name: 'GOV JEUN', logo: gov },
     { name: 'INSPIRETECH', logo: inspireTech },
     { name: 'ORANGE', logo: orange },
+    { name: '' , logo: himeya}
 
   ];
 
@@ -130,19 +132,7 @@ const SponsorsCarousel: React.FC = () => {
             ))}
 
             <div style={{ textAlign: 'center', zIndex: 2 }}>
-              <div
-                style={{
-                  color: '#FFFFFF',
-                  fontSize: '11px',
-                  fontWeight: 700,
-                  textTransform: 'uppercase',
-                  letterSpacing: '3px',
-                  marginBottom: '8px',
-                  opacity: 0.7,
-                }}
-              >
-                Aeroday 13.0
-              </div>
+              
               <h2
                 style={{
                   color: '#FFFFFF',

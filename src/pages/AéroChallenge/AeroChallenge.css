@@ -1,5 +1,34 @@
 /* PartnersSection.module.css */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr;        /* mobile et tablette : 1 colonne */
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 100%;
+}
 
+.main-content,
+.main-sidebar {
+  min-width: 0;                      /* empêche le débordement */
+  width: 100%;
+}
+
+/* La sidebar ne doit jamais chevaucher le contenu sur mobile */
+.main-sidebar {
+  position: static;
+}
+
+@media (min-width: 992px) {          /* ordinateur : 2 colonnes */
+  .main-grid {
+    grid-template-columns: minmax(0, 1fr) 340px;
+    align-items: start;
+  }
+
+  .main-sidebar {
+    position: sticky;
+    top: 1rem;
+  }
+}
 /* Container principal */
 .partnersContainer {
   max-width: 1200px;

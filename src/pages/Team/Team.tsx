@@ -18,7 +18,9 @@ const renderAvatar = (member: TeamMember, size: number, bgColor: string = "#C112
   if (member.image && member.image !== "") {
     return (
       <img
-        src={getMediaUrlImg(member.image)}   
+        src={getMediaUrlImg(member.image)} 
+          loading="lazy"
+          decoding="async"  
         alt={member.name}
         className="member-avatar-img"
         style={{

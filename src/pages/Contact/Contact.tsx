@@ -27,7 +27,7 @@ const Contact: React.FC = () => {
               <Mail size={22} />
             </div>
             <p className="contact-card-label">Email</p>
-            <p className="contact-card-value">contact@aeroday.tn</p>
+            <p className="contact-card-value">contact@tunisianaeroday.tn</p>
           </a>
 
           <a href="tel:+21620000000" className="contact-card">
@@ -35,7 +35,7 @@ const Contact: React.FC = () => {
               <Phone size={22} />
             </div>
             <p className="contact-card-label">Téléphone</p>
-            <p className="contact-card-value">+216 20 000 000</p>
+            <p className="contact-card-value">+216 55 532 572</p>
           </a>
 
           <div className="contact-card contact-card-static">

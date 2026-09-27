@@ -8,8 +8,20 @@
   --text-secondary: #6B7280;
 }
 
+/* ✅ Base : évite que les paddings agrandissent les blocs */
+.contact-page,
+.contact-page * {
+  box-sizing: border-box;
+}
+
 .contact-page {
   background: var(--gray-bg);
+  /* ✅ Page pleine largeur, contenu centré verticalement dans la colonne */
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* ===== HERO ===== */
@@ -19,6 +31,11 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+  /* ✅ fond pleine largeur, texte centré */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero-deco {
@@ -43,7 +60,7 @@
 .contact-hero h1 {
   position: relative;
   color: var(--white);
-  font-size: 30px;
+  font-size: clamp(24px, 5vw, 30px); /* ✅ s'adapte au mobile */
   font-weight: 600;
   margin: 18px 0 8px;
 }
@@ -58,8 +75,11 @@
 
 /* ===== CARTES — chevauchent le hero ===== */
 .contact-cards-wrapper {
+  /* ✅ largeur totale + centrage */
+  width: 100%;
+  max-width: 880px;            /* 800px de contenu + 2×40px de padding */
+  margin: -50px auto 0;
   padding: 0 40px;
-  margin-top: -50px;
   position: relative;
   z-index: 5;
 }
@@ -68,8 +88,9 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
-  max-width: 800px;
+  width: 100%;
   margin: 0 auto;
+  justify-content: center;
 }
 
 .contact-card {
@@ -80,6 +101,11 @@
   text-align: center;
   box-shadow: 0 8px 24px rgba(15, 27, 60, 0.12);
   transition: transform 0.2s, box-shadow 0.2s;
+  /* ✅ contenu de chaque carte centré */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .contact-card:hover {
@@ -106,6 +132,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .contact-card-label {
@@ -119,16 +146,20 @@
   color: var(--text-secondary);
   font-size: 12.5px;
   margin: 0;
+  overflow-wrap: anywhere; /* ✅ l'email long ne déborde plus */
 }
 
 /* ===== RÉSEAUX SOCIAUX + RÉPONSE RAPIDE ===== */
 .contact-bottom-grid {
+  /* ✅ largeur totale + centrage */
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
   padding: 48px 40px 56px;
   display: grid;
   grid-template-columns: 1fr 1.4fr;
   gap: 20px;
-  max-width: 800px;
-  margin: 0 auto;
+  align-items: stretch;
 }
 
 .social-card {
@@ -138,6 +169,7 @@
   text-align: center;
   display: flex;
   flex-direction: column;
+  align-items: center;       /* ✅ */
   justify-content: center;
 }
 
@@ -180,7 +212,12 @@
   padding: 28px 24px;
   display: flex;
   align-items: center;
+  justify-content: center;   /* ✅ */
   gap: 16px;
+}
+
+.contact-card-icon + div {
+  min-width: 0;
 }
 
 .response-title {

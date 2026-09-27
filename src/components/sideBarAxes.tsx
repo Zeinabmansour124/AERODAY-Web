@@ -87,6 +87,8 @@ const MemberAvatar: React.FC<MemberAvatarProps> = ({
       ) : url ? (
         <img
           src={url}
+          loading="lazy"
+          decoding="async"
           alt={name}
           style={{
             width: '100%',

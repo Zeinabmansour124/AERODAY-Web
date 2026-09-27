@@ -19,7 +19,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 55 532 572",
             personalEmail: "medimeghinsaf@gmail.com",
-            aerodayEmail: "firas.hammami@aeroday.tn"
+            aerodayEmail: ""
         }
     },
     {
@@ -30,7 +30,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 58 413 901",
             personalEmail: "ghada.abassi04@gmail.com ",
-            aerodayEmail: "zeineb.znaidi@aeroday.tn"
+            aerodayEmail: ""
         }
     },
     {
@@ -40,8 +40,8 @@ export const team: TeamMember[] = [
         image: "sfeihi.jpg",
         contact: {
             phone: "+216 53 505 508",
-            personalEmail: "Mouadh.bhs@gmail.com",
-            aerodayEmail: "sfeihiyoussef@gmail.com"
+            personalEmail: "sfeihiyoussef@gmail.com",
+            aerodayEmail: ""
         }
     },
     {
@@ -95,8 +95,8 @@ export const team: TeamMember[] = [
         image: "yassineBnSalem.jpg",
         contact: {
             phone: "+216 95 109 997",
-            personalEmail: "Ccps62075@gmail.com",
-            aerodayEmail: "yassinebensalem6789@gmail.com"
+            personalEmail: "yassinebensalem6789@gmail.com",
+            aerodayEmail: ""
         }
     },
     {
@@ -205,7 +205,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 90 100 166",
             personalEmail: "naghamessayhii@gmail.com",
-            aerodayEmail: "mariem.khlifi@aeroday.tn"
+            aerodayEmail: ""
         }
     },
     
@@ -271,7 +271,7 @@ export const team: TeamMember[] = [
     
     {
         id: 24,
-        name: "Amel Ayadi",
+        name: "Amal Ayadi",
         role: "Media On",
         image: "amal.jpg",
         contact: {
@@ -313,7 +313,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 24 017 875",
             personalEmail: "mohamedmehdimareghni@gmail.com",
-            aerodayEmail: "sirine.bouzayene@aeroday.tn"
+            aerodayEmail: ""
         }
     }
 ];
