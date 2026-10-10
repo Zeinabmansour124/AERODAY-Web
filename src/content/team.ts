@@ -19,7 +19,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 55 532 572",
             personalEmail: "medimeghinsaf@gmail.com",
-            aerodayEmail: ""
+            aerodayEmail: "insaf.medimegh@tunisianaeroday.tn"
         }
     },
     {
@@ -30,7 +30,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 58 413 901",
             personalEmail: "ghada.abassi04@gmail.com ",
-            aerodayEmail: ""
+            aerodayEmail: "ghada.abassi@tunisianaeroday.tn"
         }
     },
     {
@@ -41,7 +41,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 53 505 508",
             personalEmail: "sfeihiyoussef@gmail.com",
-            aerodayEmail: ""
+            aerodayEmail: "youssef.sfeihi@tunisianaeroday.tn"
         }
     },
     {
@@ -52,7 +52,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 25 600 109",
             personalEmail: "mariemdaboussi305@gmail.com",
-            aerodayEmail: ""
+            aerodayEmail: "mariem.daboussi@tunisianaeroday.tn"
         }
     },
     {
@@ -63,7 +63,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 21 903 388",
             personalEmail: "mariemhm0305@gmail.com",
-            aerodayEmail: ""
+            aerodayEmail: "	Mariem.hammami@tunisianaeroday.tn"
         }
     },
     {
@@ -74,7 +74,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 29 504 065",
             personalEmail: "malekhmadi281@gmail.com",
-            aerodayEmail: ""
+            aerodayEmail: "malak.hmadi@tunisianaeroday.tn"
         }
     },
     {
@@ -85,7 +85,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 20 726 510",
             personalEmail: "Ahmed.berriche@insat.ucar.tn",
-            aerodayEmail: ""
+            aerodayEmail: "ahmed.briche@tunisianaeroday.tn"
         }
     },
     {
@@ -96,7 +96,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 95 109 997",
             personalEmail: "yassinebensalem6789@gmail.com",
-            aerodayEmail: ""
+            aerodayEmail: "yassine.benSalem@tunisianaeroday.tn"
         }
     },
     {
@@ -107,7 +107,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 94 169 508",
             personalEmail: "zaibihoussemeddine@gmail.com",
-            aerodayEmail: ""
+            aerodayEmail: "	houssem.eddine.zaibi@tunisianaeroday.tn"
         }
     },
     {
@@ -118,7 +118,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 24 138 777",
             personalEmail: "ibrahim.benhmida@insat.ucar.tn",
-            aerodayEmail: ""
+            aerodayEmail: "brahim.benHmida@tunisianaeroday.tn"
         }
     },
     {
@@ -129,18 +129,18 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 29 660 586",
             personalEmail: "behedesu@gmail.com",
-            aerodayEmail: ""
+            aerodayEmail: "	behe.eddine.anaya@tunisianaeroday.tn"
         }
     },
     {
         id: 11,
-        name: "Nour Hsssen",
+        name: "Nour Hassen",
         role: "Ateliers Novices",
         image: "nour.jpg",
         contact: {
             phone: "+216 95 704 502",
             personalEmail: "nourelhouda.hassen@insat.ucar.tn",
-            aerodayEmail: ""
+            aerodayEmail: "nourelhouda.hassan@tunisianaeroday.tn"
         }
     },
     {
@@ -151,24 +151,24 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 93 406 516",
             personalEmail: "maleksoltany26@gmail.com",
-            aerodayEmail: ""
+            aerodayEmail: "	malak.soltany@tunisianaeroday.tn"
         }
     },
     {
         id: 13,
         name: "Tesnim Boubakri",
-        role: "tasnime",
+        role: "responsable exposition aerospatiale",
         image: "tasnime.jpg",
         contact: {
             phone: "+216 93 378 350",
             personalEmail: "tesnimboubakri9@gmail.com.",
-            aerodayEmail: ""
+            aerodayEmail: "	tasnime.boubakri@tunisianaeroday.tn"
         }
     },
     {
         id: 14,
         name: "Azza Baaziz",
-        role: "Responsable Exposition",
+        role: "Responsable Exposition aeronautique",
         image: "azza.jpg",
         contact: {
             phone: "+216 58 495 626",
@@ -183,7 +183,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 92 740 262",
             personalEmail: "ranimseddiki7@gmail.com",
-            aerodayEmail: ""
+            aerodayEmail: "ranim.seddiki@tunisianaeroday.tn"
         }
     },
     {
@@ -194,7 +194,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 28 203 949",
             personalEmail: "",
-            aerodayEmail: ""
+            aerodayEmail: "ranim.khairedin@tunisianaeroday.tn"
         }
     },
     {
@@ -205,7 +205,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 90 100 166",
             personalEmail: "naghamessayhii@gmail.com",
-            aerodayEmail: ""
+            aerodayEmail: "nagham.saihi@tunisianaeroday.tn"
         }
     },
     
@@ -218,7 +218,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 96 145 452",
             personalEmail: "mohamedaminguennichi2006a@gmail.com",
-            aerodayEmail: ""
+            aerodayEmail: "mohamedamine.gnichi@tunisianaeroday.tn"
         }
     },
     
@@ -230,7 +230,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 94 169 749",
             personalEmail: "nefzimay7@gmail.com",
-            aerodayEmail: ""
+            aerodayEmail: "May.nefzi@tunisianaeroday.tn"
         }
     },
     {
@@ -241,7 +241,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 93 731 374",
             personalEmail: "may.saidi@insat.ucar.tn",
-            aerodayEmail: ""
+            aerodayEmail: "may.saidi@tunisianaeroday.tn"
         }
     },
     {
@@ -252,7 +252,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 99 725 756",
             personalEmail: "zeinabmansour06@gmail.com",
-            aerodayEmail: ""
+            aerodayEmail: "zeinab.mansour@tunisianaeroday.tn"
         }
     },
     
@@ -265,7 +265,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 52 500 137",
             personalEmail: "meriemgarali11@gmail.com",
-            aerodayEmail: ""
+            aerodayEmail: "mariem.garali@tunisianaeroday.tn"
         }
     },
     
@@ -277,7 +277,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 55 616 896",
             personalEmail: "amalayadii2005@gmail.com",
-            aerodayEmail: ""
+            aerodayEmail: "	amal.ayadi@tunisianaeroday.tn"
         }
     },
     
@@ -290,7 +290,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 27 264 840",
             personalEmail: "anaskh219@gmail.com",
-            aerodayEmail: ""
+            aerodayEmail: "anas.khabouchi@tunisianaeroday.tn"
         }
     },
     
@@ -302,7 +302,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 20 419 333",
             personalEmail: "fmetuber1998@gmail.com",
-            aerodayEmail: ""
+            aerodayEmail: "	firas.benghorbel@tunisianaeroday.tn"
         }
     },
     {
@@ -313,7 +313,7 @@ export const team: TeamMember[] = [
         contact: {
             phone: "+216 24 017 875",
             personalEmail: "mohamedmehdimareghni@gmail.com",
-            aerodayEmail: ""
+            aerodayEmail: "mehdi.mareghni@tunisianaeroday.tn"
         }
     }
 ];
