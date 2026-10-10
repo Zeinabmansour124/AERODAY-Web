@@ -74,17 +74,20 @@
   flex-wrap: wrap;
 }
 
-/* Cartes plus grandes */
+/* ───────── Président ───────── */
 .president-card {
+  box-sizing: border-box;
   background-color: #FFFFFF;
   border: 2px solid #C1121F;
   border-radius: 12px;
   padding: 32px 28px;
   text-align: center;
-  width: 240px;
+  width: 260px;              /* un peu plus large pour les emails */
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 }
 
 .president-badge {
@@ -98,7 +101,9 @@
   margin-bottom: 16px;
 }
 
+/* ───────── Cartes membres ───────── */
 .member-card {
+  box-sizing: border-box;    /* le padding ne s'ajoute plus à la largeur */
   background-color: #FFFFFF;
   border: 1px solid #593d15;
   border-radius: 12px;
@@ -108,6 +113,9 @@
   align-items: center;
   padding: 20px 16px;
   width: 200px;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;          /* rien ne sort de la carte */
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -131,6 +139,12 @@
   width: 170px;
 }
 
+/* Tous les enfants directs peuvent rétrécir et passer à la ligne */
+.member-card > * {
+  max-width: 100%;
+  min-width: 0;
+}
+
 .member-avatar-initials,
 .member-avatar-img {
   border-radius: 50%;
@@ -141,6 +155,7 @@
   font-weight: 500;
   margin-bottom: 12px;
   object-fit: cover;
+  flex-shrink: 0;            /* l'avatar garde sa taille */
 }
 
 .member-name {
@@ -148,6 +163,8 @@
   font-weight: 600;
   margin: 0 0 4px;
   font-size: 15px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .member-card--large .member-name {
@@ -166,6 +183,8 @@
   color: #E85D04;
   margin: 0 0 8px;
   font-size: 13px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .member-card--large .member-position {
@@ -179,7 +198,22 @@
   color: #5C6B73;
 }
 
-/* Responsive */
+/* ───────── Bloc contact (emails, téléphone) ───────── */
+.member-contact,
+.president-card .member-contact {
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.member-contact div {
+  overflow-wrap: anywhere;   /* coupe les emails trop longs */
+  word-break: break-all;
+  line-height: 1.4;
+  margin-bottom: 2px;
+}
+
+/* ───────── Responsive ───────── */
 @media (max-width: 768px) {
   .team-section {
     padding: 40px 20px;
@@ -195,7 +229,7 @@
   }
 
   .president-card {
-    width: 210px;
+    width: 230px;
     padding: 24px 16px;
   }
 }
@@ -211,7 +245,7 @@
   }
 
   .member-card {
-    width: 140px !important;
+    width: 150px !important;
     padding: 14px 10px;
   }
 
@@ -223,8 +257,12 @@
     font-size: 10px;
   }
 
+  .member-contact {
+    font-size: 9px !important;   /* écrase le fontSize inline */
+  }
+
   .president-card {
-    width: 180px;
+    width: 200px;
     padding: 20px 14px;
   }
 

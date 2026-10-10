@@ -33,12 +33,13 @@ const SponsorsCarousel: React.FC = () => {
     { name: 'FAB43', logo: dassaultLogo },
     { name: 'AESS', logo: tunisairLogo },
     { name: 'CAMPi', logo: campi },
-    { name: 'DAYYN', logo: dayl },
+    { name: 'DAYl IN', logo: dayl },
     { name: 'GAME PRODUCTION', logo: gamep },
     { name: 'GOV JEUN', logo: gov },
     { name: 'INSPIRETECH', logo: inspireTech },
     { name: 'ORANGE', logo: orange },
-    { name: '' , logo: himeya}
+    { name: '' , logo: himeya},
+    {name: '', logo: himeya}
 
   ];
 
