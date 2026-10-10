@@ -351,7 +351,10 @@ const ChallengeCard_NaturalDisaster_General: React.FC = () => {
               lineHeight: 1.7,
               margin: 0,
             }}>
-              le Challenge de Vidéographie par Drone invite les participants à explorer le ciel comme une toile de création, transformant l’outil aéronautique en instrument narratif et visuel. Cette année, le challenge s’inscrit sous le thème : "Simuler une performance acrobatique dans un cirque". Pour l’édition 2026, le challenge propose aux participants de recréer la magie et la maîtrise d’une performance acrobatique dans un cirque, à travers l’objectif de leur drone. Ce challenge permet aux participants de montrer leur créativité, leur maîtrise technique et leur sens artistique en capturant la fluidité, la précision et l’émotion des acrobaties entre les espaces verts et les bâtiments.            </p>
+              le Challenge de Vidéographie par Drone invite les participants à explorer le ciel comme une toile de création, transformant l’outil aéronautique en instrument narratif et visuel
+Pour cette édition , le challenge de vidéographie par drone est un thème libre.
+Il n'y a pas de sujet imposé :tout est permis ! Le but est simplement de créer une vidéo originale et captivante. Ce challenge est l'occasion parfaite pour les pilotes de montrer leur créativité, leur talent artistique et de raconter la meilleure histoire possible pour faire rêver le public.
+            </p>
           </div>
 
           {/* Boutons — centrés, dimensions AéroChallenge */}
@@ -362,7 +365,7 @@ const ChallengeCard_NaturalDisaster_General: React.FC = () => {
             justifyContent: 'center',
           }}>
             <button
-              onClick={handleInscriptionClick}
+              onClick={() => window.open('https://docs.google.com/forms/u/1/d/e/1FAIpQLSfK-e_CY297rpK0qUX72qjQVhBDmLAV8sYtt-HiqDJKmb92dA/viewform?usp=header')}
               style={{
                 background: '#64748b',
                 color: '#FFFFFF',
@@ -394,7 +397,7 @@ const ChallengeCard_NaturalDisaster_General: React.FC = () => {
               S'inscrire au challenge
             </button>
             <button
-              onClick={handleCahierClick}
+              onClick={() => window.open('https://drive.google.com/file/d/1wY4HPkVVFIcQMzMBR9rhdXsS4s4VWLQs/view?fbclid=IwY2xjawU3Nz5leHRuA2FlbQIxMABwZG9mBWJyaWQRMUxaazZLaE9kY1J0YXRySTJzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEecZG1H9LBNbQvzhEgejvPqiMgJWnB1pyfYmdhn2a4M1QgGDevT0j-029sweI_aem_i4b7CIJldNeTjvYoLqWagw')}
               style={{
                 background: 'transparent',
                 color: '#0F172A',
@@ -433,83 +436,8 @@ const ChallengeCard_NaturalDisaster_General: React.FC = () => {
         </div>
       </div>
 
-      {/* ========== MODALE INSCRIPTION ========== */}
-      {showModal && (
-        <>
-          <div
-            className="position-fixed top-0 start-0 w-100 h-100"
-            style={{ background: 'rgba(0, 0, 0, 0.5)', zIndex: 1040, backdropFilter: 'blur(4px)' }}
-            onClick={handleCloseModal}
-          />
-          <div
-            className="position-fixed top-50 start-50 translate-middle"
-            style={{ zIndex: 1050, width: '100%', maxWidth: '420px', animation: 'modalFadeIn 0.3s ease-out' }}
-          >
-            <div className="bg-white rounded-4 shadow-lg p-4 p-md-5 text-center" style={{ borderTop: '4px solid #64748b' }}>
-              <div className="mb-3">
-                <div className="d-inline-flex align-items-center justify-content-center rounded-circle" style={{ width: '60px', height: '60px', background: '#f1f5f9' }}>
-                  <span style={{ fontSize: '30px' }}>📝</span>
-                </div>
-              </div>
-              <h4 className="mb-2" style={{ color: '#0F172A', fontWeight: 700, fontSize: '18px' }}>
-                Inscription non disponible
-              </h4>
-              <p className="mb-4" style={{ color: '#64748B', fontSize: '13px', lineHeight: 1.5 }}>
-                Les inscriptions pour ce challenge ne sont pas encore ouvertes.<br />
-                Veuillez revenir ultérieurement.
-              </p>
-              <button
-                className="btn text-white border-0 px-4 py-2"
-                onClick={handleCloseModal}
-                style={{ background: '#64748b', borderRadius: '8px', fontSize: '13px', fontWeight: 600 }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = '#475569')}
-                onMouseLeave={(e) => (e.currentTarget.style.background = '#64748b')}
-              >
-                OK
-              </button>
-            </div>
-          </div>
-        </>
-      )}
-
-      {/* ========== MODALE CAHIER ========== */}
-      {showCahierModal && (
-        <>
-          <div
-            className="position-fixed top-0 start-0 w-100 h-100"
-            style={{ background: 'rgba(0, 0, 0, 0.5)', zIndex: 1040, backdropFilter: 'blur(4px)' }}
-            onClick={handleCloseCahierModal}
-          />
-          <div
-            className="position-fixed top-50 start-50 translate-middle"
-            style={{ zIndex: 1050, width: '100%', maxWidth: '420px', animation: 'modalFadeIn 0.3s ease-out' }}
-          >
-            <div className="bg-white rounded-4 shadow-lg p-4 p-md-5 text-center" style={{ borderTop: '4px solid #0F172A' }}>
-              <div className="mb-3">
-                <div className="d-inline-flex align-items-center justify-content-center rounded-circle" style={{ width: '60px', height: '60px', background: '#f1f5f9' }}>
-                  <span style={{ fontSize: '30px' }}>📄</span>
-                </div>
-              </div>
-              <h4 className="mb-2" style={{ color: '#0F172A', fontWeight: 700, fontSize: '18px' }}>
-                Cahier des charges indisponible
-              </h4>
-              <p className="mb-4" style={{ color: '#64748B', fontSize: '13px', lineHeight: 1.5 }}>
-                Le cahier des charges pour ce challenge n'est pas encore disponible.<br />
-                Veuillez revenir ultérieurement.
-              </p>
-              <button
-                className="btn text-white border-0 px-4 py-2"
-                onClick={handleCloseCahierModal}
-                style={{ background: '#0F172A', borderRadius: '8px', fontSize: '13px', fontWeight: 600 }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = '#1e293b')}
-                onMouseLeave={(e) => (e.currentTarget.style.background = '#0F172A')}
-              >
-                OK
-              </button>
-            </div>
-          </div>
-        </>
-      )}
+     
+      
     </>
   );
 };

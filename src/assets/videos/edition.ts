@@ -25,10 +25,22 @@ export const editions: Edition[] = [
     year: 2025,
     source: 'cloudinary',
   },
-    {
+  {
     id: '3',
+    publicId: 'aeroday2022_cnsodt',
+    year: 2022,
+    source: 'cloudinary',
+  },
+    {
+    id: '4',
     publicId: 'aeroday_2016_à_l_INSAT_Tunis_zx5rpq',
     year: 2016,
+    source: 'cloudinary',
+  },
+  {
+    id: '5',
+    publicId: 'aeroday2013_upa03j',
+    year: 2013,
     source: 'cloudinary',
   }
 ];

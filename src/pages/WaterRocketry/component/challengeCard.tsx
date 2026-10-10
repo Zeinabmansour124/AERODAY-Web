@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CyberRocketAnimation from "./cyberRocketAnimation";
-import wrIMG from "../../../assets/images/wr.png";
+import wrIMG from "../../../assets/images/wr.jpg";
 
 const ChallengeCard: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
@@ -627,25 +627,7 @@ const ChallengeCard: React.FC = () => {
                     paddingLeft: "18px",
                   }}
                 >
-                  À la suite de pluies torrentielles exceptionnelles, une crue
-                  éclair dévaste une région côtière. Les infrastructures routières
-                  sont détruites, coupant l'accès aux embarcations de secours
-                  traditionnelles. Les conditions météorologiques violentes
-                  empêchent le survol à basse altitude par des hélicoptères.
-                  Plusieurs victimes se retrouvent piégées sur des structures
-                  isolées ou emportées par les courants violents. Le temps de
-                  réaction est mesuré en minutes : le risque de hypothermie et de
-                  noyade est critique. Dans ce contexte d'extrême urgence, les
-                  équipes d'ingénieurs doivent déployer des systèmes fusées à eau
-                  tactiques à réaction rapide. Ces vecteurs basse pression et
-                  légers doivent remplir deux missions capitales : Reconnaissance
-                  & Analyse d'Altitude : Effectuer des relevés
-                  météo/hygrométriques en ascension verticale pour analyser la
-                  masse d'air, évaluer les risques de sur-crue et émettre des
-                  signaux radio. Secours Distanciel & Livraison de Survie :
-                  Catapulter avec précision, à 45°, un équipement de sauvetage
-                  (gilet autogonflable, corde de guidage, kit radio) directement
-                  vers une victime en détresse piégée au milieu des flots.
+                  ce challenge met à l'épreuve des Unités Tactiques d'Ingénierie face à l'impossibilité d'utiliser les moyens de secours traditionnels. L'objectif consiste à concevoir, homologuer et déployer une fusée à eau propulsée par la pression combinée de l'air et de l'eau, capable d'accomplir des missions de vol ciblées tout en embarquant des mini-expériences scientifiques et technologiques. En alliant mécanique des fluides, précision balistique et intégration de charges utiles embarquées, les équipes doivent valider la fiabilité de leur vecteur hydropneumatique pour répondre avec agilité à cette urgence vitale.
                 </ul>
               </div>
 

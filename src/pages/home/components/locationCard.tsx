@@ -4,7 +4,7 @@ function LocationMap() {
   const [showFullMap, setShowFullMap] = useState(true);
 
   return (
-    <div className="map-card mb-5 rounded-4">
+    <div className="map-card mb-5 rounded-4 ">
       <p className="map-title">Where the event takes place</p>
       <p className="map-subtitle">National Institute of Science and Applied Technologies, Tunis</p>
 

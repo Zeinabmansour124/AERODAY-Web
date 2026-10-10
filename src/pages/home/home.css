@@ -20,6 +20,19 @@
   font-weight: bold;
 }
 
+.custom-navbar .dropdown-menu {
+  --bs-dropdown-link-hover-bg: #FF5A1F;
+  --bs-dropdown-link-hover-color: #fff;
+  --bs-dropdown-link-active-bg: #e04d15;
+  --bs-dropdown-link-active-color: #fff;
+}
+.navbar-logo {
+  height: 40px;   /* ajuste selon ton design */
+  width: auto;    /* garde les proportions */
+  display: block;
+  filter: brightness(0) saturate(100%) invert(77%) sepia(79%) saturate(1500%) hue-rotate(358deg) brightness(103%) contrast(104%);
+
+}
 .brand-white {
   color: #FFFFFF !important;
   font-size: 1.8rem !important;
@@ -353,7 +366,7 @@
 }
 
 .broadcast-title {
-  color: #1E4D8C;
+  color: #FF5A1F;
   font-size: 24px;
   font-weight: 700;
 }
@@ -407,6 +420,7 @@
   border-radius: 16px;
   padding: 24px;
   width: 50%;
+  margin: 0 auto;
 }
 
 .map-title {

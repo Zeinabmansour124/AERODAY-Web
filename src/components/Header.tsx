@@ -1,13 +1,17 @@
 import { Link } from 'react-router-dom';
-
+import logo from '../assets/images/NEW LOGO AERODAY WHITE.png';
 function Header() {
   return (
     <div>
       <title>Home</title>
       <nav className="navbar navbar-expand-lg bg-body-tertiary custom-navbar">
         <div className="container-fluid">
-          <Link className="navbar-brand brand-white" to="">
-            AERODAY
+          <Link className="navbar-brand" to="/">
+            <img
+              src={logo}
+              alt="AERODAY"
+              className="navbar-logo"
+            />
           </Link>
           <button
             className="navbar-toggler"

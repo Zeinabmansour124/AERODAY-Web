@@ -174,8 +174,10 @@ const ForestFireChallengeCard: React.FC = () => {
               <div className="col-lg-8 col-md-7">
                 <div className="forest-text">
                   <p>
-                   L'AéroModélisme est un challenge où les participants doivent concevoir et construire leurs propres modèles réduits de planeurs en suivant un cahier des charges précis. Chaque équipe fait ensuite voler son planeur, démontrant son talent technique et créatif devant un public de passionnés et un jury de professionnels. Ce challenge est une occasion unique de partager sa passion pour l'aéromodélisme dans une ambiance conviviale et inspirante.
-                  </p>
+Concevoir, construire et faire voler un planeur non motorisé ne suffira plus : cette année, il faudra aussi savoir prendre les bonnes décisions au bon moment.
+À travers trois épreuves inspirées d’une mission de secours aérien face aux feux de forêt, les équipes devront mettre à l’épreuve les performances, la stabilité, la précision et la capacité de transport de leur planeur.
+Cette édition introduit une nouveauté : les AeroCards, des cartes stratégiques permettant de booster certaines performances durant les Flight Tests. Mais chaque avantage implique une prise de risque : savoir quand jouer sa carte pourra faire toute la différence.
+Conception, performance, précision et stratégie : à vous de construire le planeur capable de relever la mission.                  </p>
                 </div>
               </div>
               
@@ -195,7 +197,7 @@ const ForestFireChallengeCard: React.FC = () => {
         <div className="forest-actions">
           <button
             className="btn-register"
-            onClick={handleRegisterClick}
+            onClick={()=>window.open("https://docs.google.com/forms/d/e/1FAIpQLScTzdTgBExWg7bF4npA6G3Ef92ryn9C8RxhyQus_F2j0I5OYQ/viewform")}
             onMouseEnter={() => setIsRegisterHovered(true)}
             onMouseLeave={() => setIsRegisterHovered(false)}
             style={{
@@ -212,7 +214,7 @@ const ForestFireChallengeCard: React.FC = () => {
 
           <button
             className="btn-cahier"
-            onClick={handleCahierClick}
+            onClick={()=>window.open("https://l.facebook.com/l.php?u=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1kyNDQzE8OAkDnWWv6NoXHodaleeV2CDq%2Fview%3Fusp%3Ddrivesdk%26fbclid%3DIwZXh0bgNhZW0CMTAAcGRvZgVicmlkETFMWms2S2hPZGNSdGF0ckkyc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHqq-xQ3e4NpftIVsg0F0VD_7zxfdt8qYgXpM-MU062aPRIK8_Js2NoWls_tc_aem_LzcmbEGFG518zwgVLgl-4w&h=AUAchR7e_WOfvgdmxSBBEGCKM_CJgr9ozYXzbdkpphQ3nzgCU4DX5yUHunWcsPzyTCV1dxpEgXg6eYlpBdNf0uHZ3pJvdpMbopA4TB6XeOerBJVEAa-l2kmzUEjdjtDrHb-J0jVmOUJZa-d6&__tn__=-UK-R&c[0]=AUBz_ClPby3k0dSOj9oxMducB9sDO_BfHTWbHmQ-RhgG2r8A_29aX4SgQpLMLC3cvuiiocemc43DMTR5BOZnbpqcBXoMZjzKYpKWmQNA3CGVMJHVDtBbsIGEuP5Pb79TBOl7ah8FjdcmbZ-nru2zYnfTJCMbjgKJ8eLzm1u3WFNNXgU3QgoBIxlbZfEm5ZShCtMku9XvZtnYzMrckAerQDcdAA")}
             onMouseEnter={() => setIsCahierHovered(true)}
             onMouseLeave={() => setIsCahierHovered(false)}
             style={{
@@ -226,152 +228,9 @@ const ForestFireChallengeCard: React.FC = () => {
         </div>
       </div>
 
-      {/* Modales */}
-      {showRegisterModal && (
-        <>
-          <div
-            className="position-fixed top-0 start-0 w-100 h-100"
-            style={{
-              background: "rgba(0, 0, 0, 0.5)",
-              zIndex: 1040,
-              backdropFilter: "blur(4px)",
-            }}
-            onClick={closeRegisterModal}
-          />
-          <div
-            className="position-fixed top-50 start-50 translate-middle"
-            style={{
-              zIndex: 1050,
-              width: "100%",
-              maxWidth: "450px",
-              animation: "modalFadeIn 0.3s ease-out",
-            }}
-          >
-            <div className="bg-white rounded-4 shadow-lg p-4 p-md-5">
-              <div className="text-center mb-4">
-                <div
-                  className="d-inline-flex align-items-center justify-content-center rounded-circle"
-                  style={{
-                    width: "70px",
-                    height: "70px",
-                    background: "#fce4ec",
-                  }}
-                >
-                  <span style={{ fontSize: "35px" }}>🚫</span>
-                </div>
-              </div>
-              <h4
-                className="text-center mb-3"
-                style={{ color: "#1a1a2e", fontWeight: 700 }}
-              >
-                Inscription non disponible
-              </h4>
-              <p
-                className="text-center mb-4"
-                style={{ color: "#4a5568", fontSize: "15px", lineHeight: 1.6 }}
-              >
-                Les inscriptions pour ce challenge ne sont pas encore ouvertes.
-                <br />
-                Veuillez revenir ultérieurement.
-              </p>
-              <div className="d-grid">
-                <button
-                  className="btn text-white border-0 py-3"
-                  onClick={closeRegisterModal}
-                  style={{
-                    background: "#e94560",
-                    borderRadius: "10px",
-                    fontSize: "16px",
-                    fontWeight: 700,
-                    transition: "all 0.2s",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.target as HTMLButtonElement).style.background = "#d63a54";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.target as HTMLButtonElement).style.background = "#e94560";
-                  }}
-                >
-                  OK
-                </button>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
+      
 
-      {showCahierModal && (
-        <>
-          <div
-            className="position-fixed top-0 start-0 w-100 h-100"
-            style={{
-              background: "rgba(0, 0, 0, 0.5)",
-              zIndex: 1040,
-              backdropFilter: "blur(4px)",
-            }}
-            onClick={closeCahierModal}
-          />
-          <div
-            className="position-fixed top-50 start-50 translate-middle"
-            style={{
-              zIndex: 1050,
-              width: "100%",
-              maxWidth: "450px",
-              animation: "modalFadeIn 0.3s ease-out",
-            }}
-          >
-            <div className="bg-white rounded-4 shadow-lg p-4 p-md-5">
-              <div className="text-center mb-4">
-                <div
-                  className="d-inline-flex align-items-center justify-content-center rounded-circle"
-                  style={{
-                    width: "70px",
-                    height: "70px",
-                    background: "#e3f2fd",
-                  }}
-                >
-                  <span style={{ fontSize: "35px" }}>📄</span>
-                </div>
-              </div>
-              <h4
-                className="text-center mb-3"
-                style={{ color: "#1a1a2e", fontWeight: 700 }}
-              >
-                Cahier des charges indisponible
-              </h4>
-              <p
-                className="text-center mb-4"
-                style={{ color: "#4a5568", fontSize: "15px", lineHeight: 1.6 }}
-              >
-                Le cahier des charges pour ce challenge n'est pas encore disponible.
-                <br />
-                Veuillez revenir ultérieurement.
-              </p>
-              <div className="d-grid">
-                <button
-                  className="btn text-white border-0 py-3"
-                  onClick={closeCahierModal}
-                  style={{
-                    background: "#0f3460",
-                    borderRadius: "10px",
-                    fontSize: "16px",
-                    fontWeight: 700,
-                    transition: "all 0.2s",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.target as HTMLButtonElement).style.background = "#0a284a";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.target as HTMLButtonElement).style.background = "#0f3460";
-                  }}
-                >
-                  OK
-                </button>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
+      
 
       <style>{`
         @keyframes modalFadeIn {
