@@ -253,7 +253,7 @@ const MysteriousChallengeCard: React.FC<MysteriousChallengeProps> = ({
             }}
           >
             <button
-              onClick={handleRegisterClick}
+              onClick={()=>window.open('https://docs.google.com/forms/u/1/d/e/1FAIpQLSfuenpn2VMSvod40Ke86ZDGfMaUJNVEaJqXVDqkuT5QVvzGZQ/viewform')}
               onMouseEnter={() => setIsRegisterHovered(true)}
               onMouseLeave={() => setIsRegisterHovered(false)}
               style={{
@@ -280,7 +280,7 @@ const MysteriousChallengeCard: React.FC<MysteriousChallengeProps> = ({
             </button>
 
             <button
-              onClick={handleCahierClick}
+              onClick={()=>window.open('https://drive.google.com/file/d/1nvVhs6xrpVTbClfAj57XgKXUpxkZ5eLS/view?fbclid=IwY2xjawU3Os1leHRuA2FlbQIxMABwZG9mBWJyaWQRMUxaazZLaE9kY1J0YXRySTJzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEe-5JaZrjfINhpEAlHz79wVBoVMukXSIZPjq8bhTHZtk4473PXQQPlCFf0fPU_aem_usaqqaP_ddNszS8EneMNMA')}
               onMouseEnter={() => setIsCahierHovered(true)}
               onMouseLeave={() => setIsCahierHovered(false)}
               style={{
@@ -306,154 +306,9 @@ const MysteriousChallengeCard: React.FC<MysteriousChallengeProps> = ({
         </div>
       </div>
 
-      {/* ========== MODALE INSCRIPTION - PALETTE CYAN ========== */}
-      {showModal && (
-        <>
-          <div
-            className="position-fixed top-0 start-0 w-100 h-100"
-            style={{
-              background: "rgba(0, 0, 0, 0.5)",
-              zIndex: 1040,
-              backdropFilter: "blur(4px)",
-            }}
-            onClick={closeRegisterModal}
-          />
-          <div
-            className="position-fixed top-50 start-50 translate-middle"
-            style={{
-              zIndex: 1050,
-              width: "100%",
-              maxWidth: "450px",
-              animation: "modalFadeIn 0.3s ease-out",
-            }}
-          >
-            <div className="bg-white rounded-4 shadow-lg p-4 p-md-5">
-              <div className="text-center mb-4">
-                <div
-                  className="d-inline-flex align-items-center justify-content-center rounded-circle"
-                  style={{
-                    width: "70px",
-                    height: "70px",
-                    background: "#e0f7fa",
-                  }}
-                >
-                  <span style={{ fontSize: "35px" }}>🔓</span>
-                </div>
-              </div>
-              <h4
-                className="text-center mb-3"
-                style={{ color: "#0F172A", fontWeight: 700 }}
-              >
-                Inscription non disponible
-              </h4>
-              <p
-                className="text-center mb-4"
-                style={{ color: "#4a5568", fontSize: "15px", lineHeight: 1.6 }}
-              >
-                Les inscriptions pour ce challenge ne sont pas encore ouvertes.
-                <br />
-                Veuillez revenir ultérieurement.
-              </p>
-              <div className="d-grid">
-                <button
-                  className="btn text-white border-0 py-3"
-                  onClick={closeRegisterModal}
-                  style={{
-                    background: "#00F0FF",
-                    borderRadius: "10px",
-                    fontSize: "16px",
-                    fontWeight: 700,
-                    color: "#020617",
-                    transition: "all 0.2s",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.target as HTMLButtonElement).style.background = "#00c8d4";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.target as HTMLButtonElement).style.background = "#00F0FF";
-                  }}
-                >
-                  OK
-                </button>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
+     
 
-      {/* ========== MODALE CAHIER DES CHARGES - PALETTE BLEU FONCÉ ========== */}
-      {showCahierModal && (
-        <>
-          <div
-            className="position-fixed top-0 start-0 w-100 h-100"
-            style={{
-              background: "rgba(0, 0, 0, 0.5)",
-              zIndex: 1040,
-              backdropFilter: "blur(4px)",
-            }}
-            onClick={closeCahierModal}
-          />
-          <div
-            className="position-fixed top-50 start-50 translate-middle"
-            style={{
-              zIndex: 1050,
-              width: "100%",
-              maxWidth: "450px",
-              animation: "modalFadeIn 0.3s ease-out",
-            }}
-          >
-            <div className="bg-white rounded-4 shadow-lg p-4 p-md-5">
-              <div className="text-center mb-4">
-                <div
-                  className="d-inline-flex align-items-center justify-content-center rounded-circle"
-                  style={{
-                    width: "70px",
-                    height: "70px",
-                    background: "#e3f2fd",
-                  }}
-                >
-                  <span style={{ fontSize: "35px" }}>📂</span>
-                </div>
-              </div>
-              <h4
-                className="text-center mb-3"
-                style={{ color: "#0F172A", fontWeight: 700 }}
-              >
-                Dossier indisponible
-              </h4>
-              <p
-                className="text-center mb-4"
-                style={{ color: "#4a5568", fontSize: "15px", lineHeight: 1.6 }}
-              >
-                Le dossier confidentiel pour ce challenge n'est pas encore disponible.
-                <br />
-                Veuillez revenir ultérieurement.
-              </p>
-              <div className="d-grid">
-                <button
-                  className="btn text-white border-0 py-3"
-                  onClick={closeCahierModal}
-                  style={{
-                    background: "#0F172A",
-                    borderRadius: "10px",
-                    fontSize: "16px",
-                    fontWeight: 700,
-                    transition: "all 0.2s",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.target as HTMLButtonElement).style.background = "#1a1a2e";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.target as HTMLButtonElement).style.background = "#0F172A";
-                  }}
-                >
-                  OK
-                </button>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
+      
 
       {/* Animation */}
       <style>{`

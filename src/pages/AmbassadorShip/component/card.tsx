@@ -299,7 +299,7 @@ L'Ambassade est un axe clé de l'Aeroday, visant à donner une dimension nationa
             justifyContent: 'center',
           }}>
             <button
-              onClick={handleInscriptionClick}
+              onClick={()=>window.open("https://docs.google.com/forms/d/e/1FAIpQLSckAZj_lX43wVtH6sartjm38q7vFwBfc-Hu3KJBYKzpdmhRAg/viewform?usp=header&pli=1&authuser=0")}
               style={{
                 background: '#7C3AED',
                 color: '#FFFFFF',
@@ -370,44 +370,7 @@ L'Ambassade est un axe clé de l'Aeroday, visant à donner une dimension nationa
         </div>
       </div>
 
-      {/* ========== MODALE INSCRIPTION ========== */}
-      {showModal && (
-        <>
-          <div
-            className="position-fixed top-0 start-0 w-100 h-100"
-            style={{ background: 'rgba(0, 0, 0, 0.5)', zIndex: 1040, backdropFilter: 'blur(4px)' }}
-            onClick={handleCloseModal}
-          />
-          <div
-            className="position-fixed top-50 start-50 translate-middle"
-            style={{ zIndex: 1050, width: '100%', maxWidth: '420px', animation: 'modalFadeIn 0.3s ease-out' }}
-          >
-            <div className="bg-white rounded-4 shadow-lg p-4 p-md-5 text-center" style={{ borderTop: '4px solid #7C3AED' }}>
-              <div className="mb-3">
-                <div className="d-inline-flex align-items-center justify-content-center rounded-circle" style={{ width: '60px', height: '60px', background: '#F5F3FF' }}>
-                  <span style={{ fontSize: '30px' }}>📝</span>
-                </div>
-              </div>
-              <h4 className="mb-2" style={{ color: '#0F172A', fontWeight: 700, fontSize: '18px' }}>
-                Candidature non disponible
-              </h4>
-              <p className="mb-4" style={{ color: '#64748B', fontSize: '13px', lineHeight: 1.5 }}>
-                Les candidatures pour le programme ambassadeur ne sont pas encore ouvertes.<br />
-                Veuillez revenir ultérieurement.
-              </p>
-              <button
-                className="btn text-white border-0 px-4 py-2"
-                onClick={handleCloseModal}
-                style={{ background: '#7C3AED', borderRadius: '8px', fontSize: '13px', fontWeight: 600 }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = '#6D28D9')}
-                onMouseLeave={(e) => (e.currentTarget.style.background = '#7C3AED')}
-              >
-                OK
-              </button>
-            </div>
-          </div>
-        </>
-      )}
+      
 
       {/* ========== MODALE EN SAVOIR PLUS ========== */}
       {showCahierModal && (
@@ -427,12 +390,9 @@ L'Ambassade est un axe clé de l'Aeroday, visant à donner une dimension nationa
                   <span style={{ fontSize: '30px' }}>📄</span>
                 </div>
               </div>
-              <h4 className="mb-2" style={{ color: '#0F172A', fontWeight: 700, fontSize: '18px' }}>
-                Informations indisponibles
-              </h4>
+              
               <p className="mb-4" style={{ color: '#64748B', fontSize: '13px', lineHeight: 1.5 }}>
-                Le dossier ambassadeur n'est pas encore disponible.<br />
-                Veuillez revenir ultérieurement.
+                Suivez nouvelles informations et détails sur le programme Ambassadeur sur les réseaux sociaux officiels de l'Aeroday et sur le site web. Vous y trouverez des mises à jour, des conseils et des ressources pour maximiser votre expérience en tant qu'ambassadeur.
               </p>
               <button
                 className="btn text-white border-0 px-4 py-2"
