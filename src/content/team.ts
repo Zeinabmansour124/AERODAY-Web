@@ -190,7 +190,7 @@ export const team: TeamMember[] = [
         id: 16,
         name: "Ranim Khairedine",
         role: "Organisation",
-        image: "",
+        image: "new.jpg",
         contact: {
             phone: "+216 28 203 949",
             personalEmail: "",

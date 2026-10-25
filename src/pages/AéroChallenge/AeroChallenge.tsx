@@ -21,7 +21,7 @@ const AeroChallenge: React.FC = () => {
       <aside className="main-sidebar">
         <SBChallenge members={respo} />
       </aside>
-      <PartnerChallenge/>
+      
     </div>
   );
 };

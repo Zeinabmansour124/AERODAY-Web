@@ -14,5 +14,10 @@ export const broadcasts: Broadcast[] = [
     videoId: 'OrBNYENyryY', // remplace par un vrai ID YouTube plus tard
     name: ' Anis Guelbi',
     role: 'Professeur et Instructeur ATPL, Conseiller de formation en chef au CEMIA'
+  },
+  {
+    videoId: 'eKjRgAD62Cc', // remplace par un vrai ID YouTube plus tard
+    name: ' Ahmed Aziz Ben Gandia',
+    role: 'Alumni INSAT'
   }
 ];

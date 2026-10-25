@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import type { Partenaire } from '../content/partenaire.ts';
-import logo from '../assets/images/sponsos/logo-min.png'
+import logo from '../assets/images/sponsos/aess-logo.svg'
 
 const PartnerChallenge: React.FC = () => {
   const [hoveredPartner, setHoveredPartner] = useState<number | null>(null);
@@ -9,8 +9,8 @@ const PartnerChallenge: React.FC = () => {
   const partners: Partenaire[] = [
     {
       id: 1,
-      name : 'الحماية المدنية',
-      role: 'Sponsor principal',
+      name : 'AESS',
+      role: 'principal partner',
       roleColor: '#FF5A1F',
       roleTextColor: '#FFFFFF',
       description: '',

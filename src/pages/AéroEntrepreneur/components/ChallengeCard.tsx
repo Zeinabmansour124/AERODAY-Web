@@ -265,7 +265,7 @@ const ChallengeCard: React.FC = () => {
             }}
           >
             <button
-              onClick={handleInscriptionClick}
+              onClick={()=> window.open("https://docs.google.com/forms/d/e/1FAIpQLSeJljaOULnpxfJ_1fkHSITiEm8lyC_vMgV3b60ywRFY5KEMaQ/viewform")}
               style={{
                 background: '#e63946',
                 color: '#FFFFFF',
@@ -284,7 +284,7 @@ const ChallengeCard: React.FC = () => {
               📝 S'inscrire au challenge
             </button>
             <button
-              onClick={handleCahierClick}
+              onClick={()=> window.open("https://drive.google.com/file/d/1vNQEFBZAlD8hP-tU0fuOZ-4Lkg-i3VJ0/view?fbclid=IwY2xjawVK9xVleHRuA2FlbQIxMABwZG9mBWJyaWQRMWNaSFl2OEtuVm1JZld2Zk1zcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeNtGgwtI4vTEALk19ux8cmWvNQ8en3Bc1d8nR0LcFECLgzi3Ho6scf000bXE_aem_J5YXssV1P9wlCbNCE3blxQ")}
               style={{
                 background: 'transparent',
                 color: '#1a0a0a',
@@ -305,93 +305,7 @@ const ChallengeCard: React.FC = () => {
         </div>
       </div>
 
-      {/* ========== MODALE INSCRIPTION ========== */}
-      {showModal && (
-        <>
-          <div
-            className="position-fixed top-0 start-0 w-100 h-100"
-            style={{ background: 'rgba(0, 0, 0, 0.5)', zIndex: 1040, backdropFilter: 'blur(4px)' }}
-            onClick={handleCloseModal}
-          />
-          <div
-            className="position-fixed top-50 start-50 translate-middle"
-            style={{ zIndex: 1050, width: '100%', maxWidth: '450px', animation: 'modalFadeIn 0.3s ease-out' }}
-          >
-            <div className="bg-white rounded-4 shadow-lg p-4 p-md-5">
-              <div className="text-center mb-4">
-                <div className="d-inline-flex align-items-center justify-content-center rounded-circle" style={{ width: '70px', height: '70px', background: '#fef2f2' }}>
-                  <span style={{ fontSize: '35px' }}>🚫</span>
-                </div>
-              </div>
-              <h4 className="text-center mb-3" style={{ color: '#1a0a0a', fontWeight: 700 }}>Inscription non disponible</h4>
-              <p className="text-center mb-4" style={{ color: '#4a5568', fontSize: '15px', lineHeight: 1.6 }}>
-                Les inscriptions pour ce challenge ne sont pas encore ouvertes.<br />Veuillez revenir ultérieurement.
-              </p>
-              <div className="d-grid">
-                <button 
-                  className="btn text-white border-0 py-3" 
-                  onClick={handleCloseModal} 
-                  style={{ 
-                    background: '#e63946', 
-                    borderRadius: '10px', 
-                    fontSize: '16px', 
-                    fontWeight: 700, 
-                    transition: 'all 0.2s' 
-                  }}
-                  onMouseEnter={(e) => { (e.target as HTMLButtonElement).style.background = '#c62828'; }}
-                  onMouseLeave={(e) => { (e.target as HTMLButtonElement).style.background = '#e63946'; }}
-                >
-                  OK
-                </button>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
-
-      {/* ========== MODALE CAHIER DES CHARGES ========== */}
-      {showCahierModal && (
-        <>
-          <div
-            className="position-fixed top-0 start-0 w-100 h-100"
-            style={{ background: 'rgba(0, 0, 0, 0.5)', zIndex: 1040, backdropFilter: 'blur(4px)' }}
-            onClick={handleCloseCahierModal}
-          />
-          <div
-            className="position-fixed top-50 start-50 translate-middle"
-            style={{ zIndex: 1050, width: '100%', maxWidth: '450px', animation: 'modalFadeIn 0.3s ease-out' }}
-          >
-            <div className="bg-white rounded-4 shadow-lg p-4 p-md-5">
-              <div className="text-center mb-4">
-                <div className="d-inline-flex align-items-center justify-content-center rounded-circle" style={{ width: '70px', height: '70px', background: '#fef2f2' }}>
-                  <span style={{ fontSize: '35px' }}>📄</span>
-                </div>
-              </div>
-              <h4 className="text-center mb-3" style={{ color: '#1a0a0a', fontWeight: 700 }}>Cahier des charges indisponible</h4>
-              <p className="text-center mb-4" style={{ color: '#4a5568', fontSize: '15px', lineHeight: 1.6 }}>
-                Le cahier des charges pour ce challenge n'est pas encore disponible.<br />Veuillez revenir ultérieurement.
-              </p>
-              <div className="d-grid">
-                <button 
-                  className="btn text-white border-0 py-3" 
-                  onClick={handleCloseCahierModal} 
-                  style={{ 
-                    background: '#7c1d1d', 
-                    borderRadius: '10px', 
-                    fontSize: '16px', 
-                    fontWeight: 700, 
-                    transition: 'all 0.2s' 
-                  }}
-                  onMouseEnter={(e) => { (e.target as HTMLButtonElement).style.background = '#5c1414'; }}
-                  onMouseLeave={(e) => { (e.target as HTMLButtonElement).style.background = '#7c1d1d'; }}
-                >
-                  OK
-                </button>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
+      
     </>
   );
 };

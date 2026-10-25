@@ -18,6 +18,7 @@ import inspireTech from '../../../assets/images/sponsos/Inspiretech.png';
 import orange from '../../../assets/images/sponsos/orange.webp';
 import topnet from '../../../assets/images/sponsos/topnet.png';
 import himeya from '../../../assets/images/sponsos/logo-min.png'
+import sotach from '../../../assets/images/sponsos/sotach-logo.png'
 
 const SponsorsCarousel: React.FC = () => {
   const [isPaused, setIsPaused] = useState(false);
@@ -27,6 +28,7 @@ const SponsorsCarousel: React.FC = () => {
   // Sponsors avec leurs logos
   const sponsors = [
     { name: 'ATR', logo: atrLogo },
+    {name: 'Sotach', logo: sotach},
     { name: 'TOPNET', logo: topnet },
     { name: 'Agil', logo: agilLogo },
     { name: 'DIGISYS', logo: digisysLogo },
@@ -40,6 +42,7 @@ const SponsorsCarousel: React.FC = () => {
     { name: 'ORANGE', logo: orange },
     { name: '' , logo: himeya},
     {name: '', logo: himeya}
+    
 
   ];
 

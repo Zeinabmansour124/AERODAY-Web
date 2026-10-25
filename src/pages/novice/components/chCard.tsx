@@ -6,6 +6,158 @@ import aeroIMG from "../../../assets/images/9.jpeg";
 // Composant TSX (React / Next.js)
 // ============================================
 
+const CAHIER_AERO_URL =
+  "https://drive.google.com/file/d/1iW34RtbPM23m0sT_yY1x7CKOYmOpxNCs/view";
+const CAHIER_CAO_URL =
+  "https://drive.google.com/file/d/1J-D4eyaOKtfTzjr2a-wRzRFqcKucpXzG/view";
+
+// ---------- Styles réutilisables ----------
+const redButtonStyle: React.CSSProperties = {
+  background: "#e94560",
+  color: "#FFFFFF",
+  border: "none",
+  padding: "14px 28px",
+  borderRadius: "10px",
+  fontSize: "14px",
+  fontWeight: 700,
+  cursor: "pointer",
+  transition: "all 0.2s",
+  boxShadow: "0 4px 16px rgba(233,69,96,0.3)",
+};
+
+const redHoverIn = (e: React.MouseEvent<HTMLButtonElement>) => {
+  e.currentTarget.style.background = "#d63a54";
+  e.currentTarget.style.transform = "translateY(-2px)";
+};
+const redHoverOut = (e: React.MouseEvent<HTMLButtonElement>) => {
+  e.currentTarget.style.background = "#e94560";
+  e.currentTarget.style.transform = "translateY(0)";
+};
+
+// ---------- Données de l'animation ----------
+const RAIN_DROPS = [
+  { top: 20, left: 10, w: 2, h: 20, dur: 1.0, delay: 0, a: 0.6, b: 0.4 },
+  { top: 10, left: 25, w: 2, h: 18, dur: 0.9, delay: 0.15, a: 0.5, b: 0.3 },
+  { top: 30, left: 40, w: 3, h: 22, dur: 1.1, delay: 0.4, a: 0.6, b: 0.4 },
+  { top: 15, left: 58, w: 2, h: 16, dur: 0.8, delay: 0.6, a: 0.5, b: 0.3 },
+  { top: 25, left: 72, w: 2, h: 19, dur: 1.0, delay: 0.25, a: 0.5, b: 0.3 },
+  { top: 5, left: 85, w: 2, h: 15, dur: 0.9, delay: 0.8, a: 0.4, b: 0.2 },
+  { top: 35, left: 15, w: 3, h: 21, dur: 1.2, delay: 0.05, a: 0.6, b: 0.4 },
+  { top: 12, left: 48, w: 2, h: 17, dur: 1.0, delay: 0.5, a: 0.5, b: 0.3 },
+];
+
+const DEBRIS = [
+  { top: 20, left: 35, dur: 3, delay: 0, w: 8, h: 8, bg: "#5c5c5c", r: "1px" },
+  { top: 10, left: 62, dur: 2.5, delay: 0.7, w: 6, h: 10, bg: "#4a4a4a", r: "1px" },
+  { top: 30, left: 48, dur: 3.5, delay: 1.2, w: 10, h: 6, bg: "#6b6b6b", r: "1px" },
+  { top: 15, left: 78, dur: 2.8, delay: 0.4, w: 5, h: 5, bg: "#555", r: "50%" },
+];
+
+const CLOUDS = [
+  { top: 8, left: "5%", right: undefined, dur: 12, delay: 0, w: 80, h: 36, bg: "rgba(30,30,50,0.7)" },
+  { top: 15, left: undefined, right: "10%", dur: 14, delay: 3, w: 65, h: 30, bg: "rgba(30,30,50,0.6)" },
+  { top: 5, left: "50%", right: undefined, dur: 10, delay: 1.5, w: 55, h: 26, bg: "rgba(30,30,50,0.55)" },
+];
+
+const CRACKS = [
+  { d: "M 50 220 L 80 180 L 70 150 L 100 120 L 90 80 L 130 40", c: "rgba(0,0,0,0.5)", w: 2, len: 200, dur: 3, delay: 0 },
+  { d: "M 80 180 L 110 190 L 140 170", c: "rgba(0,0,0,0.4)", w: 1.5, len: 150, dur: 3, delay: 0.5 },
+  { d: "M 700 220 L 670 190 L 680 160 L 650 130 L 660 90 L 620 50", c: "rgba(0,0,0,0.45)", w: 2, len: 200, dur: 3.5, delay: 1 },
+  { d: "M 670 190 L 640 200 L 610 185", c: "rgba(0,0,0,0.35)", w: 1.5, len: 120, dur: 3.5, delay: 1.3 },
+  { d: "M 350 220 L 370 200 L 360 170 L 390 140 L 380 100", c: "rgba(0,0,0,0.3)", w: 1.5, len: 180, dur: 4, delay: 2 },
+];
+
+const KEYFRAMES = `
+  @keyframes crackAppear {
+    0% { stroke-dashoffset: 200; opacity: 0; }
+    20% { opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: 1; }
+  }
+  @keyframes lightningFlash {
+    0%, 88%, 100% { opacity: 0; }
+    89% { opacity: 0.9; }
+    90% { opacity: 0; }
+    91% { opacity: 0.7; }
+    92% { opacity: 0; }
+    93% { opacity: 1; }
+    94% { opacity: 0.2; }
+    95% { opacity: 0; }
+  }
+  @keyframes buildingShake {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    2% { transform: translateX(-52%) translateY(-1px); }
+    4% { transform: translateX(-48%) translateY(1px); }
+    6% { transform: translateX(-51%) translateY(-2px); }
+    8% { transform: translateX(-49%) translateY(2px); }
+    10% { transform: translateX(-50%) translateY(0); }
+    12% { transform: translateX(-53%) translateY(-1px); }
+    14% { transform: translateX(-47%) translateY(1px); }
+    16% { transform: translateX(-50%) translateY(0); }
+  }
+  @keyframes seismicWave {
+    0% { transform: scale(0.5); opacity: 0.8; }
+    100% { transform: scale(2.5); opacity: 0; }
+  }
+  @keyframes floodRise {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+  @keyframes debrisFall {
+    0% { transform: translateY(-30px) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(220px) rotate(180deg); opacity: 0; }
+  }
+  @keyframes rainDrop {
+    0% { transform: translateY(0); opacity: 0; }
+    10% { opacity: 0.7; }
+    90% { opacity: 0.7; }
+    100% { transform: translateY(200px); opacity: 0; }
+  }
+  @keyframes cloudFloat {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(8px) translateY(-3px); }
+    50% { transform: translateX(-4px) translateY(2px); }
+    75% { transform: translateX(6px) translateY(-2px); }
+  }
+  @keyframes droneHover {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(8px, -6px) rotate(2deg); }
+    50% { transform: translate(-4px, -3px) rotate(-1deg); }
+    75% { transform: translate(6px, -8px) rotate(1deg); }
+  }
+  @keyframes dronePropeller {
+    0% { transform: scaleX(1); }
+    50% { transform: scaleX(0.1); }
+    100% { transform: scaleX(1); }
+  }
+  @keyframes droneScan {
+    0% { opacity: 0; }
+    50% { opacity: 0.4; }
+    100% { opacity: 0; }
+  }
+  @keyframes droneBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  @keyframes planeFly {
+    0% { transform: translateX(-120px) translateY(20px) scale(0.6); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateX(500px) translateY(-30px) scale(0.6); opacity: 0; }
+  }
+  @keyframes planeBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  @keyframes modalFadeIn {
+    from { opacity: 0; transform: scale(0.9) translateY(-20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .challenge-banner *, .challenge-modal { animation: none !important; }
+  }
+`;
+
 const ChallengeCard: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [showCahierModal, setShowCahierModal] = useState(false);
@@ -15,8 +167,14 @@ const ChallengeCard: React.FC = () => {
   const handleCahierClick = () => setShowCahierModal(true);
   const handleCloseCahierModal = () => setShowCahierModal(false);
 
+  // Next.js : l'import d'image renvoie un objet { src }, CRA/Vite renvoie une string
+  const imgSrc =
+    typeof aeroIMG === "string" ? aeroIMG : (aeroIMG as { src: string }).src;
+
   return (
     <>
+      <style>{KEYFRAMES}</style>
+
       {/* ========== CARTE CHALLENGE ========== */}
       <div
         className="ms-3"
@@ -30,6 +188,8 @@ const ChallengeCard: React.FC = () => {
       >
         {/* ========== BANDEAU CATASTROPHE + DRONE + AVIATION ========== */}
         <div
+          className="challenge-banner"
+          aria-hidden="true"
           style={{
             height: "220px",
             background:
@@ -39,202 +199,47 @@ const ChallengeCard: React.FC = () => {
             perspective: "1000px",
           }}
         >
-          <style>{`
-            @keyframes crackAppear {
-              0% { stroke-dashoffset: 200; opacity: 0; }
-              20% { opacity: 1; }
-              100% { stroke-dashoffset: 0; opacity: 1; }
-            }
-            @keyframes lightningFlash {
-              0%, 88%, 100% { opacity: 0; }
-              89% { opacity: 0.9; }
-              90% { opacity: 0; }
-              91% { opacity: 0.7; }
-              92% { opacity: 0; }
-              93% { opacity: 1; }
-              94% { opacity: 0.2; }
-              95% { opacity: 0; }
-            }
-            @keyframes buildingShake {
-              0%, 100% { transform: translateX(-50%) translateY(0); }
-              2% { transform: translateX(-52%) translateY(-1px); }
-              4% { transform: translateX(-48%) translateY(1px); }
-              6% { transform: translateX(-51%) translateY(-2px); }
-              8% { transform: translateX(-49%) translateY(2px); }
-              10% { transform: translateX(-50%) translateY(0); }
-              12% { transform: translateX(-53%) translateY(-1px); }
-              14% { transform: translateX(-47%) translateY(1px); }
-              16% { transform: translateX(-50%) translateY(0); }
-            }
-            @keyframes seismicWave {
-              0% { transform: scale(0.5); opacity: 0.8; }
-              100% { transform: scale(2.5); opacity: 0; }
-            }
-            @keyframes floodRise {
-              0%, 100% { transform: translateY(0); }
-              50% { transform: translateY(-4px); }
-            }
-            @keyframes debrisFall {
-              0% { transform: translateY(-30px) rotate(0deg); opacity: 0; }
-              10% { opacity: 1; }
-              100% { transform: translateY(220px) rotate(180deg); opacity: 0; }
-            }
-            @keyframes rainDrop {
-              0% { transform: translateY(0); opacity: 0; }
-              10% { opacity: 0.7; }
-              90% { opacity: 0.7; }
-              100% { transform: translateY(200px); opacity: 0; }
-            }
-            @keyframes cloudFloat {
-              0%, 100% { transform: translateX(0) translateY(0); }
-              25% { transform: translateX(8px) translateY(-3px); }
-              50% { transform: translateX(-4px) translateY(2px); }
-              75% { transform: translateX(6px) translateY(-2px); }
-            }
-            @keyframes droneHover {
-              0%, 100% { transform: translate(0, 0) rotate(0deg); }
-              25% { transform: translate(8px, -6px) rotate(2deg); }
-              50% { transform: translate(-4px, -3px) rotate(-1deg); }
-              75% { transform: translate(6px, -8px) rotate(1deg); }
-            }
-            @keyframes dronePropeller {
-              0% { transform: scaleX(1); }
-              50% { transform: scaleX(0.1); }
-              100% { transform: scaleX(1); }
-            }
-            @keyframes droneScan {
-              0% { opacity: 0; }
-              50% { opacity: 0.4; }
-              100% { opacity: 0; }
-            }
-            @keyframes planeFly {
-              0% { transform: translateX(-120px) translateY(20px) scale(0.6); opacity: 0; }
-              10% { opacity: 1; }
-              90% { opacity: 1; }
-              100% { transform: translateX(500px) translateY(-30px) scale(0.6); opacity: 0; }
-            }
-            @keyframes planeBlink {
-              0%, 100% { opacity: 1; }
-              50% { opacity: 0.3; }
-            }
-            @keyframes floodWave {
-              0% { transform: translateX(0); }
-              100% { transform: translateX(-50%); }
-            }
-            @keyframes modalFadeIn {
-              from { opacity: 0; transform: scale(0.8) translateY(-20px); }
-              to { opacity: 1; transform: scale(1) translateY(0); }
-            }
-          `}</style>
-
           {/* Nuages d'orage */}
-          <div
-            style={{
-              position: "absolute",
-              top: "8px",
-              left: "5%",
-              animation: "cloudFloat 12s ease-in-out infinite",
-            }}
-          >
+          {CLOUDS.map((c, i) => (
             <div
+              key={`cloud-${i}`}
               style={{
-                width: "80px",
-                height: "36px",
-                background: "rgba(30,30,50,0.7)",
-                borderRadius: "40px",
-                position: "relative",
+                position: "absolute",
+                top: `${c.top}px`,
+                left: c.left,
+                right: c.right,
+                animation: `cloudFloat ${c.dur}s ease-in-out infinite ${c.delay}s`,
               }}
             >
               <div
                 style={{
-                  width: "45px",
-                  height: "42px",
-                  background: "rgba(25,25,45,0.6)",
-                  borderRadius: "50%",
-                  position: "absolute",
-                  top: "-18px",
-                  left: "12px",
+                  width: `${c.w}px`,
+                  height: `${c.h}px`,
+                  background: c.bg,
+                  borderRadius: "40px",
+                  position: "relative",
                 }}
-              />
-              <div
-                style={{
-                  width: "32px",
-                  height: "32px",
-                  background: "rgba(28,28,42,0.5)",
-                  borderRadius: "50%",
-                  position: "absolute",
-                  top: "-14px",
-                  right: "8px",
-                }}
-              />
+              >
+                <div
+                  style={{
+                    width: `${c.h + 8}px`,
+                    height: `${c.h + 8}px`,
+                    background: "rgba(25,25,45,0.55)",
+                    borderRadius: "50%",
+                    position: "absolute",
+                    top: `-${c.h / 2}px`,
+                    left: "10px",
+                  }}
+                />
+              </div>
             </div>
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              top: "15px",
-              right: "10%",
-              animation: "cloudFloat 14s ease-in-out infinite 3s",
-            }}
-          >
-            <div
-              style={{
-                width: "65px",
-                height: "30px",
-                background: "rgba(30,30,50,0.6)",
-                borderRadius: "30px",
-                position: "relative",
-              }}
-            >
-              <div
-                style={{
-                  width: "38px",
-                  height: "38px",
-                  background: "rgba(25,25,45,0.5)",
-                  borderRadius: "50%",
-                  position: "absolute",
-                  top: "-16px",
-                  left: "8px",
-                }}
-              />
-            </div>
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              top: "5px",
-              left: "50%",
-              animation: "cloudFloat 10s ease-in-out infinite 1.5s",
-            }}
-          >
-            <div
-              style={{
-                width: "55px",
-                height: "26px",
-                background: "rgba(30,30,50,0.55)",
-                borderRadius: "26px",
-                position: "relative",
-              }}
-            >
-              <div
-                style={{
-                  width: "32px",
-                  height: "32px",
-                  background: "rgba(25,25,45,0.45)",
-                  borderRadius: "50%",
-                  position: "absolute",
-                  top: "-14px",
-                  left: "6px",
-                }}
-              />
-            </div>
-          </div>
+          ))}
 
           {/* Éclairs */}
           <div
             style={{
               position: "absolute",
-              top: "0",
+              top: 0,
               left: "20%",
               width: "2px",
               height: "60px",
@@ -264,164 +269,38 @@ const ChallengeCard: React.FC = () => {
           />
 
           {/* Pluie */}
-          <div
-            style={{
-              position: "absolute",
-              top: "20px",
-              left: "10%",
-              animation: "rainDrop 1.0s linear infinite",
-            }}
-          >
+          {RAIN_DROPS.map((d, i) => (
             <div
+              key={`rain-${i}`}
               style={{
-                width: "2px",
-                height: "20px",
-                background:
-                  "linear-gradient(180deg, rgba(180,200,210,0.6), rgba(8,100,110,0.4))",
-                borderRadius: "2px 2px 50% 50%",
+                position: "absolute",
+                top: `${d.top}px`,
+                left: `${d.left}%`,
+                animation: `rainDrop ${d.dur}s linear infinite ${d.delay}s`,
               }}
-            />
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              top: "10px",
-              left: "25%",
-              animation: "rainDrop 0.9s linear infinite 0.15s",
-            }}
-          >
-            <div
-              style={{
-                width: "2px",
-                height: "18px",
-                background:
-                  "linear-gradient(180deg, rgba(180,200,210,0.5), rgba(8,100,110,0.3))",
-                borderRadius: "2px 2px 50% 50%",
-              }}
-            />
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              top: "30px",
-              left: "40%",
-              animation: "rainDrop 1.1s linear infinite 0.4s",
-            }}
-          >
-            <div
-              style={{
-                width: "3px",
-                height: "22px",
-                background:
-                  "linear-gradient(180deg, rgba(180,200,210,0.6), rgba(8,100,110,0.4))",
-                borderRadius: "2px 2px 50% 50%",
-              }}
-            />
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              top: "15px",
-              left: "58%",
-              animation: "rainDrop 0.8s linear infinite 0.6s",
-            }}
-          >
-            <div
-              style={{
-                width: "2px",
-                height: "16px",
-                background:
-                  "linear-gradient(180deg, rgba(180,200,210,0.5), rgba(8,100,110,0.3))",
-                borderRadius: "2px 2px 50% 50%",
-              }}
-            />
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              top: "25px",
-              left: "72%",
-              animation: "rainDrop 1.0s linear infinite 0.25s",
-            }}
-          >
-            <div
-              style={{
-                width: "2px",
-                height: "19px",
-                background:
-                  "linear-gradient(180deg, rgba(180,200,210,0.5), rgba(8,100,110,0.3))",
-                borderRadius: "2px 2px 50% 50%",
-              }}
-            />
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              top: "5px",
-              left: "85%",
-              animation: "rainDrop 0.9s linear infinite 0.8s",
-            }}
-          >
-            <div
-              style={{
-                width: "2px",
-                height: "15px",
-                background:
-                  "linear-gradient(180deg, rgba(180,200,210,0.4), rgba(8,100,110,0.2))",
-                borderRadius: "2px 2px 50% 50%",
-              }}
-            />
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              top: "35px",
-              left: "15%",
-              animation: "rainDrop 1.2s linear infinite 0.05s",
-            }}
-          >
-            <div
-              style={{
-                width: "3px",
-                height: "21px",
-                background:
-                  "linear-gradient(180deg, rgba(180,200,210,0.6), rgba(8,100,110,0.4))",
-                borderRadius: "2px 2px 50% 50%",
-              }}
-            />
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              top: "12px",
-              left: "48%",
-              animation: "rainDrop 1.0s linear infinite 0.5s",
-            }}
-          >
-            <div
-              style={{
-                width: "2px",
-                height: "17px",
-                background:
-                  "linear-gradient(180deg, rgba(180,200,210,0.5), rgba(8,100,110,0.3))",
-                borderRadius: "2px 2px 50% 50%",
-              }}
-            />
-          </div>
+            >
+              <div
+                style={{
+                  width: `${d.w}px`,
+                  height: `${d.h}px`,
+                  background: `linear-gradient(180deg, rgba(180,200,210,${d.a}), rgba(8,100,110,${d.b}))`,
+                  borderRadius: "2px 2px 50% 50%",
+                }}
+              />
+            </div>
+          ))}
 
           {/* AVION QUI SURVOLE */}
           <div
             style={{
               position: "absolute",
               top: "25px",
-              left: "0",
+              left: 0,
               animation: "planeFly 12s linear infinite",
               zIndex: 3,
             }}
           >
-            <div
-              style={{ position: "relative", width: "60px", height: "20px" }}
-            >
+            <div style={{ position: "relative", width: "60px", height: "20px" }}>
               {/* Corps */}
               <div
                 style={{
@@ -445,7 +324,6 @@ const ChallengeCard: React.FC = () => {
                   height: "8px",
                   background: "linear-gradient(180deg, #cbd5e1, #94a3b8)",
                   clipPath: "polygon(0 100%, 50% 0, 100% 100%)",
-                  boxShadow: "0 1px 3px rgba(0,0,0,0.2)",
                 }}
               />
               {/* Aile droite */}
@@ -458,7 +336,6 @@ const ChallengeCard: React.FC = () => {
                   height: "8px",
                   background: "linear-gradient(0deg, #cbd5e1, #94a3b8)",
                   clipPath: "polygon(0 0, 50% 100%, 100% 0)",
-                  boxShadow: "0 1px 3px rgba(0,0,0,0.2)",
                 }}
               />
               {/* Queue */}
@@ -513,83 +390,43 @@ const ChallengeCard: React.FC = () => {
               zIndex: 4,
             }}
           >
-            <div
-              style={{ position: "relative", width: "44px", height: "44px" }}
-            >
-              {/* Bras du drone */}
-              <div
-                style={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%) rotate(0deg)",
-                  width: "40px",
-                  height: "3px",
-                  background: "#334155",
-                  borderRadius: "2px",
-                }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%) rotate(90deg)",
-                  width: "40px",
-                  height: "3px",
-                  background: "#334155",
-                  borderRadius: "2px",
-                }}
-              />
+            <div style={{ position: "relative", width: "44px", height: "44px" }}>
+              {/* Bras */}
+              {[0, 90].map((deg) => (
+                <div
+                  key={`arm-${deg}`}
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: `translate(-50%, -50%) rotate(${deg}deg)`,
+                    width: "40px",
+                    height: "3px",
+                    background: "#334155",
+                    borderRadius: "2px",
+                  }}
+                />
+              ))}
               {/* Hélices */}
-              <div
-                style={{
-                  position: "absolute",
-                  top: "2px",
-                  left: "2px",
-                  width: "10px",
-                  height: "3px",
-                  background: "#94a3b8",
-                  borderRadius: "2px",
-                  animation: "dronePropeller 0.08s linear infinite",
-                }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  top: "2px",
-                  right: "2px",
-                  width: "10px",
-                  height: "3px",
-                  background: "#94a3b8",
-                  borderRadius: "2px",
-                  animation: "dronePropeller 0.08s linear infinite 0.02s",
-                }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: "2px",
-                  left: "2px",
-                  width: "10px",
-                  height: "3px",
-                  background: "#94a3b8",
-                  borderRadius: "2px",
-                  animation: "dronePropeller 0.08s linear infinite 0.04s",
-                }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: "2px",
-                  right: "2px",
-                  width: "10px",
-                  height: "3px",
-                  background: "#94a3b8",
-                  borderRadius: "2px",
-                  animation: "dronePropeller 0.08s linear infinite 0.06s",
-                }}
-              />
+              {[
+                { pos: { top: "2px", left: "2px" }, delay: 0 },
+                { pos: { top: "2px", right: "2px" }, delay: 0.02 },
+                { pos: { bottom: "2px", left: "2px" }, delay: 0.04 },
+                { pos: { bottom: "2px", right: "2px" }, delay: 0.06 },
+              ].map((p, i) => (
+                <div
+                  key={`prop-${i}`}
+                  style={{
+                    position: "absolute",
+                    ...p.pos,
+                    width: "10px",
+                    height: "3px",
+                    background: "#94a3b8",
+                    borderRadius: "2px",
+                    animation: `dronePropeller 0.08s linear infinite ${p.delay}s`,
+                  }}
+                />
+              ))}
               {/* Corps central */}
               <div
                 style={{
@@ -605,7 +442,6 @@ const ChallengeCard: React.FC = () => {
                   boxShadow: "0 0 8px rgba(71,85,105,0.5)",
                 }}
               >
-                {/* LED centrale */}
                 <div
                   style={{
                     position: "absolute",
@@ -648,51 +484,20 @@ const ChallengeCard: React.FC = () => {
             preserveAspectRatio="none"
             style={{ position: "absolute", top: 0, left: 0, zIndex: 1 }}
           >
-            <path
-              d="M 50 220 L 80 180 L 70 150 L 100 120 L 90 80 L 130 40"
-              fill="none"
-              stroke="rgba(0,0,0,0.5)"
-              strokeWidth="2"
-              strokeDasharray="200"
-              strokeDashoffset="0"
-              style={{ animation: "crackAppear 3s ease-out infinite" }}
-            />
-            <path
-              d="M 80 180 L 110 190 L 140 170"
-              fill="none"
-              stroke="rgba(0,0,0,0.4)"
-              strokeWidth="1.5"
-              strokeDasharray="150"
-              strokeDashoffset="0"
-              style={{ animation: "crackAppear 3s ease-out infinite 0.5s" }}
-            />
-            <path
-              d="M 700 220 L 670 190 L 680 160 L 650 130 L 660 90 L 620 50"
-              fill="none"
-              stroke="rgba(0,0,0,0.45)"
-              strokeWidth="2"
-              strokeDasharray="200"
-              strokeDashoffset="0"
-              style={{ animation: "crackAppear 3.5s ease-out infinite 1s" }}
-            />
-            <path
-              d="M 670 190 L 640 200 L 610 185"
-              fill="none"
-              stroke="rgba(0,0,0,0.35)"
-              strokeWidth="1.5"
-              strokeDasharray="120"
-              strokeDashoffset="0"
-              style={{ animation: "crackAppear 3.5s ease-out infinite 1.3s" }}
-            />
-            <path
-              d="M 350 220 L 370 200 L 360 170 L 390 140 L 380 100"
-              fill="none"
-              stroke="rgba(0,0,0,0.3)"
-              strokeWidth="1.5"
-              strokeDasharray="180"
-              strokeDashoffset="0"
-              style={{ animation: "crackAppear 4s ease-out infinite 2s" }}
-            />
+            {CRACKS.map((c, i) => (
+              <path
+                key={`crack-${i}`}
+                d={c.d}
+                fill="none"
+                stroke={c.c}
+                strokeWidth={c.w}
+                strokeDasharray={c.len}
+                strokeDashoffset="0"
+                style={{
+                  animation: `crackAppear ${c.dur}s ease-out infinite ${c.delay}s`,
+                }}
+              />
+            ))}
           </svg>
 
           {/* Ondes sismiques */}
@@ -704,36 +509,23 @@ const ChallengeCard: React.FC = () => {
               transform: "translate(-50%, -50%)",
             }}
           >
-            <div
-              style={{
-                position: "absolute",
-                width: "40px",
-                height: "40px",
-                border: "2px solid rgba(233,69,96,0.4)",
-                borderRadius: "50%",
-                animation: "seismicWave 2s ease-out infinite",
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                width: "40px",
-                height: "40px",
-                border: "2px solid rgba(233,69,96,0.3)",
-                borderRadius: "50%",
-                animation: "seismicWave 2s ease-out infinite 0.6s",
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                width: "40px",
-                height: "40px",
-                border: "2px solid rgba(233,69,96,0.2)",
-                borderRadius: "50%",
-                animation: "seismicWave 2s ease-out infinite 1.2s",
-              }}
-            />
+            {[
+              { a: 0.4, delay: 0 },
+              { a: 0.3, delay: 0.6 },
+              { a: 0.2, delay: 1.2 },
+            ].map((w, i) => (
+              <div
+                key={`wave1-${i}`}
+                style={{
+                  position: "absolute",
+                  width: "40px",
+                  height: "40px",
+                  border: `2px solid rgba(233,69,96,${w.a})`,
+                  borderRadius: "50%",
+                  animation: `seismicWave 2s ease-out infinite ${w.delay}s`,
+                }}
+              />
+            ))}
           </div>
           <div
             style={{
@@ -743,26 +535,22 @@ const ChallengeCard: React.FC = () => {
               transform: "translate(-50%, -50%)",
             }}
           >
-            <div
-              style={{
-                position: "absolute",
-                width: "30px",
-                height: "30px",
-                border: "2px solid rgba(233,69,96,0.35)",
-                borderRadius: "50%",
-                animation: "seismicWave 2.5s ease-out infinite 0.3s",
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                width: "30px",
-                height: "30px",
-                border: "2px solid rgba(233,69,96,0.25)",
-                borderRadius: "50%",
-                animation: "seismicWave 2.5s ease-out infinite 0.9s",
-              }}
-            />
+            {[
+              { a: 0.35, delay: 0.3 },
+              { a: 0.25, delay: 0.9 },
+            ].map((w, i) => (
+              <div
+                key={`wave2-${i}`}
+                style={{
+                  position: "absolute",
+                  width: "30px",
+                  height: "30px",
+                  border: `2px solid rgba(233,69,96,${w.a})`,
+                  borderRadius: "50%",
+                  animation: `seismicWave 2.5s ease-out infinite ${w.delay}s`,
+                }}
+              />
+            ))}
           </div>
 
           {/* Bâtiment central avec séisme */}
@@ -778,9 +566,7 @@ const ChallengeCard: React.FC = () => {
               zIndex: 2,
             }}
           >
-            <div
-              style={{ position: "relative", width: "100%", height: "100%" }}
-            >
+            <div style={{ position: "relative", width: "100%", height: "100%" }}>
               <div
                 style={{
                   position: "absolute",
@@ -789,57 +575,31 @@ const ChallengeCard: React.FC = () => {
                   transform: "translateX(-50%)",
                   width: "50px",
                   height: "70px",
-                  background:
-                    "linear-gradient(180deg, #2d3436 0%, #1a1a2e 100%)",
+                  background: "linear-gradient(180deg, #2d3436 0%, #1a1a2e 100%)",
                   borderRadius: "2px",
                   border: "1px solid rgba(233,69,96,0.3)",
                 }}
               >
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "10px",
-                    left: "8px",
-                    width: "10px",
-                    height: "12px",
-                    background: "rgba(255,200,50,0.6)",
-                    borderRadius: "1px",
-                    boxShadow: "0 0 6px rgba(255,200,50,0.4)",
-                  }}
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "10px",
-                    right: "8px",
-                    width: "10px",
-                    height: "12px",
-                    background: "rgba(255,200,50,0.4)",
-                    borderRadius: "1px",
-                  }}
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "30px",
-                    left: "8px",
-                    width: "10px",
-                    height: "12px",
-                    background: "rgba(255,200,50,0.5)",
-                    borderRadius: "1px",
-                  }}
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "30px",
-                    right: "8px",
-                    width: "10px",
-                    height: "12px",
-                    background: "rgba(255,200,50,0.3)",
-                    borderRadius: "1px",
-                  }}
-                />
+                {[
+                  { top: 10, side: "left", a: 0.6, glow: true },
+                  { top: 10, side: "right", a: 0.4, glow: false },
+                  { top: 30, side: "left", a: 0.5, glow: false },
+                  { top: 30, side: "right", a: 0.3, glow: false },
+                ].map((w, i) => (
+                  <div
+                    key={`win-${i}`}
+                    style={{
+                      position: "absolute",
+                      top: `${w.top}px`,
+                      [w.side]: "8px",
+                      width: "10px",
+                      height: "12px",
+                      background: `rgba(255,200,50,${w.a})`,
+                      borderRadius: "1px",
+                      boxShadow: w.glow ? "0 0 6px rgba(255,200,50,0.4)" : undefined,
+                    }}
+                  />
+                ))}
                 <div
                   style={{
                     position: "absolute",
@@ -854,19 +614,21 @@ const ChallengeCard: React.FC = () => {
                   }}
                 />
               </div>
+              {/* Toit */}
               <div
                 style={{
                   position: "absolute",
                   top: 0,
                   left: "50%",
                   transform: "translateX(-50%)",
-                  width: "0",
-                  height: "0",
+                  width: 0,
+                  height: 0,
                   borderLeft: "28px solid transparent",
                   borderRight: "28px solid transparent",
                   borderBottom: "18px solid #e94560",
                 }}
               />
+              {/* Antenne */}
               <div
                 style={{
                   position: "absolute",
@@ -929,75 +691,26 @@ const ChallengeCard: React.FC = () => {
           </div>
 
           {/* Débris qui tombent */}
-          <div
-            style={{
-              position: "absolute",
-              top: "20px",
-              left: "35%",
-              animation: "debrisFall 3s linear infinite",
-            }}
-          >
+          {DEBRIS.map((d, i) => (
             <div
+              key={`debris-${i}`}
               style={{
-                width: "8px",
-                height: "8px",
-                background: "#5c5c5c",
-                borderRadius: "1px",
-                boxShadow: "0 0 4px rgba(0,0,0,0.5)",
+                position: "absolute",
+                top: `${d.top}px`,
+                left: `${d.left}%`,
+                animation: `debrisFall ${d.dur}s linear infinite ${d.delay}s`,
               }}
-            />
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              top: "10px",
-              left: "62%",
-              animation: "debrisFall 2.5s linear infinite 0.7s",
-            }}
-          >
-            <div
-              style={{
-                width: "6px",
-                height: "10px",
-                background: "#4a4a4a",
-                borderRadius: "1px",
-              }}
-            />
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              top: "30px",
-              left: "48%",
-              animation: "debrisFall 3.5s linear infinite 1.2s",
-            }}
-          >
-            <div
-              style={{
-                width: "10px",
-                height: "6px",
-                background: "#6b6b6b",
-                borderRadius: "1px",
-              }}
-            />
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              top: "15px",
-              left: "78%",
-              animation: "debrisFall 2.8s linear infinite 0.4s",
-            }}
-          >
-            <div
-              style={{
-                width: "5px",
-                height: "5px",
-                background: "#555",
-                borderRadius: "50%",
-              }}
-            />
-          </div>
+            >
+              <div
+                style={{
+                  width: `${d.w}px`,
+                  height: `${d.h}px`,
+                  background: d.bg,
+                  borderRadius: d.r,
+                }}
+              />
+            </div>
+          ))}
 
           {/* Badge */}
           <div
@@ -1035,27 +748,26 @@ const ChallengeCard: React.FC = () => {
             <div className="row align-items-center">
               {/* Texte à gauche */}
               <div className="col-lg-8 col-md-7">
-                <ul
+                <p
                   style={{
                     color: "#4a5568",
                     fontSize: "14px",
                     lineHeight: 1.8,
                     margin: 0,
-                    paddingLeft: "18px",
                   }}
                 >
                   Les Ateliers Novices sont conçus pour les jeunes débutants en
-                  aéronautique, âgés de 6 à 17 ans. Au programme: Défis en
-                  aéromodélisme, Aero Entrepreneure Junior et CAO — des
+                  aéronautique, âgés de 6 à 17 ans. Au programme : défis en
+                  aéromodélisme, Aero Entrepreneur Junior et CAO — des
                   activités adaptées à chaque âge pour apprendre, imaginer et
-                  s'envoler vers l'innovation!
-                </ul>
+                  s'envoler vers l'innovation !
+                </p>
               </div>
 
               {/* Image à droite */}
               <div className="col-lg-4 col-md-5 text-center">
                 <img
-                  src={aeroIMG}
+                  src={imgSrc}
                   alt="AéroChallenge"
                   className="img-fluid rounded"
                   style={{ maxHeight: "200px", objectFit: "cover" }}
@@ -1075,29 +787,10 @@ const ChallengeCard: React.FC = () => {
             }}
           >
             <button
-              onClick={handleInscriptionClick}
-              style={{
-                background: "#e94560",
-                color: "#FFFFFF",
-                border: "none",
-                padding: "14px 28px",
-                borderRadius: "10px",
-                fontSize: "14px",
-                fontWeight: 700,
-                cursor: "pointer",
-                transition: "all 0.2s",
-                boxShadow: "0 4px 16px rgba(233,69,96,0.3)",
-              }}
-              onMouseEnter={(e) => {
-                (e.target as HTMLButtonElement).style.background = "#d63a54";
-                (e.target as HTMLButtonElement).style.transform =
-                  "translateY(-2px)";
-              }}
-              onMouseLeave={(e) => {
-                (e.target as HTMLButtonElement).style.background = "#e94560";
-                (e.target as HTMLButtonElement).style.transform =
-                  "translateY(0)";
-              }}
+              onClick={() => window.open("https://docs.google.com/forms/u/1/d/e/1FAIpQLSc83r8F0J4LcxbRhm6hYJvzTCmAZ9jQvEuP78_ZrdTGPuPhxw/viewform")}
+              style={redButtonStyle}
+              onMouseEnter={redHoverIn}
+              onMouseLeave={redHoverOut}
             >
               📝 S'inscrire au challenge
             </button>
@@ -1115,13 +808,12 @@ const ChallengeCard: React.FC = () => {
                 transition: "all 0.2s",
               }}
               onMouseEnter={(e) => {
-                (e.target as HTMLButtonElement).style.background = "#1a1a2e";
-                (e.target as HTMLButtonElement).style.color = "#FFFFFF";
+                e.currentTarget.style.background = "#1a1a2e";
+                e.currentTarget.style.color = "#FFFFFF";
               }}
               onMouseLeave={(e) => {
-                (e.target as HTMLButtonElement).style.background =
-                  "transparent";
-                (e.target as HTMLButtonElement).style.color = "#1a1a2e";
+                e.currentTarget.style.background = "transparent";
+                e.currentTarget.style.color = "#1a1a2e";
               }}
             >
               📄 Cahier des charges
@@ -1130,131 +822,67 @@ const ChallengeCard: React.FC = () => {
         </div>
       </div>
 
-      {/* ========== MODALE INSCRIPTION ========== */}
-      {showModal && (
-        <>
-          <div
-            className="position-fixed top-0 start-0 w-100 h-100"
-            style={{
-              background: "rgba(0, 0, 0, 0.5)",
-              zIndex: 1040,
-              backdropFilter: "blur(4px)",
-            }}
-            onClick={handleCloseModal}
-          />
-          <div
-            className="position-fixed top-50 start-50 translate-middle"
-            style={{
-              zIndex: 1050,
-              width: "100%",
-              maxWidth: "450px",
-              animation: "modalFadeIn 0.3s ease-out",
-            }}
-          >
-            <div className="bg-white rounded-4 shadow-lg p-4 p-md-5">
-              <div className="text-center mb-4">
-                <div
-                  className="d-inline-flex align-items-center justify-content-center rounded-circle"
-                  style={{
-                    width: "70px",
-                    height: "70px",
-                    background: "#fce4ec",
-                  }}
-                >
-                  <span style={{ fontSize: "35px" }}>🚫</span>
-                </div>
-              </div>
-              <h4
-                className="text-center mb-3"
-                style={{ color: "#1a1a2e", fontWeight: 700 }}
-              >
-                Inscription non disponible
-              </h4>
-              <p
-                className="text-center mb-4"
-                style={{ color: "#4a5568", fontSize: "15px", lineHeight: 1.6 }}
-              >
-                Les inscriptions pour ce challenge ne sont pas encore ouvertes.
-                <br />
-                Veuillez revenir ultérieurement.
-              </p>
-              <div className="d-grid">
-                <button
-                  className="btn text-white border-0 py-3"
-                  onClick={handleCloseModal}
-                  style={{
-                    background: "#e94560",
-                    borderRadius: "10px",
-                    fontSize: "16px",
-                    fontWeight: 700,
-                    transition: "all 0.2s",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.target as HTMLButtonElement).style.background =
-                      "#d63a54";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.target as HTMLButtonElement).style.background =
-                      "#e94560";
-                  }}
-                >
-                  OK
-                </button>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
+      
 
       {/* ========== MODALE CAHIER DES CHARGES ========== */}
       {showCahierModal && (
-        <>
+        <div
+          className="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center p-3"
+          style={{
+            background: "rgba(0, 0, 0, 0.5)",
+            zIndex: 1050,
+            backdropFilter: "blur(4px)",
+          }}
+          onClick={handleCloseCahierModal}
+        >
           <div
-            className="position-fixed top-0 start-0 w-100 h-100"
+            className="challenge-modal bg-white rounded-4 shadow-lg p-4 p-md-5"
             style={{
-              background: "rgba(0, 0, 0, 0.5)",
-              zIndex: 1040,
-              backdropFilter: "blur(4px)",
-            }}
-            onClick={handleCloseCahierModal}
-          />
-          <div
-            className="position-fixed top-50 start-50 translate-middle"
-            style={{
-              zIndex: 1050,
               width: "100%",
               maxWidth: "450px",
               animation: "modalFadeIn 0.3s ease-out",
             }}
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
           >
-            <div className="bg-white rounded-4 shadow-lg p-4 p-md-5">
-              <div className="text-center mb-4">
-                <div
-                  className="d-inline-flex align-items-center justify-content-center rounded-circle"
-                  style={{
-                    width: "70px",
-                    height: "70px",
-                    background: "#e3f2fd",
-                  }}
-                >
-                  <span style={{ fontSize: "35px" }}>📄</span>
-                </div>
+            <div className="text-center mb-4">
+              <div
+                className="d-inline-flex align-items-center justify-content-center rounded-circle"
+                style={{ width: "70px", height: "70px", background: "#e3f2fd" }}
+              >
+                <span style={{ fontSize: "35px" }}>📄</span>
               </div>
-              <h4
-                className="text-center mb-3"
-                style={{ color: "#1a1a2e", fontWeight: 700 }}
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+              <button
+                onClick={() => window.open(CAHIER_AERO_URL, "_blank", "noopener,noreferrer")}
+                style={redButtonStyle}
+                onMouseEnter={redHoverIn}
+                onMouseLeave={redHoverOut}
               >
-                Cahier des charges indisponible
-              </h4>
-              <p
-                className="text-center mb-4"
-                style={{ color: "#4a5568", fontSize: "15px", lineHeight: 1.6 }}
+                Cahier des charges aéromodélisme junior
+              </button>
+
+              <button
+                onClick={() => window.open(CAHIER_CAO_URL, "_blank", "noopener,noreferrer")}
+                style={redButtonStyle}
+                onMouseEnter={redHoverIn}
+                onMouseLeave={redHoverOut}
               >
-                Le cahier des charges pour ce challenge n'est pas encore
-                disponible.
-                <br />
-                Veuillez revenir ultérieurement.
-              </p>
+                Cahier des charges CAO junior
+              </button>
+
+              <button
+                onClick={() => window.open("https://drive.google.com/file/d/15mJalaRy8qAzk--B78FkCfAo58t5F1q-/view?fbclid=IwY2xjawVKzu9leHRuA2FlbQIxMABwZG9mBWJyaWQRMTEzYWFlVG9ocHpFd1VibmtzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeG23ytltrkejIsWNw8Gj67eKIQ92s27hcmK-T0XWSp87HTy5DIqrg7pFVEYM_aem_Z7jevqHUPJqzkyRnvMyjaw")}
+                style={redButtonStyle}
+                onMouseEnter={redHoverIn}
+                onMouseLeave={redHoverOut}
+              >
+                Cahier des charges aeroentrepreneur junior 
+              </button>
+
               <div className="d-grid">
                 <button
                   className="btn text-white border-0 py-3"
@@ -1267,12 +895,10 @@ const ChallengeCard: React.FC = () => {
                     transition: "all 0.2s",
                   }}
                   onMouseEnter={(e) => {
-                    (e.target as HTMLButtonElement).style.background =
-                      "#0a284a";
+                    e.currentTarget.style.background = "#0a284a";
                   }}
                   onMouseLeave={(e) => {
-                    (e.target as HTMLButtonElement).style.background =
-                      "#0f3460";
+                    e.currentTarget.style.background = "#0f3460";
                   }}
                 >
                   OK
@@ -1280,7 +906,7 @@ const ChallengeCard: React.FC = () => {
               </div>
             </div>
           </div>
-        </>
+        </div>
       )}
     </>
   );

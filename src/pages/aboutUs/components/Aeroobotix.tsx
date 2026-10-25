@@ -7,7 +7,7 @@ function Aerobotix() {
       <div className="container-fluid">
         <div className="row align-items-center g-5 mb-5">
           {/* Colonne texte */}
-          <div className="col-12 col-lg-6">
+          <div className="col-12 col-lg-6 ">
             <h2 className="about-title mb-3">AEROBOTIX-INSAT</h2>
             <p className="about-text mb-4">
               <p className="about-text mb-4">
@@ -27,8 +27,8 @@ function Aerobotix() {
           </div>
 
           {/* Colonne image */}
-          <div className="col-13 col-lg-6 ">
-            <img src={AEROBOTIX} className="about-img w-100" />
+          <div className="col-13 col-lg-6 d-flex">
+            <img src={AEROBOTIX} className="about-img w-100 h-100 " />
           </div>
         </div>
       </div>

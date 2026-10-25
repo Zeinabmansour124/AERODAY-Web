@@ -244,7 +244,7 @@ const SBChallenge: React.FC<SBChallengeProps> = ({
               <h3 style={{ fontSize: '16px' }}>{member.name}</h3>
 
               <p className="role">
-                {index === 0 ? 'Responsable du challenge' : 'Co-responsable du challenge'}
+                {index === 0 ? 'Responsable du challenge' : 'responsable du challenge'}
               </p>
 
               <p className="bio" style={{ fontSize: '12px', marginBottom: '16px' }}>

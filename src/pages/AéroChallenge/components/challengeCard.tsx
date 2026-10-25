@@ -151,14 +151,14 @@ const ChallengeCard: React.FC = () => {
             <div className="d-flex flex-wrap gap-3 justify-content-center">
               <button 
                 className="btn-primary"
-                onClick={handleInscriptionClick}
+                onClick={() => window.open("https://docs.google.com/forms/d/e/1FAIpQLScID-lxUBw9JtXSLf8Xrm_jED1dIiNI632xt4v2xM6069iYFQ/viewform")}
               >
                 <ClipboardCheck size={16} className="icon-inline" />
                 S'inscrire au challenge
               </button>
               <button 
                 className="btn-secondary"
-                onClick={handleCahierClick}
+                onClick={() =>window.open('https://drive.google.com/file/d/18HEYafnORJTflmG7xOjqMt8fEUVezGGI/view?fbclid=IwY2xjawVK9ohleHRuA2FlbQIxMABwZG9mBWJyaWQRMWNaSFl2OEtuVm1JZld2Zk1zcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeIkGZLA__i3NGBg7QlB03FZVJe09I3y2HPHQAas7oZoBqPtlkVrQZNfXD1s4_aem_KSrLlKNg15n7Xa1Gl3-3Sw')} 
               >
                 <FileText size={16} className="icon-inline" />
                 cahier des charges
@@ -168,154 +168,7 @@ const ChallengeCard: React.FC = () => {
         </div>
       </div>
 
-      {/* ========== MODALE INSCRIPTION ========== */}
-      {showModal && (
-        <>
-          <div
-            className="position-fixed top-0 start-0 w-100 h-100"
-            style={{
-              background: "rgba(0, 0, 0, 0.5)",
-              zIndex: 1040,
-              backdropFilter: "blur(4px)",
-            }}
-            onClick={handleCloseModal}
-          />
-          <div
-            className="position-fixed top-50 start-50 translate-middle"
-            style={{
-              zIndex: 1050,
-              width: "100%",
-              maxWidth: "450px",
-              animation: "modalFadeIn 0.3s ease-out",
-            }}
-          >
-            <div className="bg-white rounded-4 shadow-lg p-4 p-md-5">
-              <div className="text-center mb-4">
-                <div
-                  className="d-inline-flex align-items-center justify-content-center rounded-circle"
-                  style={{
-                    width: "70px",
-                    height: "70px",
-                    background: "#fce4ec",
-                  }}
-                >
-                  <span style={{ fontSize: "35px" }}>🚫</span>
-                </div>
-              </div>
-              <h4
-                className="text-center mb-3"
-                style={{ color: "#1a1a2e", fontWeight: 700 }}
-              >
-                Inscription non disponible
-              </h4>
-              <p
-                className="text-center mb-4"
-                style={{ color: "#4a5568", fontSize: "15px", lineHeight: 1.6 }}
-              >
-                Les inscriptions pour ce challenge ne sont pas encore ouvertes.
-                <br />
-                Veuillez revenir ultérieurement.
-              </p>
-              <div className="d-grid">
-                <button
-                  className="btn text-white border-0 py-3"
-                  onClick={handleCloseModal}
-                  style={{
-                    background: "#FF5A1F",
-                    borderRadius: "10px",
-                    fontSize: "16px",
-                    fontWeight: 700,
-                    transition: "all 0.2s",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.target as HTMLButtonElement).style.background = "#e04e17";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.target as HTMLButtonElement).style.background = "#FF5A1F";
-                  }}
-                >
-                  OK
-                </button>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
-
-      {/* ========== MODALE CAHIER DES CHARGES ========== */}
-      {showCahierModal && (
-        <>
-          <div
-            className="position-fixed top-0 start-0 w-100 h-100"
-            style={{
-              background: "rgba(0, 0, 0, 0.5)",
-              zIndex: 1040,
-              backdropFilter: "blur(4px)",
-            }}
-            onClick={handleCloseCahierModal}
-          />
-          <div
-            className="position-fixed top-50 start-50 translate-middle"
-            style={{
-              zIndex: 1050,
-              width: "100%",
-              maxWidth: "450px",
-              animation: "modalFadeIn 0.3s ease-out",
-            }}
-          >
-            <div className="bg-white rounded-4 shadow-lg p-4 p-md-5">
-              <div className="text-center mb-4">
-                <div
-                  className="d-inline-flex align-items-center justify-content-center rounded-circle"
-                  style={{
-                    width: "70px",
-                    height: "70px",
-                    background: "#e3f2fd",
-                  }}
-                >
-                  <span style={{ fontSize: "35px" }}>📄</span>
-                </div>
-              </div>
-              <h4
-                className="text-center mb-3"
-                style={{ color: "#1a1a2e", fontWeight: 700 }}
-              >
-                Cahier des charges indisponible
-              </h4>
-              <p
-                className="text-center mb-4"
-                style={{ color: "#4a5568", fontSize: "15px", lineHeight: 1.6 }}
-              >
-                Le cahier des charges pour ce challenge n'est pas encore disponible.
-                <br />
-                Veuillez revenir ultérieurement.
-              </p>
-              <div className="d-grid">
-                <button
-                  className="btn text-white border-0 py-3"
-                  onClick={handleCloseCahierModal}
-                  style={{
-                    background: "#0f3460",
-                    borderRadius: "10px",
-                    fontSize: "16px",
-                    fontWeight: 700,
-                    transition: "all 0.2s",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.target as HTMLButtonElement).style.background = "#0a284a";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.target as HTMLButtonElement).style.background = "#0f3460";
-                  }}
-                >
-                  OK
-                </button>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
-
+      
       {/* Styles pour l'animation de la modale */}
       <style>{`
         @keyframes modalFadeIn {

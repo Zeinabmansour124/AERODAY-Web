@@ -656,7 +656,7 @@ const ChallengeCard: React.FC = () => {
             }}
           >
             <button
-              onClick={handleInscriptionClick}
+              onClick={() => window.open("https://docs.google.com/forms/u/1/d/e/1FAIpQLSdoSbpH66Ei4pQgotiuwla8rqElW2Ei_8Pl_MIqFfe9QPvJ_A/viewform?usp=dialog")}
               onMouseEnter={() => setIsRegisterHovered(true)}
               onMouseLeave={() => setIsRegisterHovered(false)}
               style={{
@@ -683,7 +683,7 @@ const ChallengeCard: React.FC = () => {
             </button>
 
             <button
-              onClick={handleCahierClick}
+              onClick={()=>window.open("https://drive.google.com/file/u/1/d/1NE73a-7yUeg1G9aD-oL5f1GS96pmXe6l/view?usp=drive_link&fbclid=IwY2xjawVKzf1leHRuA2FlbQIxMABwZG9mBWJyaWQRMTEzYWFlVG9ocHpFd1VibmtzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeaamSFBvBbKhTVM9e9MgQvEZThd1lZ8HdeG0VnoAuOeMwQhVmQhNwzDRXkE4_aem_4DeLMWy3g5hgjDFYYiHswg")}
               onMouseEnter={() => setIsCahierHovered(true)}
               onMouseLeave={() => setIsCahierHovered(false)}
               style={{
@@ -712,154 +712,8 @@ const ChallengeCard: React.FC = () => {
         </div>
       </div>
 
-      {/* ========== MODALE INSCRIPTION ========== */}
-      {showModal && (
-        <>
-          <div
-            className="position-fixed top-0 start-0 w-100 h-100"
-            style={{
-              background: "rgba(0, 0, 0, 0.5)",
-              zIndex: 1040,
-              backdropFilter: "blur(4px)",
-            }}
-            onClick={handleCloseModal}
-          />
-          <div
-            className="position-fixed top-50 start-50 translate-middle"
-            style={{
-              zIndex: 1050,
-              width: "100%",
-              maxWidth: "450px",
-              animation: "modalFadeIn 0.3s ease-out",
-            }}
-          >
-            <div className="bg-white rounded-4 shadow-lg p-4 p-md-5">
-              <div className="text-center mb-4">
-                <div
-                  className="d-inline-flex align-items-center justify-content-center rounded-circle"
-                  style={{
-                    width: "70px",
-                    height: "70px",
-                    background: "#FFF3E0",
-                  }}
-                >
-                  <span style={{ fontSize: "35px" }}>🚫</span>
-                </div>
-              </div>
-              <h4
-                className="text-center mb-3"
-                style={{ color: "#0B3954", fontWeight: 700 }}
-              >
-                Inscription non disponible
-              </h4>
-              <p
-                className="text-center mb-4"
-                style={{ color: "#5C6B73", fontSize: "15px", lineHeight: 1.6 }}
-              >
-                Les inscriptions pour ce challenge ne sont pas encore ouvertes.
-                <br />
-                Veuillez revenir ultérieurement.
-              </p>
-              <div className="d-grid">
-                <button
-                  className="btn text-white border-0 py-3"
-                  onClick={handleCloseModal}
-                  style={{
-                    background: "#FF9F1C",
-                    borderRadius: "10px",
-                    fontSize: "16px",
-                    fontWeight: 700,
-                    transition: "all 0.2s",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.target as HTMLButtonElement).style.background = "#e68a00";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.target as HTMLButtonElement).style.background = "#FF9F1C";
-                  }}
-                >
-                  OK
-                </button>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
-
-      {/* ========== MODALE CAHIER DES CHARGES ========== */}
-      {showCahierModal && (
-        <>
-          <div
-            className="position-fixed top-0 start-0 w-100 h-100"
-            style={{
-              background: "rgba(0, 0, 0, 0.5)",
-              zIndex: 1040,
-              backdropFilter: "blur(4px)",
-            }}
-            onClick={handleCloseCahierModal}
-          />
-          <div
-            className="position-fixed top-50 start-50 translate-middle"
-            style={{
-              zIndex: 1050,
-              width: "100%",
-              maxWidth: "450px",
-              animation: "modalFadeIn 0.3s ease-out",
-            }}
-          >
-            <div className="bg-white rounded-4 shadow-lg p-4 p-md-5">
-              <div className="text-center mb-4">
-                <div
-                  className="d-inline-flex align-items-center justify-content-center rounded-circle"
-                  style={{
-                    width: "70px",
-                    height: "70px",
-                    background: "#E3F2FD",
-                  }}
-                >
-                  <span style={{ fontSize: "35px" }}>📄</span>
-                </div>
-              </div>
-              <h4
-                className="text-center mb-3"
-                style={{ color: "#0B3954", fontWeight: 700 }}
-              >
-                Cahier des charges indisponible
-              </h4>
-              <p
-                className="text-center mb-4"
-                style={{ color: "#5C6B73", fontSize: "15px", lineHeight: 1.6 }}
-              >
-                Le cahier des charges pour ce challenge n'est pas encore
-                disponible.
-                <br />
-                Veuillez revenir ultérieurement.
-              </p>
-              <div className="d-grid">
-                <button
-                  className="btn text-white border-0 py-3"
-                  onClick={handleCloseCahierModal}
-                  style={{
-                    background: "#087E8B",
-                    borderRadius: "10px",
-                    fontSize: "16px",
-                    fontWeight: 700,
-                    transition: "all 0.2s",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.target as HTMLButtonElement).style.background = "#0a5c66";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.target as HTMLButtonElement).style.background = "#087E8B";
-                  }}
-                >
-                  OK
-                </button>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
+      
+      
     </>
   );
 };

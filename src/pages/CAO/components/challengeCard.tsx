@@ -493,7 +493,7 @@ const CAODisasterChallengeCard: React.FC = () => {
             marginTop: 'auto', // Pousse les boutons vers le bas si la carte est plus grande
           }}>
             <button
-              onClick={handleInscriptionClick}
+              onClick={()=>window.open('https://docs.google.com/forms/d/e/1FAIpQLSfQOooNaSMc4f73aW7r9jzAL_Tz2OEjB1oPPQTFI3CVuLOycA/viewform')}
               style={{
                 background: '#FF4D00',
                 color: '#FFFFFF',
@@ -525,7 +525,7 @@ const CAODisasterChallengeCard: React.FC = () => {
               S'inscrire au Challenge
             </button>
             <button
-              onClick={handleCahierClick}
+              onClick={()=>window.open('https://drive.google.com/file/u/1/d/1JyWzOAVLKIt7ejRJf0tC8ieSadTbyiiX/view?usp=drivesdk&fbclid=IwY2xjawU3hctleHRuA2FlbQIxMABwZG9mBWJyaWQRMXhsRXlRZWNwTHkxdFVlandzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeeYjIvex-yH81VVdDqdy1kHdSlOjoE7_FeQWqUE21u2E8V99Dr9ed9QOhPz8_aem_n0vYnfUp9OiAXc2CzCzlBQ')}
               style={{
                 background: 'transparent',
                 color: '#0F172A',
@@ -564,9 +564,7 @@ const CAODisasterChallengeCard: React.FC = () => {
         </div>
       </div>
 
-      {/* Modales */}
-      {showModal && <InscriptionModal onClose={handleCloseModal} />}
-      {showCahierModal && <CahierModal onClose={handleCloseCahierModal} />}
+      
 
       <style>{`
         @keyframes modalFadeIn {
