@@ -41,7 +41,7 @@ function Footer() {
 
           <div className="col-6 col-md-3">
             <p className="footer-heading small fw-medium mb-2">Contact</p>
-            <a href="mailto:contact@aeroday.tn" className="footer-link d-block small">contact@aeroday.tn</a>
+            <a href="mailto:contact@tunisianaeroday.tn" className="footer-link d-block small">contact@tunisianaeroday.tn</a>
           </div>
 
         </div>
