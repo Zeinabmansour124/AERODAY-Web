@@ -87,11 +87,8 @@ const GROUND_DATA: G[] = [
   ["serv", "Entrée de service", "مدخل الخدمات", 30, 168, 30, 20, GRAY, "ES", "Entrées"],
   ["inno", "Centre d’innovation", "مركز الابتكار", 190, 205, 165, 40, GRAY, "OC", "Administration"],
   ["maint", "Maintenance", "الصيانة", 55, 245, 130, 32, GRAY, "M", "Administration"],
-  ["sec", "Secrétariat général", "الكتابة العامة", 215, 262, 95, 24, BRICK_LIGHT, "OS", "Administration"],
-  ["adm", "Administration", "الإدارة", 235, 325, 80, 24, BRICK_LIGHT, "OA", "Administration"],
-  ["scol", "Service de scolarité", "مصلحة شؤون الطلبة", 255, 388, 100, 24, BRICK_LIGHT, "O1", "Administration"],
   ["hall", "Hall", "البهو", 275, 412, 200, 100, "#4a5461", "HC", "Études"],
-  ["dir", "Direction des études et stages", "مصالح الدراسات", 285, 416, 100, 34, BRICK, "HC", "Administration"],
+  ["dir", "accés administration", "", 285, 416, 100, 34, BRICK, "HC", "Administration"],
   ["acc", "Accueil / Forum", "الاستقبال", 285, 453, 100, 14, BRICK, "F", "Administration"],
   ["aud", "Auditorium", "القاعة الكبرى", 392, 418, 70, 70, BRICK, "AU", "Études"],
   ["bib", "Bibliothèque", "المكتبة", 282, 515, 95, 40, BRICK, "G", "Études"],
@@ -101,32 +98,46 @@ const GROUND_DATA: G[] = [
   ["ing", "Ingénierat et recherche", "الهندسة والبحث", 100, 432, 170, 58, GRAY, "H", "Études"],
   ["labg", "Laboratoires (ouest)", "المخابر", 76, 508, 192, 44, BLUE, "H", "Laboratoires"],
   ["cyc", "Formation de premier cycle", "دراسات المرحلة الأولى", 477, 440, 378, 58, BLUE, "D", "Études"],
-  ["amph", "Amphithéâtres", "المدرجات", 473, 522, 125, 38, BLUE, "D", "Études"],
-  ["td", "Salles de travaux dirigés", "الدروس الموجهة", 598, 522, 118, 38, BLUE, "C", "Études"],
+  ["amph", "Amphithéâtres", "المدرجات", 473, 533, 270, 38, BLUE, "D", "Études"],
   ["labd", "Laboratoires (est)", "المخابر", 750, 533, 88, 36, BLUE, "B", "Laboratoires"],
 ];
 
 // [id, nom, précision, x, y, w, h, couleur, nœud, étiquette]
 type U = [string, string, string, number, number, number, number, string, string, string];
-const UPPER_DATA: U[] = [
-  ["f1td", "Salles TD 101 à 173", "Amphithéâtres + salles de TD", 473, 522, 243, 38, BLUE_UPPER, "D", "Salles TD 101–173"],
-  ["f1tp", "Salles TP", "Formation de premier cycle", 477, 440, 378, 58, BLUE_UPPER, "D", "Salles TP"],
-  ["f1bib", "Bibliothèque", "", 282, 515, 95, 40, BRICK, "G", "Bibliothèque"],
+const UPPER2_DATA: U[] = [
+  ["f1td", "Salles TD 101 à 173", "Amphithéâtres + salles de TD", 473, 522, 382, 38, BLUE_UPPER, "D", "Salles TD 101–173"],
+  ["f1tp", "Salles de travaux pratiques", "", 477, 440, 378, 58, BLUE_UPPER, "D", "Salles de travaux pratiques"],
+  ["f1bib", "Bibliothèque", "", 282, 538, 95, 40, BRICK, "G", "Bibliothèque"],
   ["f1prof", "Départements des professeurs", "Ingénierat et recherche", 100, 432, 170, 58, BLUE_UPPER, "H", "Départements profs"],
   ["f1labg", "Salles TP et mousalla", "Laboratoires ouest", 76, 508, 192, 44, BLUE_UPPER, "H", "TP · Mousalla"],
-  ["f1labd", "Salles TP et mousalla", "Laboratoires est", 750, 533, 88, 36, BLUE_UPPER, "B", "TP · Mousalla"],
-  ["f1sec", "Secrétariat général", "Bureaux administratifs", 215, 262, 95, 24, BRICK_LIGHT, "OS", "Administration"],
-  ["f1adm", "Administration", "Bureaux administratifs", 235, 325, 80, 24, BRICK_LIGHT, "OA", "Administration"],
-  ["f1scol", "Service de scolarité", "Bureaux administratifs", 255, 388, 100, 24, BRICK_LIGHT, "O1", "Administration"],
+  ["f1sec", "Service et scolarité", "Secrétariat général", 215, 262, 95, 24, BRICK_LIGHT, "OS", "Service et scolarité"],
+  ["conf", "Salles de conférences", "قاعات المحاضرات", 378, 515, 82, 40, BRICK, "E", "Salles de conférences"],
+  ["f1adm", "Service et scolarité", "Administration", 235, 325, 80, 24, BRICK_LIGHT, "OA", "Service et scolarité"],
+  ["f1scol", "Service et scolarité", "Scolarité", 255, 388, 100, 24, BRICK_LIGHT, "O1", "Service et scolarité"],
   ["f1dir", "Direction des études et stages", "Bureaux administratifs", 285, 416, 100, 34, BRICK, "HC", "Administration"],
+  ["f1aud", "Accès auditorium", "Hall", 392, 418, 70, 70, BRICK, "AU", "Accès auditorium"],
+];
+
+const UPPER3_DATA: U[] = [
+  ["f3td", "Salles TD 201 à 247", "Amphithéâtres + salles de TD", 473, 522, 382, 38, BLUE_UPPER, "D", "Salles TD 201–247"],
+  ["f3tp", "Salles TP", "Formation de premier cycle", 477, 440, 378, 58, BLUE_UPPER, "D", "Salles TP"],
+  ["f3bib", "Bibliothèque", "", 282, 538, 95, 40, BRICK, "G", "Bibliothèque"],
+  ["f3lec", "Salle de lecture", "", 378, 515, 82, 40, BRICK, "E", "Salle de lecture"],
+  ["f3labg", "Salles de travaux pratiques", "Laboratoires ouest", 76, 508, 192, 44, BLUE_UPPER, "H", "Salles de travaux pratiques"],
+  ["f3sec", "Secrétariat général", "", 215, 262, 95, 24, BRICK_LIGHT, "OS", "Secrétariat général"],
+  ["f3adm", "Direction des études et stages", "Partie 1", 235, 325, 80, 24, BRICK_LIGHT, "OA", "Direction des études et stages"],
+  ["f3scol", "Direction des études et stages", "Partie 2", 255, 388, 100, 24, BRICK_LIGHT, "O1", "Direction des études et stages"],
+  ["f3info", "Salle TP informatique", "", 285, 416, 177, 72, BLUE_UPPER, "HC", "Salle TP informatique"],
 ];
 
 const GROUND: Place[] = GROUND_DATA.map(([id, n, ar, x, y, w, h, c, node, cat]) => ({ id, n, ar, x, y, w, h, c, node, cat }));
-const UPPER: Place[] = UPPER_DATA.map(([id, n, sub, x, y, w, h, c, node, label]) => ({
-  id, n, ar: "", sub, label, x, y, w, h, c, node, upper: true,
-}));
+const toUpper = (d: U[]): Place[] =>
+  d.map(([id, n, sub, x, y, w, h, c, node, label]) => ({
+    id, n, ar: "", sub, label, x, y, w, h, c, node, upper: true,
+  }));
+const UPPER_FLOORS: Record<number, Place[]> = { 1: toUpper(UPPER2_DATA), 2: toUpper(UPPER3_DATA) };
 const PLACES: Record<string, Place> = {};
-[...GROUND, ...UPPER].forEach((p) => (PLACES[p.id] = p));
+[...GROUND, ...UPPER_FLOORS[1], ...UPPER_FLOORS[2]].forEach((p) => (PLACES[p.id] = p));
 
 const CATEGORIES = ["Tous", ...Array.from(new Set(GROUND.map((p) => p.cat as string)))];
 const FLOORS = ["1er étage", "2e étage", "3e étage"];
@@ -135,9 +146,52 @@ const DEFAULT_MSG = "Touchez un bâtiment sur la carte ou choisissez une destina
 const center = (p: Place): Pt => [p.x + p.w / 2, p.y + p.h / 2];
 
 function mapLabel(p: Place, floor: Floor): string {
-  if (p.upper) return floor === 2 ? (p.label ?? "").replace(/\s101.173/, "") : p.label ?? "";
+  if (p.upper) return p.label ?? "";
   if (p.w < 45) return "";
   return p.w < 60 ? p.n.split(" ")[0] : p.n;
+}
+
+/* Ajuste le texte au bloc : retour à la ligne + taille réduite si besoin (le texte ne dépasse jamais) */
+function fitText(text: string, w: number, h: number): { lines: string[]; fs: number } {
+  const words = text.replace(/\n/g, " ").split(/\s+/).filter(Boolean);
+  const maxW = w - 8;
+  for (let fs = 10; fs >= 5; fs -= 0.5) {
+    const cw = fs * 0.6;
+    const lines: string[] = [];
+    let cur = "";
+    let ok = true;
+    for (const word of words) {
+      if (word.length * cw > maxW) {
+        ok = false;
+        break;
+      }
+      const t = cur ? cur + " " + word : word;
+      if (t.length * cw <= maxW) cur = t;
+      else {
+        lines.push(cur);
+        cur = word;
+      }
+    }
+    if (!ok) continue;
+    lines.push(cur);
+    if (lines.length * fs * 1.15 <= h - 2) return { lines, fs };
+  }
+  return { lines: words, fs: 5 };
+}
+
+function BlockLabel({ x, y, w, h, text, top }: { x: number; y: number; w: number; h: number; text: string; top?: boolean }) {
+  if (!text) return null;
+  const { lines, fs } = fitText(text, w, h);
+  const lh = fs * 1.15;
+  const cx = x + w / 2;
+  const y0 = top ? y + fs + 2 : y + h / 2 - ((lines.length - 1) * lh) / 2 + fs * 0.35;
+  return (
+    <text className="lb" style={{ fontSize: fs }}>
+      {lines.map((l, i) => (
+        <tspan key={i} x={cx} y={y0 + i * lh}>{l}</tspan>
+      ))}
+    </text>
+  );
 }
 
 /* ───────────── Composant ───────────── */
@@ -149,8 +203,8 @@ function CampusMap() {
   const [room, setRoom] = useState("");
   const [roomNote, setRoomNote] = useState<number | null>(null);
 
-  const list = floor > 0 ? UPPER : GROUND;
-  const toList = floor > 0 ? UPPER : GROUND.filter((p) => cat === "Tous" || p.cat === cat);
+  const list = floor > 0 ? UPPER_FLOORS[floor] : GROUND;
+  const toList = floor > 0 ? UPPER_FLOORS[floor] : GROUND.filter((p) => cat === "Tous" || p.cat === cat);
 
   const changeFloor = (f: Floor) => {
     setFloor(f);
@@ -162,12 +216,13 @@ function CampusMap() {
   const onRoom = (v: string) => {
     setRoom(v);
     const n = Number(v);
-    if (n >= 101 && n <= 173) {
-      if (floor !== 1) {
-        setFloor(1);
+    const target: [Floor, string] | null = n >= 101 && n <= 173 ? [1, "f1td"] : n >= 201 && n <= 247 ? [2, "f3td"] : null;
+    if (target) {
+      if (floor !== target[0]) {
+        setFloor(target[0]);
         setFrom("");
       }
-      setTo("f1td");
+      setTo(target[1]);
       setRoomNote(n);
     }
   };
@@ -273,7 +328,7 @@ function CampusMap() {
             {EDGES.map(([a, b]) => (
               <line key={a + b} x1={N[a][0]} y1={N[a][1]} x2={N[b][0]} y2={N[b][1]} stroke="#fff" opacity={0.35} strokeWidth={8} strokeLinecap="round" />
             ))}
-            {[[120, 138, 230, 28], [428, 200, 100, 50], [110, 600, 170, 22], [485, 598, 230, 22], [878, 290, 18, 135]].map(([x, y, w, h], i) => (
+            {floor === 0 && [[120, 138, 230, 28], [428, 200, 100, 50], [110, 600, 170, 22], [485, 598, 230, 22], [878, 290, 18, 135]].map(([x, y, w, h], i) => (
               <g key={i}>
                 <rect x={x} y={y} width={w} height={h} rx={3} fill="#3a4452" stroke="#566170" />
                 <text
@@ -291,11 +346,11 @@ function CampusMap() {
             ))}
 
             {/* Rez-de-chaussée (atténué aux étages) */}
-            <g style={{ opacity: floor ? 0.25 : 1, pointerEvents: floor ? "none" : undefined }}>
+            <g style={{ display: floor ? "none" : undefined }}>
               {GROUND.map((p) => (
                 <g key={p.id} className="pl" onClick={() => pick(p.id)}>
                   <rect x={p.x} y={p.y} width={p.w} height={p.h} rx={4} fill={p.c} opacity={0.95} />
-                  <text x={p.x + p.w / 2} y={p.id === "hall" ? p.y + 11 : p.y + p.h / 2 + 3} className="lb">{mapLabel(p, floor)}</text>
+                  <BlockLabel x={p.x} y={p.y} w={p.w} h={p.h} text={mapLabel(p, floor)} top={p.id === "hall"} />
                   <title>{p.n}</title>
                 </g>
               ))}
@@ -304,10 +359,10 @@ function CampusMap() {
             {/* Étages supérieurs */}
             {floor > 0 && (
               <g>
-                {UPPER.map((p) => (
+                {UPPER_FLOORS[floor].map((p) => (
                   <g key={p.id} className="pl" onClick={() => pick(p.id)}>
                     <rect x={p.x} y={p.y} width={p.w} height={p.h} rx={4} fill={p.c} />
-                    <text x={p.x + p.w / 2} y={p.y + p.h / 2 + 3} className="lb">{mapLabel(p, floor)}</text>
+                    <BlockLabel x={p.x} y={p.y} w={p.w} h={p.h} text={mapLabel(p, floor)} />
                     <title>{p.n + " – " + p.sub}</title>
                   </g>
                 ))}
@@ -367,7 +422,7 @@ function CampusMap() {
               </ol>
               {roomNote !== null && (
                 <>
-                  Salle TD <b>{roomNote}</b> : 2e étage, bloc Amphithéâtres + TD.
+                  Salle TD <b>{roomNote}</b> : {roomNote >= 200 ? "3e" : "2e"} étage, bloc Amphithéâtres + TD.
                 </>
               )}
             </>
@@ -422,9 +477,9 @@ function MAP() {
       <div className="container-fluid">
         <div className="row align-items-center g-5 mb-5">
           <div className="text-center">
-            <h2 className="about-title mb-3 ms-3">              Choisissez votre point de départ et votre destination, ou scannez un code QR sur place.
-</h2>
-            
+            <h2 className="about-title mb-3 ms-3">
+              Choisissez votre point de départ et votre destination, ou scannez un code QR sur place.
+            </h2>
             <CampusMap />
           </div>
         </div>
