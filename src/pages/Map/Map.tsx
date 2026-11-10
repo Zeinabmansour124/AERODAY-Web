@@ -18,6 +18,7 @@ interface Place {
   node: string; // nœud du graphe d'allées
   cat?: string;
   upper?: boolean;
+  fl: Floor; // 0 = 1er étage (rez-de-chaussée), 1 = 2e, 2 = 3e
 }
 
 /* ───────────── Palette ───────────── */
@@ -137,12 +138,12 @@ const UPPER3_DATA: U[] = [
   ["f3info", "Salle TP informatique", "", 285, 435, 177, 58, BLUE, "HC", "Salle TP informatique"],
 ];
 
-const GROUND: Place[] = GROUND_DATA.map(([id, n, ar, x, y, w, h, c, node, cat]) => ({ id, n, ar, x, y, w, h, c, node, cat }));
-const toUpper = (d: U[]): Place[] =>
+const GROUND: Place[] = GROUND_DATA.map(([id, n, ar, x, y, w, h, c, node, cat]) => ({ id, n, ar, x, y, w, h, c, node, cat, fl: 0 as Floor }));
+const toUpper = (d: U[], fl: Floor): Place[] =>
   d.map(([id, n, sub, x, y, w, h, c, node, label]) => ({
-    id, n, ar: "", sub, label, x, y, w, h, c, node, upper: true,
+    id, n, ar: "", sub, label, x, y, w, h, c, node, upper: true, fl,
   }));
-const UPPER_FLOORS: Record<number, Place[]> = { 1: toUpper(UPPER2_DATA), 2: toUpper(UPPER3_DATA) };
+const UPPER_FLOORS: Record<number, Place[]> = { 1: toUpper(UPPER2_DATA, 1), 2: toUpper(UPPER3_DATA, 2) };
 const PLACES: Record<string, Place> = {};
 [...GROUND, ...UPPER_FLOORS[1], ...UPPER_FLOORS[2]].forEach((p) => (PLACES[p.id] = p));
 
@@ -186,12 +187,35 @@ function fitText(text: string, w: number, h: number): { lines: string[]; fs: num
   return { lines: words, fs: 5 };
 }
 
-function BlockLabel({ x, y, w, h, text, top }: { x: number; y: number; w: number; h: number; text: string; top?: boolean }) {
+/* Partie libre (non recouverte par un bloc dessiné après) la plus large du bloc, à la hauteur du texte */
+function freeSpan(p: Place, later: Place[], top?: boolean): [number, number] {
+  const y1 = top ? p.y : p.y + p.h / 2 - 9;
+  const y2 = top ? p.y + 14 : p.y + p.h / 2 + 9;
+  const cov = later
+    .filter((q) => q.x < p.x + p.w && q.x + q.w > p.x && q.y < y2 && q.y + q.h > y1)
+    .map((q) => [Math.max(q.x, p.x), Math.min(q.x + q.w, p.x + p.w)] as [number, number])
+    .sort((u, v) => u[0] - v[0]);
+  const full: [number, number] = [p.x, p.x + p.w];
+  if (!cov.length) return full;
+  const segs: [number, number][] = [];
+  let cur = p.x;
+  for (const [u, v] of cov) {
+    if (u > cur) segs.push([cur, u]);
+    cur = Math.max(cur, v);
+  }
+  if (cur < p.x + p.w) segs.push([cur, p.x + p.w]);
+  if (!segs.length) return full;
+  return segs.reduce((best, sg) => (sg[1] - sg[0] > best[1] - best[0] ? sg : best));
+}
+
+function BlockLabel({ p, later, text, top }: { p: Place; later: Place[]; text: string; top?: boolean }) {
   if (!text) return null;
-  const { lines, fs } = fitText(text, w, h);
+  const [x0, x1] = freeSpan(p, later, top);
+  const w = x1 - x0;
+  const { lines, fs } = fitText(text, w, p.h);
   const lh = fs * 1.15;
-  const cx = x + w / 2;
-  const y0 = top ? y + fs + 2 : y + h / 2 - ((lines.length - 1) * lh) / 2 + fs * 0.35;
+  const cx = x0 + w / 2;
+  const y0 = top ? p.y + fs + 2 : p.y + p.h / 2 - ((lines.length - 1) * lh) / 2 + fs * 0.35;
   return (
     <text className="lb" style={{ fontSize: fs }}>
       {lines.map((l, i) => (
@@ -201,22 +225,116 @@ function BlockLabel({ x, y, w, h, text, top }: { x: number; y: number; w: number
   );
 }
 
+/* ───────────── Navigation entre étages ───────────── */
+// Lieu où l'on arrive (escaliers) à chaque étage, et position de départ quand on appuie sur un étage
+const STAIRS: Record<number, string> = { 0: "hall", 1: "f1aud", 2: "f3lec" };
+const START: Record<number, string> = { 0: "main", 1: "f1aud", 2: "f3lec" };
+// Point sur l'allée, devant le lieu (utilisé quand le lieu sert de départ ou d'escaliers)
+const FRONT: Record<string, string> = { f1aud: "E", f3lec: "E" };
+const PX_TO_M = 0.45;
+
+interface Leg {
+  floor: Floor;
+  a: Place;
+  b: Place;
+  pts: Pt[];
+  meters: number;
+  near: string[];
+  startStairs?: boolean;
+  endStairs?: boolean;
+}
+
+type Route =
+  | null
+  | { kind: "same" }
+  | { kind: "single"; a: Place; b: Place; legs: Leg[]; meters: number; minutes: number }
+  | { kind: "multi"; a: Place; b: Place; sa: Place; sb: Place; legs: Leg[]; meters: number; minutes: number };
+
+const floorPlaces = (f: Floor): Place[] => (f ? UPPER_FLOORS[f] : GROUND);
+
+// startOnPath / endOnPath : le point est placé sur l'allée, devant le lieu, et non au centre du bloc
+function makeLeg(a: Place, b: Place, floor: Floor, startOnPath = false, endOnPath = false): Leg {
+  const sNode = startOnPath ? FRONT[a.id] ?? a.node : a.node;
+  const eNode = endOnPath ? FRONT[b.id] ?? b.node : b.node;
+  const ids = shortestPath(sNode, eNode);
+  const pts: Pt[] = [startOnPath ? N[sNode] : center(a), ...ids.map((i) => N[i]), endOnPath ? N[eNode] : center(b)];
+  let len = 0;
+  for (let i = 1; i < pts.length; i++) len += Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]);
+  const near = Array.from(
+    new Set(floorPlaces(floor).filter((p) => p !== a && p !== b && ids.includes(p.node)).map((p) => p.n))
+  ).slice(0, 4);
+  return { floor, a, b, pts, meters: Math.max(1, Math.round(len * PX_TO_M)), near };
+}
+
+// Le haut de la carte est supposé être le nord (flèche du plan d'origine)
+const DIRS = ["l’est", "le nord-est", "le nord", "le nord-ouest", "l’ouest", "le sud-ouest", "le sud", "le sud-est"];
+
+function directions(pts: Pt[]): string[] {
+  const segs: { dx: number; dy: number; len: number }[] = [];
+  for (let i = 1; i < pts.length; i++) {
+    const dx = pts[i][0] - pts[i - 1][0];
+    const dy = pts[i][1] - pts[i - 1][1];
+    const len = Math.hypot(dx, dy);
+    if (len < 8) continue;
+    const last = segs[segs.length - 1];
+    if (last && (last.dx * dx + last.dy * dy) / (last.len * len) > 0.94) {
+      last.dx += dx;
+      last.dy += dy;
+      last.len += len;
+      continue;
+    }
+    segs.push({ dx, dy, len });
+  }
+  return segs.map((s, i) => {
+    const m = Math.max(1, Math.round(s.len * PX_TO_M));
+    if (i === 0) {
+      const ang = (Math.atan2(-s.dy, s.dx) * 180) / Math.PI;
+      const k = ((Math.round(ang / 45) % 8) + 8) % 8;
+      return `Dirigez-vous vers ${DIRS[k]}, sur environ ${m} m`;
+    }
+    const p = segs[i - 1];
+    const cross = p.dx * s.dy - p.dy * s.dx;
+    const cos = (p.dx * s.dx + p.dy * s.dy) / (Math.hypot(p.dx, p.dy) * Math.hypot(s.dx, s.dy));
+    const side = cross > 0 ? "à droite" : "à gauche";
+    const turn = cos < -0.5 ? `Faites presque demi-tour ${side}` : cos > 0.5 ? `Tournez légèrement ${side}` : `Tournez ${side}`;
+    return `${turn}, puis continuez sur environ ${m} m`;
+  });
+}
+
+function LegSteps({ leg }: { leg: Leg }) {
+  const steps = directions(leg.pts);
+  return (
+    <ol>
+      <li>Départ : <b>{leg.a.n}</b></li>
+      {steps.map((t, i) => (
+        <li key={i}>{t}</li>
+      ))}
+      {leg.near.length > 0 && <li>Repères sur le trajet : {leg.near.join(", ")}</li>}
+      <li>Arrivée : <b>{leg.b.n}</b></li>
+    </ol>
+  );
+}
+
 /* ───────────── Composant ───────────── */
 function CampusMap() {
-  const [floor, setFloor] = useState<Floor>(0);
+  const [floor, setFloor] = useState<Floor>(0); // étage affiché sur la carte
   const [from, setFrom] = useState("main");
   const [to, setTo] = useState("");
   const [cat, setCat] = useState("Tous");
   const [room, setRoom] = useState("");
   const [roomNote, setRoomNote] = useState<number | null>(null);
 
-  const list = floor > 0 ? UPPER_FLOORS[floor] : GROUND;
-  const toList = floor > 0 ? UPPER_FLOORS[floor] : GROUND.filter((p) => cat === "Tous" || p.cat === cat);
+  const optText = (p: Place) => p.n + (p.upper ? (p.sub ? "  " + p.sub : "") : p.ar ? "  " + p.ar : "");
+  const fromGroups: [Floor, Place[]][] = [[0, GROUND], [1, UPPER_FLOORS[1]], [2, UPPER_FLOORS[2]]];
+  const toGroups: [Floor, Place[]][] = fromGroups.map(([f, l]) => [
+    f,
+    f === 0 ? l.filter((p) => cat === "Tous" || p.cat === cat) : l,
+  ]);
 
+  // Appuyer sur un étage : on y arrive, donc le départ devient l'arrivée des escaliers de cet étage
   const changeFloor = (f: Floor) => {
     setFloor(f);
-    setTo("");
-    setFrom(f ? "" : "main");
+    setFrom(START[f]);
     setRoomNote(null);
   };
 
@@ -227,7 +345,7 @@ function CampusMap() {
     if (target) {
       if (floor !== target[0]) {
         setFloor(target[0]);
-        setFrom("");
+        setFrom(START[target[0]]);
       }
       setTo(target[1]);
       setRoomNote(n);
@@ -237,28 +355,35 @@ function CampusMap() {
   const pick = (id: string) => {
     setTo(id);
     setRoomNote(null);
+    const p = PLACES[id];
+    if (p) setFloor(p.fl === PLACES[from]?.fl ? p.fl : floor);
   };
 
-  const route = useMemo(() => {
+  const route = useMemo<Route>(() => {
     const a = PLACES[from];
     const b = PLACES[to];
     if (!a || !b) return null;
-    if (a === b) return { same: true as const };
-    const ids = shortestPath(a.node, b.node);
-    const pts: Pt[] = [center(a), ...ids.map((i) => N[i]), center(b)];
-    let len = 0;
-    for (let i = 1; i < pts.length; i++) len += Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]);
-    const meters = Math.round(len * 0.45);
-    const minutes = Math.max(1, Math.round(meters / 75));
-    const near = GROUND.filter((p) => p !== a && p !== b && ids.includes(p.node))
-      .slice(0, 5)
-      .map((p) => p.n);
-    return { same: false as const, a, b, pts, meters, minutes, near };
+    if (a === b) return { kind: "same" };
+    if (a.fl === b.fl) {
+      const leg = makeLeg(a, b, a.fl, START[a.fl] === a.id || STAIRS[a.fl] === a.id);
+      return { kind: "single", a, b, legs: [leg], meters: leg.meters, minutes: Math.max(1, Math.round(leg.meters / 75)) };
+    }
+    const sa = PLACES[STAIRS[a.fl]];
+    const sb = PLACES[STAIRS[b.fl]];
+    const legs: Leg[] = [];
+    if (a !== sa) legs.push({ ...makeLeg(a, sa, a.fl, START[a.fl] === a.id, true), endStairs: true });
+    if (b !== sb) legs.push({ ...makeLeg(sb, b, b.fl, true), startStairs: true });
+    const meters = legs.reduce((t, l) => t + l.meters, 0);
+    return { kind: "multi", a, b, sa, sb, legs, meters, minutes: Math.max(1, Math.round(meters / 75)) + 1 };
   }, [from, to]);
 
+  const viewLeg = route && route.kind !== "same" ? route.legs.find((l) => l.floor === floor) : undefined;
+  const startPlace = PLACES[from];
   const idleMsg =
-    floor > 0
-      ? `${floor + 1}e étage : choisissez d’abord où vous êtes (Départ), puis votre destination.`
+    floor === 0 && from === "main"
+      ? DEFAULT_MSG
+      : startPlace
+      ? `Vous êtes devant « ${startPlace.n} » (${FLOORS[startPlace.fl]}). Choisissez votre destination.`
       : DEFAULT_MSG;
 
   return (
@@ -270,11 +395,12 @@ function CampusMap() {
             <div className="f">
               <label htmlFor="from">Je suis ici / Départ</label>
               <select id="from" value={from} onChange={(e) => setFrom(e.target.value)}>
-                {floor > 0 && <option value="">— Choisir —</option>}
-                {list.map((p) => (
-                  <option key={p.id} value={p.id}>
-                    {p.n + (p.upper ? (p.sub ? "  " + p.sub : "") : p.ar ? "  " + p.ar : "")}
-                  </option>
+                {fromGroups.map(([f, l]) => (
+                  <optgroup key={f} label={FLOORS[f]}>
+                    {l.map((p) => (
+                      <option key={p.id} value={p.id}>{optText(p)}</option>
+                    ))}
+                  </optgroup>
                 ))}
               </select>
             </div>
@@ -282,16 +408,16 @@ function CampusMap() {
               <label htmlFor="to">Destination</label>
               <select id="to" value={to} onChange={(e) => pick(e.target.value)}>
                 <option value="">— Choisir —</option>
-                {toList.map((p) => (
-                  <option key={p.id} value={p.id}>
-                    {p.n + (p.upper ? (p.sub ? "  " + p.sub : "") : p.ar ? "  " + p.ar : "")}
-                  </option>
+                {toGroups.map(([f, l]) => (
+                  <optgroup key={f} label={FLOORS[f]}>
+                    {l.map((p) => (
+                      <option key={p.id} value={p.id}>{optText(p)}</option>
+                    ))}
+                  </optgroup>
                 ))}
               </select>
             </div>
           </div>
-
-          
 
           {floor === 0 && (
             <>
@@ -352,12 +478,12 @@ function CampusMap() {
               </g>
             ))}
 
-            {/* Rez-de-chaussée (atténué aux étages) */}
+            {/* Rez-de-chaussée */}
             <g style={{ display: floor ? "none" : undefined }}>
-              {GROUND.map((p) => (
+              {GROUND.map((p, i) => (
                 <g key={p.id} className="pl" onClick={() => pick(p.id)}>
                   <rect x={p.x} y={p.y} width={p.w} height={p.h} rx={4} fill={p.c} opacity={0.95} />
-                  <BlockLabel x={p.x} y={p.y} w={p.w} h={p.h} text={mapLabel(p, floor)} top={p.id === "hall"} />
+                  <BlockLabel p={p} later={GROUND.slice(i + 1)} text={mapLabel(p, floor)} top={p.id === "hall"} />
                   <title>{p.n}</title>
                 </g>
               ))}
@@ -366,21 +492,21 @@ function CampusMap() {
             {/* Étages supérieurs */}
             {floor > 0 && (
               <g>
-                {UPPER_FLOORS[floor].map((p) => (
+                {UPPER_FLOORS[floor].map((p, i) => (
                   <g key={p.id} className="pl" onClick={() => pick(p.id)}>
                     <rect x={p.x} y={p.y} width={p.w} height={p.h} rx={4} fill={p.c} />
-                    <BlockLabel x={p.x} y={p.y} w={p.w} h={p.h} text={mapLabel(p, floor)} />
+                    <BlockLabel p={p} later={UPPER_FLOORS[floor].slice(i + 1)} text={mapLabel(p, floor)} />
                     <title>{p.n + " – " + p.sub}</title>
                   </g>
                 ))}
               </g>
             )}
 
-            {/* Itinéraire */}
-            {route && !route.same && (
+            {/* Itinéraire de l'étage affiché */}
+            {viewLeg && (
               <g>
                 <polyline
-                  points={route.pts.map((p) => p.join(",")).join(" ")}
+                  points={viewLeg.pts.map((p) => p.join(",")).join(" ")}
                   fill="none"
                   stroke="var(--route)"
                   strokeWidth={5}
@@ -388,13 +514,20 @@ function CampusMap() {
                   strokeLinejoin="round"
                   className="route"
                 />
-                <circle cx={route.pts[0][0]} cy={route.pts[0][1]} r={8} fill={BLUE} stroke="#fff" strokeWidth={3} />
-                <circle cx={route.pts[route.pts.length - 1][0]} cy={route.pts[route.pts.length - 1][1]} r={9} fill={BRICK} stroke="#fff" strokeWidth={3} />
+                <circle cx={viewLeg.pts[0][0]} cy={viewLeg.pts[0][1]} r={8} fill={viewLeg.startStairs ? "#f3b81c" : BLUE} stroke="#fff" strokeWidth={3} />
+                <circle
+                  cx={viewLeg.pts[viewLeg.pts.length - 1][0]}
+                  cy={viewLeg.pts[viewLeg.pts.length - 1][1]}
+                  r={9}
+                  fill={viewLeg.endStairs ? "#f3b81c" : BRICK}
+                  stroke="#fff"
+                  strokeWidth={3}
+                />
               </g>
             )}
 
             {/* Vous êtes ici (entrée principale) */}
-            {floor === 0 && (
+            {floor === 0 && from === "main" && (
               <g>
                 <circle cx={380} cy={597} r={7} fill={BLUE} stroke="#fff" strokeWidth={3} />
                 <text x={380} y={620} fontSize={9} fill={BLUE} textAnchor="middle" fontWeight={700}>Vous êtes ici</text>
@@ -407,30 +540,54 @@ function CampusMap() {
         <div className="panel info" style={{ marginTop: 10 }} id="info" aria-live="polite">
           {!route ? (
             idleMsg
-          ) : route.same ? (
+          ) : route.kind === "same" ? (
             "Vous êtes déjà ici 🙂"
           ) : (
             <>
               <b>{route.a.n} → {route.b.n}</b>
               <br />
               ≈ {route.meters} m · ~{route.minutes} min à pied
-              <ol>
-                <li>Partez de <b>{route.a.n}</b></li>
-                {route.near.map((n) => (
-                  <li key={n}>Passez près de {n}</li>
-                ))}
-                {route.b.upper && !route.a.upper && (
-                  <li>Montez au <b>{floor + 1}e étage</b> (emplacement des escaliers à confirmer)</li>
-                )}
-                <li>
-                  Arrivez à <b>{route.b.n}</b>
-                  {route.b.sub ? ` (${route.b.sub})` : ""} {route.b.ar}
-                </li>
-              </ol>
-              {roomNote !== null && (
+              {route.kind === "single" ? (
                 <>
-                  Salle TD <b>{roomNote}</b> : {roomNote >= 200 ? "3e" : "2e"} étage, bloc Amphithéâtres + TD.
+                  <div className="leg">{FLOORS[route.a.fl]}</div>
+                  <LegSteps leg={route.legs[0]} />
                 </>
+              ) : (
+                <>
+                  <div className="leg">① {FLOORS[route.a.fl]}</div>
+                  {route.legs.find((l) => l.endStairs) ? (
+                    <LegSteps leg={route.legs.find((l) => l.endStairs) as Leg} />
+                  ) : (
+                    <p className="note">Vous êtes déjà devant <b>{route.sa.n}</b>.</p>
+                  )}
+                  <div className="swap">
+                    <b>② Changez d’étage</b> : {route.b.fl > route.a.fl ? "montez" : "descendez"} du <b>{FLOORS[route.a.fl]}</b> au{" "}
+                    <b>{FLOORS[route.b.fl]}</b> (escaliers, emplacement à confirmer).
+                    <div style={{ marginTop: 6 }}>
+                      <button className="cbtn" onClick={() => changeFloor(route.b.fl)}>
+                        Je suis arrivé au {FLOORS[route.b.fl]}
+                      </button>
+                    </div>
+                  </div>
+                  <div className="leg">③ {FLOORS[route.b.fl]}</div>
+                  {route.legs.find((l) => l.startStairs) ? (
+                    <LegSteps leg={route.legs.find((l) => l.startStairs) as Leg} />
+                  ) : (
+                    <p className="note">Vous arrivez devant <b>{route.b.n}</b>.</p>
+                  )}
+                </>
+              )}
+              {!viewLeg && route.legs.length > 0 && (
+                <div style={{ marginTop: 8 }}>
+                  <button className="cbtn" onClick={() => setFloor(route.legs[0].floor)}>
+                    Voir le trajet sur la carte ({FLOORS[route.legs[0].floor]})
+                  </button>
+                </div>
+              )}
+              {roomNote !== null && (
+                <p className="note">
+                  Salle TD <b>{roomNote}</b> : {roomNote >= 200 ? "3e" : "2e"} étage, bloc Amphithéâtres + TD.
+                </p>
               )}
             </>
           )}
@@ -470,6 +627,9 @@ const CSS = `
 .campus .pl:hover rect{stroke:var(--ac);stroke-width:2}
 .campus .lb{font-size:10px;fill:#fff;text-anchor:middle;pointer-events:none;font-weight:600}
 .campus ol{margin:6px 0 0;padding-left:20px}
+.campus .leg{margin-top:10px;font-weight:700;color:var(--blue)}
+.campus .swap{margin-top:10px;padding:8px 10px;border:1px dashed var(--ac);border-radius:8px;background:#fff6f0}
+.campus .note{margin:6px 0 0}
 .campus .cbtn{background:var(--ac);color:#fff;border:0;border-radius:8px;padding:9px 16px;font:inherit;font-size:14px;font-weight:600;cursor:pointer;width:auto}
 .campus .cbtn:hover{filter:brightness(.92)}
 .campus .route{stroke-dasharray:10 7;animation:campus-dash 1s linear infinite}
