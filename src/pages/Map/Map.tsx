@@ -26,6 +26,7 @@ const BRICK_LIGHT = "#b5523b";
 const BLUE = "#1f4e8c";
 const BLUE_UPPER = "#4f7fc2";
 const GRAY = "#6b7480";
+const violet="#651661";
 
 /* ───────────── Graphe des allées ───────────── */
 const N: Record<string, Pt> = {
@@ -87,19 +88,19 @@ const GROUND_DATA: G[] = [
   ["serv", "Entrée de service", "مدخل الخدمات", 30, 168, 30, 20, GRAY, "ES", "Entrées"],
   ["inno", "Centre d’innovation", "مركز الابتكار", 190, 205, 165, 40, GRAY, "OC", "Administration"],
   ["maint", "Maintenance", "الصيانة", 55, 245, 130, 32, GRAY, "M", "Administration"],
-  ["hall", "Hall", "البهو", 275, 412, 200, 100, "#4a5461", "HC", "Études"],
-  ["dir", "accés administration", "", 285, 416, 100, 34, BRICK, "HC", "Administration"],
-  ["acc", "Accueil / Forum", "الاستقبال", 285, 453, 100, 14, BRICK, "F", "Administration"],
-  ["aud", "Auditorium", "القاعة الكبرى", 392, 418, 70, 70, BRICK, "AU", "Études"],
-  ["bib", "Bibliothèque", "المكتبة", 282, 515, 95, 40, BRICK, "G", "Études"],
-  ["conf", "Salles de conférences", "قاعات المحاضرات", 378, 515, 82, 40, BRICK, "E", "Études"],
+  ["hall", "Hall", "البهو", 275, 400, 200, 100, "#4a5461", "HC", "Études"],
+  ["dir", "accés administration", "", 285, 400, 60, 20, BRICK, "HC", "Administration"],
+  ["acc", "Accueil / Forum", "الاستقبال", 285, 422, 60, 20, BRICK, "F", "Administration"],
+  ["aud", "Auditorium", "القاعة الكبرى", 392, 410, 50, 50, BRICK, "AU", "Études"],
+  ["bib", "Bibliothèque", "المكتبة", 282, 540, 95, 40, BRICK, "G", "Études"],
   ["resto", "Restaurant universitaire", "المطعم الجامعي", 427, 255, 100, 62, GRAY, "R", "Restauration"],
   ["cafe", "Cafétéria", "مشرب", 392, 254, 30, 28, GRAY, "V2", "Restauration"],
-  ["ing", "Ingénierat et recherche", "الهندسة والبحث", 100, 432, 170, 58, GRAY, "H", "Études"],
-  ["labg", "Laboratoires (ouest)", "المخابر", 76, 508, 192, 44, BLUE, "H", "Laboratoires"],
+  ["ing", "Ingénierat et recherche", "الهندسة والبحث", 100, 440, 170, 58, GRAY, "H", "Études"],
+  ["labg", "Laboratoires (ouest)", "المخابر", 76, 520, 192, 44, BLUE, "H", "Laboratoires"],
   ["cyc", "Formation de premier cycle", "دراسات المرحلة الأولى", 477, 440, 378, 58, BLUE, "D", "Études"],
-  ["amph", "Amphithéâtres", "المدرجات", 473, 533, 270, 38, BLUE, "D", "Études"],
-  ["labd", "Laboratoires (est)", "المخابر", 750, 533, 88, 36, BLUE, "B", "Laboratoires"],
+  ["amph", "Amphithéâtres", "المدرجات", 473, 520, 270, 44, BLUE, "D", "Études"],
+  ["toilettes", "Toilettes", "الحمامات", 600, 520, 45, 38, GRAY, "HC", "Services"],
+  ["labd", "Laboratoires (est)", "المخابر", 750, 520, 88,44, BLUE, "B", "Laboratoires"],
 ];
 
 // [id, nom, précision, x, y, w, h, couleur, nœud, étiquette]
@@ -115,7 +116,11 @@ const UPPER2_DATA: U[] = [
   ["f1adm", "Service et scolarité", "Administration", 235, 325, 80, 24, BRICK_LIGHT, "OA", "Service et scolarité"],
   ["f1scol", "Service et scolarité", "Scolarité", 255, 388, 100, 24, BRICK_LIGHT, "O1", "Service et scolarité"],
   ["f1dir", "Direction des études et stages", "Bureaux administratifs", 285, 416, 100, 34, BRICK, "HC", "Administration"],
-  ["f1aud", "Accès auditorium", "Hall", 392, 418, 70, 70, BRICK, "AU", "Accès auditorium"],
+  ["f1aud", "Accès auditorium", "Hall", 392, 440, 80, 60, BRICK, "AU", "Accès auditorium"],
+  ["f1toilettes", "Toilettes", "", 140, 510, 30, 38, GRAY, "HC", "Toilettes"],
+  ["f1toilettes2", "Toilettes", "", 565, 522, 30, 38, GRAY, "HC", "Toilettes"],
+  ["f1toilettes3", "Toilettes", "", 780, 522, 30, 38, GRAY, "HC", "Toilettes"],
+  ["f1Moussala", "Mousalla", "", 175 , 510, 30, 38, BLUE, "H", "Mousalla"],
 ];
 
 const UPPER3_DATA: U[] = [
@@ -127,7 +132,9 @@ const UPPER3_DATA: U[] = [
   ["f3sec", "Secrétariat général", "", 215, 262, 95, 24, BRICK_LIGHT, "OS", "Secrétariat général"],
   ["f3adm", "Direction des études et stages", "Partie 1", 235, 325, 80, 24, BRICK_LIGHT, "OA", "Direction des études et stages"],
   ["f3scol", "Direction des études et stages", "Partie 2", 255, 388, 100, 24, BRICK_LIGHT, "O1", "Direction des études et stages"],
-  ["f3info", "Salle TP informatique", "", 285, 416, 177, 72, BLUE_UPPER, "HC", "Salle TP informatique"],
+  ["f3toilettes1", "Toilettes", "", 510, 522, 30, 38, violet, "HC", "Toilettes"],
+  ["f3toilettes2", "Toilettes", "", 780, 522, 30, 38, violet, "HC", "Toilettes"],  
+  ["f3info", "Salle TP informatique", "", 285, 435, 177, 58, BLUE, "HC", "Salle TP informatique"],
 ];
 
 const GROUND: Place[] = GROUND_DATA.map(([id, n, ar, x, y, w, h, c, node, cat]) => ({ id, n, ar, x, y, w, h, c, node, cat }));
