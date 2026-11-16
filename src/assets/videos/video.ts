@@ -19,5 +19,10 @@ export const broadcasts: Broadcast[] = [
     videoId: 'eKjRgAD62Cc', // remplace par un vrai ID YouTube plus tard
     name: ' Ahmed Aziz Ben Gandia',
     role: 'Alumni INSAT'
+  },
+   {
+    videoId: 'Ah5vuJFw93c', 
+    name: ' Wahida Aloui',
+    role: 'Hotesse de l’air'
   }
 ];

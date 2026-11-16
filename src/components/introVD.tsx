@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import './../App.css'
-import introLogo from '../assets/videos/intro-logo.mp4'; 
+
 type IntroVideoProps = {
   onFinish?: () => void
   duration?: number
@@ -29,8 +29,9 @@ export default function IntroVideo({
 
   return (
     <div className="intro-overlay" onClick={handleSkip}>
+      {/* J'ai enlevé l'import et corrigé le nom du fichier ici */}
       <video
-        src="introLogo"
+        src="/intro-logo.mp4" 
         autoPlay
         muted
         playsInline
