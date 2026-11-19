@@ -18,6 +18,8 @@ import Sponsors from '../pages/Sponsors/Sponsors';
 import Team from '../pages/Team/Team'
 import ExpAero from '../pages/expAero/ExpAero';
 import WR from '../pages/WaterRocketry/wr';
+import Presentation from '../pages/presenatation/Presentation';
+import PresentationAdmin from '../pages/presenatation/PresentationAdmin';
 
 export default function AppRoutes() {
   return (
@@ -41,8 +43,8 @@ export default function AppRoutes() {
       <Route path="/Sponsors" element={<Sponsors/>} />
       <Route path="/Team" element={<Team/>} />
       <Route path="/Water Rocketry" element={<WR/>}/>
-      
-      
+      <Route path="/presentation" element={<Presentation/>}/>
+      <Route path="/presentationAdmin" element={<PresentationAdmin/>}/>
     </Routes>
   );
 }

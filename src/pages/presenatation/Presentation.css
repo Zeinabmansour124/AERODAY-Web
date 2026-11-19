@@ -1,0 +1,181 @@
+:root {
+  --navy: #0F1B3C;
+  --navy-soft: #1B2B55;
+  --white: #FFFFFF;
+  --orange: #FF5A1F;
+  --yellow: #FFD23F;
+  --grey: #F4F5F7;
+  --danger: #D62828;
+  /* Palette 1 : --navy:#0B1F3A; --navy-soft:#1E4D8C; --orange:#FF6B35; --grey:#E8ECF1; */
+}
+
+/* Couleurs explicites : évite le texte invisible venant du CSS global (template Vite) */
+.pres-page {
+  width: 100%;
+  min-height: 70vh;
+  box-sizing: border-box;
+  padding: 40px 24px;
+  background: var(--grey);
+  color: var(--navy);
+  text-align: left;
+  font-family: system-ui, sans-serif;
+}
+.pres-page * { box-sizing: border-box; }
+.pres-wrap { max-width: 1100px; margin: 0 auto; }
+.pres-page h1, .pres-page h2 { margin: 0 0 16px; color: inherit; }
+
+/* ---------- Écran projeté ---------- */
+.pres-screen { background: var(--navy); color: var(--white); }
+.pres-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; }
+@media (max-width: 800px) { .pres-grid { grid-template-columns: 1fr; } }
+
+.pres-flight-tag {
+  display: inline-block; background: var(--yellow); color: var(--navy);
+  font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  padding: 6px 16px; border-radius: 999px; margin-bottom: 16px;
+}
+.pres-title { font-size: clamp(32px, 5vw, 56px); }
+.pres-teams { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.pres-team {
+  display: flex; align-items: center; gap: 20px;
+  background: var(--navy-soft); border-left: 8px solid var(--orange);
+  border-radius: 12px; padding: 18px 24px;
+  font-size: clamp(22px, 3.2vw, 40px); font-weight: 700;
+}
+.pres-num {
+  min-width: 52px; height: 52px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--orange); color: var(--white); font-size: 26px;
+}
+.pres-queue {
+  background: rgba(255,255,255,.06); border-radius: 12px; padding: 20px;
+  align-self: start;
+}
+.pres-queue h2 { font-size: 20px; color: var(--yellow); }
+.pres-queue ol { margin: 0; padding-left: 22px; opacity: .85; line-height: 1.8; }
+.pres-empty { opacity: .7; font-size: 20px; }
+
+/* ---------- Admin ---------- */
+.pres-panel {
+  background: var(--white); border-radius: 12px; padding: 20px;
+  margin-bottom: 24px; box-shadow: 0 2px 8px rgba(15,27,60,.08);
+}
+.pres-input {
+  padding: 10px 14px; border: 2px solid #cfd5df; border-radius: 8px;
+  font-size: 16px; background: var(--white); color: var(--navy);
+}
+.pres-input:focus { outline: none; border-color: var(--orange); }
+.pres-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.pres-row .pres-input { flex: 1; min-width: 180px; }
+
+.pres-btn {
+  background: var(--orange); color: var(--white); border: none;
+  padding: 10px 20px; border-radius: 8px; font-weight: 700;
+  font-size: 16px; cursor: pointer;
+}
+.pres-btn:hover:not(:disabled) { filter: brightness(1.1); }
+.pres-btn:disabled { opacity: .4; cursor: not-allowed; }
+.pres-btn-lg { padding: 14px 28px; font-size: 18px; }
+
+.pres-error { color: var(--danger); font-weight: 600; }
+
+.pres-chips { list-style: none; padding: 0; margin: 0; display: flex; gap: 8px; flex-wrap: wrap; }
+.pres-chip {
+  background: var(--grey); border-radius: 999px; padding: 6px 8px 6px 14px;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.pres-chip button {
+  border: none; background: none; cursor: pointer; color: var(--danger); font-size: 16px;
+}
+
+.pres-flight {
+  background: var(--white); border-radius: 12px; padding: 16px 20px;
+  margin-bottom: 12px; border-left: 8px solid var(--yellow);
+  box-shadow: 0 2px 8px rgba(15,27,60,.08);
+}
+.pres-flight-head { display: flex; justify-content: space-between; align-items: center; }
+.pres-flight-head strong { font-size: 22px; }
+.pres-flight p { margin: 6px 0 0; color: #5b6478; }
+.pres-icon {
+  background: none; border: none; cursor: pointer; font-size: 20px;
+  padding: 6px 8px; color: var(--navy); border-radius: 6px;
+}
+.pres-icon:hover:not(:disabled) { background: var(--grey); }
+.pres-icon:disabled { opacity: .3; cursor: not-allowed; }
+.pres-icon.danger { color: var(--danger); }
+.pres-gate { max-width: 420px; margin: 40px auto; text-align: center; }
+.pres-gate .pres-input { width: 100%; margin-bottom: 12px; }
+.pres-gate .pres-btn { width: 100%; }
+.pres-logout { float: right; background: none; border: none; color: var(--navy); text-decoration: underline; cursor: pointer; }
+
+/* Écran : équipe en cours centrée en grand */
+.pres-screen { display: flex; align-items: center; justify-content: center; min-height: 75vh; }
+.pres-screen .pres-wrap { width: 100%; }
+
+.pres-single {
+  min-height: 60vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; gap: 24px;
+}
+.pres-single-name {
+  font-size: clamp(56px, 11vw, 160px);
+  font-weight: 800; line-height: 1.05;
+  width: 100%;
+  background: var(--navy-soft);
+  border-bottom: 12px solid var(--orange);
+  border-radius: 20px;
+  padding: 48px 32px;
+  overflow-wrap: anywhere;
+}
+
+/* Équipe suivante : petite, juste en dessous */
+.pres-next {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  margin-top: 8px; opacity: .85;
+}
+.pres-next-label {
+  font-size: 14px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--yellow); font-weight: 700;
+}
+.pres-next-name { font-size: clamp(20px, 2.4vw, 32px); font-weight: 600; }
+/* Écran : équipe en cours centrée en grand */
+.pres-screen { display: flex; align-items: center; justify-content: center; min-height: 75vh; }
+.pres-screen .pres-wrap { width: 100%; }
+
+.pres-single {
+  min-height: 60vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; gap: 24px;
+}
+.pres-single-name {
+  font-size: clamp(56px, 11vw, 160px);
+  font-weight: 800; line-height: 1.05;
+  width: 100%;
+  background: var(--navy-soft);
+  border-bottom: 12px solid var(--orange);
+  border-radius: 20px;
+  padding: 48px 32px;
+  overflow-wrap: anywhere;
+}
+
+/* Équipe suivante : petite, juste en dessous */
+.pres-next {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  margin-top: 8px; opacity: .85;
+}
+.pres-next-label {
+  font-size: 14px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--yellow); font-weight: 700;
+}
+.pres-next-name { font-size: clamp(20px, 2.4vw, 32px); font-weight: 600; }
+
+.pres-qlist { list-style: none; padding: 0; margin: 0 0 16px; display: grid; gap: 8px; }
+.pres-qitem {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--grey); border-radius: 8px; padding: 6px 10px;
+}
+.pres-qitem.first { border-left: 6px solid var(--orange); }
+.pres-qname { flex: 1; font-weight: 600; }
+.pres-note { color: #5b6478; font-size: 14px; }
