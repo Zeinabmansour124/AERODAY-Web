@@ -17,7 +17,8 @@ export default function ChallengeScreen({ challenge, title }: { challenge: Chall
             <div className="ch-row">
               <div className="pres-single-name ch-name">{current.team}</div>
               <div className={`ch-timer ${state}`}>
-                {state === 'done' ? '00:00' : fmt(remaining)}
+                {state === 'paused' && <small className="ch-pause-tag">⏸ En pause</small>}
+                {fmt(remaining)}
               </div>
             </div>
 

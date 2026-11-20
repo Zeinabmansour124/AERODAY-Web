@@ -495,3 +495,8 @@
   border-radius: 6px; cursor: pointer;
 }
 .pres-chip .pres-check.on { background: var(--orange); border-color: var(--orange); }
+
+/* Minuteur en pause */
+.ch-timer.paused, .ch-timer-sm.paused { background: var(--orange); color: var(--white); }
+.ch-pause-tag { display: block; font-size: clamp(14px, 2vw, 24px); letter-spacing: .08em; text-align: center; }
+.ch-timer { text-align: center; }
