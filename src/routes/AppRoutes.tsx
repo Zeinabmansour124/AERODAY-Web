@@ -20,6 +20,14 @@ import ExpAero from '../pages/expAero/ExpAero';
 import WR from '../pages/WaterRocketry/wr';
 import Presentation from '../pages/presenatation/Presentation';
 import PresentationAdmin from '../pages/presenatation/PresentationAdmin';
+import Aeromodelismeaff from '../pages/challenge/Aeromodelisme';
+import AeromodelismeAdmin from '../pages/challenge/AeromodelismeAdmin';
+import AirshowAdmin from '../pages/challenge/AirshowAdmin';
+import Airshowaff from '../pages/challenge/Airshow';
+import Jury from '../pages/voteCeremonie/Jurry';
+import VoteAdmin from '../pages/voteCeremonie/VoteAdmin';
+import Vote from '../pages/voteCeremonie/Vote';
+
 
 export default function AppRoutes() {
   return (
@@ -45,6 +53,13 @@ export default function AppRoutes() {
       <Route path="/Water Rocketry" element={<WR/>}/>
       <Route path="/presentation" element={<Presentation/>}/>
       <Route path="/presentationAdmin" element={<PresentationAdmin/>}/>
+      <Route path="/aeromodelismeaff" element={<Aeromodelismeaff />} />
+      <Route path="/aeromodelismeAdmin" element={<AeromodelismeAdmin />} />
+      <Route path="/airshowaff" element={<Airshowaff />} />
+      <Route path="/airshowAdmin" element={<AirshowAdmin />} />
+      <Route path="/vote" element={<Vote />} />
+      <Route path="/voteAdmin" element={<VoteAdmin />} />
+      <Route path="/jury" element={<Jury />} />
     </Routes>
   );
 }

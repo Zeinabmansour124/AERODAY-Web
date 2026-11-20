@@ -76,12 +76,12 @@ export default function PresentationAdmin() {
 
 /* ---------- Étape 2 : contenu réel ---------- */
 function AdminPanel({ code, onLogout }: { code: string; onLogout: () => void }) {
-  const { queue, flights, mode, reload } = usePresentation()
+  const { queue, doneTeams, flights, mode, reload } = usePresentation()
   const [name, setName] = useState('')
   const [msg, setMsg] = useState('')
 
-  // Quand le tirage de 6 est activé, la présentation une par une est terminée
-  const singleDone = mode === 'flight'
+  const inBlocks = flights.reduce((s, f) => s + f.teams.length, 0)
+  const remaining = queue.length + inBlocks // équipes pas encore présentées
 
   async function run(fn: string, args: Record<string, unknown> = {}) {
     const { error } = await supabase.rpc(fn, { p_code: code, ...args })
@@ -95,37 +95,23 @@ function AdminPanel({ code, onLogout }: { code: string; onLogout: () => void }) 
     if (await run('add_team', { p_team: name })) setName('')
   }
 
-  // Tirage de 6 : l'écran bascule sur les 6 équipes et le mode un par un se termine
-  async function draw() {
-    if (await run('draw_teams', { p_count: 6 })) {
-      await run('set_display', { p_mode: 'flight' })
-    }
-  }
-
-  const showSingle = () => run('set_display', { p_mode: 'single' })
-
-  async function nextTeam() {
-    if (!queue[0]) return
-    if (await run('delete_team', { p_id: queue[0].id })) {
-      await run('set_display', { p_mode: 'single' })
-    }
-  }
-
-  async function reopenSingle() {
-    if (confirm('Réactiver la présentation une par une ?')) {
-      await run('reset_display')
-    }
-  }
-
-  const moveTeam = (id: number, dir: 'up' | 'down') =>
-    run('move_team', { p_id: id, p_dir: dir })
-
+  const toggleDone = (id: number) => run('toggle_done', { p_id: id })
+  const moveTeam = (id: number, dir: 'up' | 'down') => run('move_team', { p_id: id, p_dir: dir })
   const moveFlight = (batch: number, dir: 'up' | 'down') =>
     run('move_flight', { p_batch: batch, p_dir: dir })
 
-  async function removeFlight(batch: number, label: string) {
-    if (confirm(`Supprimer ${label} et ses équipes ?`)) {
-      await run('delete_flight', { p_batch: batch })
+  async function shuffle() {
+    if (remaining === 0) return
+    const blocks = Math.ceil(remaining / 6)
+    const text = flights.length > 0
+      ? `Re-mélanger les ${remaining} équipes restantes en ${blocks} bloc(s) de 6 ?`
+      : `Mélanger les ${remaining} équipes non présentées en ${blocks} bloc(s) de 6 ?`
+    if (confirm(text)) await run('draw_all_blocks', { p_size: 6 })
+  }
+
+  async function returnFlight(batch: number, label: string) {
+    if (confirm(`Remettre les équipes de ${label} dans la file d'attente ?`)) {
+      await run('return_flight', { p_batch: batch })
     }
   }
 
@@ -154,74 +140,89 @@ function AdminPanel({ code, onLogout }: { code: string; onLogout: () => void }) 
           <h2>File d'attente ({queue.length})</h2>
           <p>
             Affichage actuel sur l'écran :{' '}
-            <strong>{singleDone ? 'tirage de 6 équipes' : 'première équipe de la file'}</strong>
+            <strong>{mode === 'flight' && flights.length > 0 ? 'blocs de 6 équipes' : 'une équipe à la fois'}</strong>
           </p>
-          {singleDone && (
-            <p className="pres-note">
-              La présentation une par une est terminée. Tu peux encore ranger la file et tirer
-              d'autres équipes.{' '}
-              <button className="pres-logout" style={{ float: 'none' }} onClick={reopenSingle}>
-                Réactiver le mode un par un
-              </button>
-            </p>
-          )}
 
           {queue.length === 0 ? (
             <p>Aucune équipe en attente.</p>
           ) : (
             <ol className="pres-qlist">
               {queue.map((t, i) => (
-                <li key={t.id} className={`pres-qitem ${i === 0 && !singleDone ? 'first' : ''}`}>
-                  <span className="pres-qname">
-                    {i === 0 && !singleDone ? '▶ ' : ''}{t.team}
-                  </span>
-                  <button className="pres-icon" title="Monter" disabled={i === 0}
+                <li key={t.id} className={`pres-qitem ${i === 0 ? 'first' : ''}`}>
+                  <button className="pres-check" title="Marquer comme déjà présentée"
+                    onClick={() => toggleDone(t.id)} />
+                  <span className="pres-qname">{i === 0 ? '▶ ' : ''}{t.team}</span>
+                  <button className="pres-icon" disabled={queue.length < 2}
+                    title={i === 0 ? 'Envoyer à la dernière place' : 'Monter'}
                     onClick={() => moveTeam(t.id, 'up')}>↑</button>
-                  <button className="pres-icon" title="Descendre" disabled={i === queue.length - 1}
+                  <button className="pres-icon" disabled={queue.length < 2}
+                    title={i === queue.length - 1 ? 'Passer en première place' : 'Descendre'}
                     onClick={() => moveTeam(t.id, 'down')}>↓</button>
-                  <button className="pres-icon danger" title="Retirer de la file"
-                    onClick={() => run('delete_team', { p_id: t.id })}>✕</button>
                 </li>
               ))}
             </ol>
           )}
 
-          <p className="pres-row">
-            <button className="pres-btn pres-btn-lg" onClick={draw} disabled={queue.length === 0}>
-              Tirer 6 équipes au hasard
+          <p>
+            <button className="pres-btn pres-btn-lg" onClick={shuffle} disabled={remaining === 0}>
+              {flights.length > 0 ? 'Re-mélanger les équipes restantes' : 'Mélanger en blocs de 6'}
             </button>
-            <button className="pres-btn pres-btn-lg" onClick={showSingle}
-              disabled={queue.length === 0 || singleDone}>
-              Afficher la 1re équipe de la file
-            </button>
-            <button className="pres-btn pres-btn-lg" onClick={nextTeam}
-              disabled={queue.length === 0 || singleDone}>
-              Équipe suivante
-            </button>
+          </p>
+          <p className="pres-note">
+            Mélange toutes les équipes non cochées (file et blocs actuels) en blocs de 6.
+            
           </p>
         </div>
 
-        <h2>Présentations</h2>
+        <h2>presentation</h2>
         {flights.length === 0 && <p>Aucune présentation pour le moment.</p>}
         {flights.map((f, i) => {
-          const label = `presentation ${i + 1}`
+          const label = `Flight ${i + 1}`
           return (
-            <div key={f.batch} className="pres-flight">
+            <div key={f.batch} className={`pres-flight ${i === 0 ? 'current' : ''}`}>
               <div className="pres-flight-head">
-                <strong>{label}</strong>
+                <strong>{label}{i === 0 && <span className="pres-note"> (en cours)</span>}</strong>
                 <div>
-                  <button className="pres-icon" title="Monter" disabled={i === 0}
+                  <button className="pres-icon" disabled={flights.length < 2}
+                    title={i === 0 ? 'Envoyer à la dernière place' : 'Monter'}
                     onClick={() => moveFlight(f.batch, 'up')}>↑</button>
-                  <button className="pres-icon" title="Descendre" disabled={i === flights.length - 1}
+                  <button className="pres-icon" disabled={flights.length < 2}
+                    title={i === flights.length - 1 ? 'Passer en première place' : 'Descendre'}
                     onClick={() => moveFlight(f.batch, 'down')}>↓</button>
-                  <button className="pres-icon danger" title="Supprimer le flight"
-                    onClick={() => removeFlight(f.batch, label)}>🗑</button>
+                  <button className="pres-icon" title="Retourner ce bloc dans la file d'attente"
+                    onClick={() => returnFlight(f.batch, label)}>↩</button>
                 </div>
               </div>
-              <p>{f.teams.length} équipe(s) : {f.teams.map(t => t.team).join(', ')}</p>
+              <ul className="pres-chips" style={{ marginTop: 10 }}>
+                {f.teams.map(t => (
+                  <li key={t.id} className="pres-chip">
+                    <button className="pres-check" title="Marquer comme déjà présentée"
+                      onClick={() => toggleDone(t.id)} />
+                    
+                    {t.team}
+                  </li>
+                ))}
+              </ul>
             </div>
           )
         })}
+
+        <div className="pres-panel" style={{ marginTop: 24 }}>
+          <h2>Équipes déjà présentées ({doneTeams.length})</h2>
+          {doneTeams.length === 0 ? (
+            <p className="pres-note">Aucune équipe cochée pour le moment.</p>
+          ) : (
+            <ul className="pres-qlist">
+              {doneTeams.map(t => (
+                <li key={t.id} className="pres-qitem done">
+                  <button className="pres-check on" title="Décocher (remettre dans la file)"
+                    onClick={() => toggleDone(t.id)}>✔</button>
+                  <span className="pres-qname">{t.team}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
     </div>
   )
